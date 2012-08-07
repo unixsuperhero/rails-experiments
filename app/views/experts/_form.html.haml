@@ -21,11 +21,11 @@
       .controls
         = f.text_field :slug, class: 'text_field'
   .span6
+  .clearfix
     .control-group
       = f.label :bio, class: 'control-label'
       .controls
-        = f.text_area :bio, class: 'text_area'
-  .clearfix
+        = f.text_area :bio, class: 'text_area', rows: 5
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
     = link_to t('.cancel', default: t("helpers.links.cancel")), experts_path, class: 'btn'
