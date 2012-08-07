@@ -1,0 +1,8 @@
+bundle exec rails g scaffold Service {image,name,title}:string {text,short_description}:text {type,slug}:string
+bundle exec rails g scaffold Testimonial {name,location}:string testimonial:text {image,slug}:string plan_id:integer
+bundle exec rails g scaffold Brand {name,slug,title}:string meta_tag:text
+bundle exec rails g scaffold Plan {plan_type,slug}:string
+bundle exec rails g scaffold Expert {name,text_line_1,text_line_2}:string bio:text {image,slug}:string
+bundle exec rails g scaffold Campaign {name,cpid,phone_number}:string
+bundle exec rails g scaffold Banner html:text
+bundle exec rails g scaffold Page slug:string {content,meta_tag}:text {title,breadcrumb_name}:string

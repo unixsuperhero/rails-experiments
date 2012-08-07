@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  slug: MyString
+  content: MyText
+  meta_tag: MyText
+  title: MyString
+  breadcrumb_name: MyString
+
+two:
+  slug: MyString
+  content: MyText
+  meta_tag: MyText
+  title: MyString
+  breadcrumb_name: MyString
