@@ -14,4 +14,9 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
 end
 
+group :development, :test do
+  gem 'faker'
+  gem 'fabrication', '0.9.5'
+end
+
  gem 'ruby-debug19', :require => 'ruby-debug'
