@@ -29,6 +29,46 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: admins; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE admins (
+    id integer NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: admins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE admins_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE admins_id_seq OWNED BY admins.id;
+
+
+--
 -- Name: banners; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -315,6 +355,13 @@ ALTER SEQUENCE testimonials_id_seq OWNED BY testimonials.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY admins ALTER COLUMN id SET DEFAULT nextval('admins_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY banners ALTER COLUMN id SET DEFAULT nextval('banners_id_seq'::regclass);
 
 
@@ -365,6 +412,14 @@ ALTER TABLE ONLY services ALTER COLUMN id SET DEFAULT nextval('services_id_seq':
 --
 
 ALTER TABLE ONLY testimonials ALTER COLUMN id SET DEFAULT nextval('testimonials_id_seq'::regclass);
+
+
+--
+-- Name: admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY admins
+    ADD CONSTRAINT admins_pkey PRIMARY KEY (id);
 
 
 --
@@ -432,6 +487,20 @@ ALTER TABLE ONLY testimonials
 
 
 --
+-- Name: index_admins_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_admins_on_email ON admins USING btree (email);
+
+
+--
+-- Name: index_admins_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_admins_on_reset_password_token ON admins USING btree (reset_password_token);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -457,3 +526,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120807171104');
 INSERT INTO schema_migrations (version) VALUES ('20120807171110');
 
 INSERT INTO schema_migrations (version) VALUES ('20120807171117');
+
+INSERT INTO schema_migrations (version) VALUES ('20120808180611');

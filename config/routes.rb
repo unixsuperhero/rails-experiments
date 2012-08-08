@@ -1,4 +1,6 @@
 Mytechhelp::Application.routes.draw do
+  devise_for :admins
+
   resources :banners
   resources :campaigns
   resources :experts
