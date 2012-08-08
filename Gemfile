@@ -8,7 +8,8 @@ gem 'decent_exposure'
 gem 'haml'
 gem 'haml-rails'
 gem 'rails-ujs'
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
+gem 'devise'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
 end
