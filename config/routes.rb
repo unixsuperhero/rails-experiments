@@ -1,14 +1,16 @@
 Mytechhelp::Application.routes.draw do
   devise_for :admins
 
-  resources :banners
-  resources :campaigns
-  resources :experts
-  resources :plans
-  resources :brands
-  resources :testimonials
-  resources :services
-  resources :pages
+  authenticate :admin do
+    resources :banners
+    resources :campaigns
+    resources :experts
+    resources :plans
+    resources :brands
+    resources :testimonials
+    resources :services
+    resources :pages
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -58,7 +60,7 @@ Mytechhelp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'pages#index'
+  root :to => 'application#index'
 
   # See how all your routes lay out with "rake routes"
 
