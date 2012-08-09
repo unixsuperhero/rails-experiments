@@ -1,4 +1,4 @@
-= form_for @page, admins_pages_path, html: { class: 'form-horizontal' } do |f|
+= form_for @page, admins_page_path(@page), html: { class: 'form-horizontal' } do |f|
   .control-group
     = f.label :slug, class: 'control-label'
     .controls
