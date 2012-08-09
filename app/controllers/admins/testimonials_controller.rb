@@ -1,4 +1,4 @@
-class TestimonialsController < ApplicationController
+class Admins::TestimonialsController < AdminController
   # GET /testimonials
   # GET /testimonials.json
   def index

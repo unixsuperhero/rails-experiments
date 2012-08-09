@@ -1,4 +1,4 @@
-class CampaignsController < ApplicationController
+class Admins::CampaignsController < AdminController
   # GET /campaigns
   # GET /campaigns.json
   def index

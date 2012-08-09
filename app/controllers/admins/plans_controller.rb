@@ -1,4 +1,4 @@
-class PlansController < ApplicationController
+class Admins::PlansController < AdminController
   # GET /plans
   # GET /plans.json
   def index

@@ -2,15 +2,19 @@ Mytechhelp::Application.routes.draw do
   devise_for :admins
 
   authenticate :admin do
-    resources :banners
-    resources :brands
-    resources :campaigns
-    resources :experts
-    resources :pages
-    resources :plans
-    resources :services
-    resources :testimonials
+    namespace :admins do
+      resources :banners
+      resources :brands
+      resources :campaigns
+      resources :experts
+      resources :pages
+      resources :plans
+      resources :services
+      resources :testimonials
+    end
   end
+
+  match '/lab(/:action)', controller: :lab
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

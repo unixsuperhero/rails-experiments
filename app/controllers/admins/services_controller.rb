@@ -1,4 +1,4 @@
-class ServicesController < ApplicationController
+class Admins::ServicesController < AdminController
   # GET /services
   # GET /services.json
   def index

@@ -1,4 +1,4 @@
-class ExpertsController < ApplicationController
+class Admins::ExpertsController < AdminController
   # GET /experts
   # GET /experts.json
   def index
