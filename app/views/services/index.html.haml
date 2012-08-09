@@ -10,7 +10,7 @@
       %th= model_class.human_attribute_name(:title)
       %th= model_class.human_attribute_name(:text)
       %th= model_class.human_attribute_name(:short_description)
-      %th= model_class.human_attribute_name(:type)
+      %th= model_class.human_attribute_name(:service_type)
       %th= model_class.human_attribute_name(:slug)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
@@ -23,7 +23,7 @@
         %td= service.title
         %td= service.text
         %td= service.short_description
-        %td= service.type
+        %td= service.service_type
         %td= service.slug
         %td=l service.created_at
         %td

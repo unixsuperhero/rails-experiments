@@ -3,14 +3,15 @@ Mytechhelp::Application.routes.draw do
 
   authenticate :admin do
     resources :banners
+    resources :brands
     resources :campaigns
     resources :experts
-    resources :plans
-    resources :brands
-    resources :testimonials
-    resources :services
     resources :pages
+    resources :plans
+    resources :services
+    resources :testimonials
   end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

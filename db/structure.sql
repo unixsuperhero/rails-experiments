@@ -289,7 +289,7 @@ CREATE TABLE services (
     title character varying(255),
     text text,
     short_description text,
-    type character varying(255),
+    service_type character varying(255),
     slug character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -528,3 +528,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120807171110');
 INSERT INTO schema_migrations (version) VALUES ('20120807171117');
 
 INSERT INTO schema_migrations (version) VALUES ('20120808180611');
+
+INSERT INTO schema_migrations (version) VALUES ('20120809152306');
