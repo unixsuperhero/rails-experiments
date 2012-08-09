@@ -7,7 +7,7 @@ gem 'bson_ext'
 gem 'decent_exposure'
 gem 'haml'
 gem 'haml-rails'
-gem 'rails-ujs'
+gem 'jquery-rails', '>= 1.0.12'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 group :assets do
