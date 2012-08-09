@@ -3,6 +3,7 @@ Mytechhelp::Application.routes.draw do
 
   authenticate :admin do
     namespace :admins do
+      match '/' => 'admin#index'
       resources :banners
       resources :brands
       resources :campaigns
