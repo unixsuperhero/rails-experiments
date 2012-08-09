@@ -15,7 +15,7 @@
   %tbody
     - @pages.each do |page|
       %tr
-        %td= link_to page.id, page_path(page)
+        %td= link_to page.id, admins_page_path(page)
         %td= page.slug
         %td= page.content
         %td= page.meta_tag
@@ -23,7 +23,7 @@
         %td= page.breadcrumb_name
         %td=l page.created_at
         %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_page_path(page), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), page_path(page), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_admins_page_path(page), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), admins_page_path(page), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
 
-= link_to t('.new', :default => t("helpers.links.new")), new_page_path, :class => 'btn btn-primary'
+= link_to t('.new', :default => t("helpers.links.new")), new_admins_page_path, :class => 'btn btn-primary'

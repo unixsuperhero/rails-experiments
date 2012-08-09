@@ -44,7 +44,7 @@ class Admins::ExpertsController < AdminController
 
     respond_to do |format|
       if @expert.save
-        format.html { redirect_to @expert, notice: 'Expert was successfully created.' }
+        format.html { redirect_to admins_expert_path(@expert), notice: 'Expert was successfully created.' }
         format.json { render json: @expert, status: :created, location: @expert }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admins::ExpertsController < AdminController
 
     respond_to do |format|
       if @expert.update_attributes(params[:expert])
-        format.html { redirect_to @expert, notice: 'Expert was successfully updated.' }
+        format.html { redirect_to admins_expert_path(@expert), notice: 'Expert was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class Admins::ExpertsController < AdminController
     @expert.destroy
 
     respond_to do |format|
-      format.html { redirect_to experts_url }
+      format.html { redirect_to admins_experts_url }
       format.json { head :no_content }
     end
   end

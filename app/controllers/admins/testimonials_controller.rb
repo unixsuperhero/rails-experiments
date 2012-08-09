@@ -44,7 +44,7 @@ class Admins::TestimonialsController < AdminController
 
     respond_to do |format|
       if @testimonial.save
-        format.html { redirect_to @testimonial, notice: 'Testimonial was successfully created.' }
+        format.html { redirect_to admins_testimonial_path(@testimonial), notice: 'Testimonial was successfully created.' }
         format.json { render json: @testimonial, status: :created, location: @testimonial }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admins::TestimonialsController < AdminController
 
     respond_to do |format|
       if @testimonial.update_attributes(params[:testimonial])
-        format.html { redirect_to @testimonial, notice: 'Testimonial was successfully updated.' }
+        format.html { redirect_to admins_testimonial_path(@testimonial), notice: 'Testimonial was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class Admins::TestimonialsController < AdminController
     @testimonial.destroy
 
     respond_to do |format|
-      format.html { redirect_to testimonials_url }
+      format.html { redirect_to admins_testimonials_url }
       format.json { head :no_content }
     end
   end

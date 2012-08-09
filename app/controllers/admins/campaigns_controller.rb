@@ -44,7 +44,7 @@ class Admins::CampaignsController < AdminController
 
     respond_to do |format|
       if @campaign.save
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
+        format.html { redirect_to admins_campaign_path(@campaign), notice: 'Campaign was successfully created.' }
         format.json { render json: @campaign, status: :created, location: @campaign }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admins::CampaignsController < AdminController
 
     respond_to do |format|
       if @campaign.update_attributes(params[:campaign])
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
+        format.html { redirect_to admins_campaign_path(@campaign), notice: 'Campaign was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class Admins::CampaignsController < AdminController
     @campaign.destroy
 
     respond_to do |format|
-      format.html { redirect_to campaigns_url }
+      format.html { redirect_to admins_campaigns_url }
       format.json { head :no_content }
     end
   end

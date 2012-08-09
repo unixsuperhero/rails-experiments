@@ -44,7 +44,7 @@ class Admins::PlansController < AdminController
 
     respond_to do |format|
       if @plan.save
-        format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
+        format.html { redirect_to admins_plan_path(@plan), notice: 'Plan was successfully created.' }
         format.json { render json: @plan, status: :created, location: @plan }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admins::PlansController < AdminController
 
     respond_to do |format|
       if @plan.update_attributes(params[:plan])
-        format.html { redirect_to @plan, notice: 'Plan was successfully updated.' }
+        format.html { redirect_to admins_plan_path(@plan), notice: 'Plan was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class Admins::PlansController < AdminController
     @plan.destroy
 
     respond_to do |format|
-      format.html { redirect_to plans_url }
+      format.html { redirect_to admins_plans_url }
       format.json { head :no_content }
     end
   end

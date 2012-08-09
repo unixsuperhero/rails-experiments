@@ -1,4 +1,4 @@
-= form_for @banner, html: { class: 'form-horizontal' } do |f|
+= form_for @banner, url: admins_banners_path, html: { class: 'form-horizontal' } do |f|
   .control-group
     = f.label :html, class: 'control-label'
     .controls

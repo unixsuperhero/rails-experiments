@@ -17,7 +17,7 @@
   %tbody
     - @services.each do |service|
       %tr
-        %td= link_to service.id, service_path(service)
+        %td= link_to service.id, admins_service_path(service)
         %td= service.image
         %td= service.name
         %td= service.title
@@ -27,7 +27,7 @@
         %td= service.slug
         %td=l service.created_at
         %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_service_path(service), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), service_path(service), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_admins_service_path(service), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), admins_service_path(service), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
 
-= link_to t('.new', :default => t("helpers.links.new")), new_service_path, :class => 'btn btn-primary'
+= link_to t('.new', :default => t("helpers.links.new")), new_admins_service_path, :class => 'btn btn-primary'

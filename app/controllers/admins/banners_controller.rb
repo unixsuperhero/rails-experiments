@@ -44,7 +44,7 @@ class Admins::BannersController < AdminController
 
     respond_to do |format|
       if @banner.save
-        format.html { redirect_to @banner, notice: 'Banner was successfully created.' }
+        format.html { redirect_to admins_banner_path(@banner), notice: 'Banner was successfully created.' }
         format.json { render json: @banner, status: :created, location: @banner }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admins::BannersController < AdminController
 
     respond_to do |format|
       if @banner.update_attributes(params[:banner])
-        format.html { redirect_to @banner, notice: 'Banner was successfully updated.' }
+        format.html { redirect_to admins_banner_path(@banner), notice: 'Banner was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class Admins::BannersController < AdminController
     @banner.destroy
 
     respond_to do |format|
-      format.html { redirect_to banners_url }
+      format.html { redirect_to admins_banners_url }
       format.json { head :no_content }
     end
   end

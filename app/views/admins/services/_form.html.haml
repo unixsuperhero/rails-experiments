@@ -1,4 +1,4 @@
-= form_for @service, html: { class: 'form-horizontal' } do |f|
+= form_for @service, url: admins_services_path, html: { class: 'form-horizontal' } do |f|
   .span6
     .control-group
       = f.label :image, class: 'control-label'
@@ -32,4 +32,4 @@
   .clearfix
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
-    = link_to t('.cancel', default: t("helpers.links.cancel")), services_path, class: 'btn'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), admins_services_path, class: 'btn'

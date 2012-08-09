@@ -12,6 +12,6 @@
   = @plan.slug
 
 .form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), plans_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_plan_path(@plan), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), plan_path(@plan), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'
+  = link_to t('.back', :default => t("helpers.links.back")), admins_plans_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_admins_plan_path(@plan), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), admins_plan_path(@plan), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

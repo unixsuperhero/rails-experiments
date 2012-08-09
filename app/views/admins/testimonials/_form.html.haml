@@ -1,4 +1,4 @@
-= form_for @testimonial, html: { class: 'form-horizontal' } do |f|
+= form_for @testimonial, url: admins_testimonials_path, html: { class: 'form-horizontal' } do |f|
   .control-group
     = f.label :name, class: 'control-label'
     .controls
@@ -25,4 +25,4 @@
       = f.text_area :testimonial, class: 'text_area', rows: 5
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
-    = link_to t('.cancel', default: t("helpers.links.cancel")), testimonials_path, class: 'btn'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), admins_testimonials_path, class: 'btn'
