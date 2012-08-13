@@ -19,6 +19,7 @@ group :development, :test do
   gem 'faker'
   gem 'fabrication', '0.9.5'
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
  gem 'ruby-debug19', :require => 'ruby-debug'
