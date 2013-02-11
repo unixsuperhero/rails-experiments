@@ -1,20 +1,22 @@
 Mytechhelp::Application.routes.draw do
-  devise_for :admins
+  #devise_for :admins
 
-  authenticate :admin do
-    namespace :admins do
-      match '/' => 'admin#index'
-      resources :banners
-      resources :brands
-      resources :campaigns
-      resources :experts
-      resources :pages
-      resources :plans
-      resources :services
-      resources :testimonials
-    end
-  end
-  match '/lab(/:action)', controller: :lab
+  #authenticate :admin do
+  #  namespace :admins do
+  #    match '/' => 'admin#index'
+  #    resources :banners
+  #    resources :brands
+  #    resources :campaigns
+  #    resources :experts
+  #    resources :pages
+  #    resources :plans
+  #    resources :services
+  #    resources :testimonials
+  #  end
+  #end
+  #match '/ui(/:action)', controller: :ui
 
-  root :to => 'application#index'
+  #match '/test' => redirect {|ps,request| 'http://asdf.com/?' + ps.to_query }
+
+  root :to => 'pages#index'
 end
