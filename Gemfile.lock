@@ -29,6 +29,8 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
+    annotate (2.5.0)
+      rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -41,6 +43,7 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
+    coderay (1.0.8)
     columnize (0.3.6)
     commonjs (0.2.6)
     debugger (1.3.1)
@@ -89,12 +92,17 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.3.6)
     nokogiri (1.5.5)
     orm_adapter (0.4.0)
     pg (0.14.0)
     polyglot (0.3.3)
+    pry (0.9.12)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -144,6 +152,7 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    slop (3.4.3)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -173,6 +182,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   capybara
   debugger
   decent_exposure
@@ -183,6 +193,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails (>= 1.0.12)
   pg
+  pry
   rails (= 3.2.2)
   rspec-rails
   sass-rails (~> 3.2.3)

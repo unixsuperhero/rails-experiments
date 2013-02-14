@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 gem 'pg'
-#gem 'mongo_mapper'
-#gem 'bson_ext'
+gem 'pry'
 gem 'decent_exposure'
 gem 'haml'
 gem 'haml-rails'
@@ -22,5 +21,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'debugger', :require => 'ruby-debug'
+  gem 'annotate'
 end
 
