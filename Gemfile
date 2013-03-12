@@ -1,13 +1,24 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+# Rails
+gem 'rails', ' ~> 3.2.12'
+
+# DB
 gem 'pg'
+
+# Debug
 gem 'pry'
+
+# Essentials
 gem 'decent_exposure'
+
+# Views
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'twitter-bootstrap-rails'
+
+# Optional
 gem 'devise'
 
 group :assets do
