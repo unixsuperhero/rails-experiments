@@ -33,6 +33,7 @@ group :development, :test do
   gem 'capybara'
   gem 'debugger', :require => 'ruby-debug'
   gem 'annotate'
+  gem 'database_cleaner'
 
   # HUGE Time Saver: preload the rails env
   gem 'rrails'
