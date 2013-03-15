@@ -8,6 +8,7 @@ gem 'pg'
 
 # Debug
 gem 'pry'
+gem 'pry-rails'
 
 # Essentials
 gem 'decent_exposure'
