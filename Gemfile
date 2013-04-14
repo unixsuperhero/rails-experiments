@@ -30,6 +30,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'simplecov', :require => false
   gem 'faker'
   gem 'fabrication', '0.9.5'
   gem 'rspec-rails'
