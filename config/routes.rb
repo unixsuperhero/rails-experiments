@@ -1,4 +1,4 @@
-Mytechhelp::Application.routes.draw do
+RailsBase::Application.routes.draw do
   #devise_for :admins
 
   #authenticate :admin do
