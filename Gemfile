@@ -22,7 +22,7 @@ gem 'twitter-bootstrap-rails'
 # rails g bootstrap:install static
 
 # Optional
-gem 'devise'
+# gem 'devise'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
