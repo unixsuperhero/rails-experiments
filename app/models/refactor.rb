@@ -1,8 +1,12 @@
+require 'haml'
+
 class Refactor
-  def self.pattern_name(v); @name=v; end
-  def self.steps(v); @steps=v; end
-  def self.get_steps
-    [].tap{|steps|
+  def self.pattern_name(v=nil)
+    return @name if v.nil?
+    @name = v
+  end
+  def self.steps(v=nil)
+    return [].tap{|steps|
       @steps.each_with_index{|s,i|
         steps << {
           name: s.name,
@@ -10,8 +14,25 @@ class Refactor
           filenames: s.filenames(i)
         }
       }
-    }
+    } if v.nil?
+    @steps = v
   end
+  def self.motivation(v=nil)
+    return @motivation if v.nil?
+    @motivation = Haml::Engine.new(v).render
+  end
+  # def self.get_motivation; @motivation; end
+  # def self.get_steps
+  #   [].tap{|steps|
+  #     @steps.each_with_index{|s,i|
+  #       steps << {
+  #         name: s.name,
+  #         description: s.description,
+  #         filenames: s.filenames(i)
+  #       }
+  #     }
+  #   }
+  # end
 
   class Step
     attr_accessor :name, :description

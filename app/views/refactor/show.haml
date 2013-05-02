@@ -1,10 +1,18 @@
-- klass.get_steps.each do |step|
-  %h1= step[:name]
-  %p= step[:description]
-  .inline
-    %b Before
-    %pre= raw IO.read(step[:filenames].first)
-  .inline
-    %b After
-    %pre= raw IO.read(step[:filenames].last)
+%hr
+%h1 Motivation
+.step
+  %p= klass.motivation
+
+%hr
+%h1 Steps
+- klass.steps.each_with_index do |step,i|
   %hr
+  .step
+    %h2= "Step #{i+1}: #{step[:name]}"
+    %p= step[:description]
+    .inline
+      %b Before
+      %pre= raw IO.read(step[:filenames].first)
+    .inline
+      %b After
+      %pre= raw IO.read(step[:filenames].last)
