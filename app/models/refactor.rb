@@ -21,18 +21,6 @@ class Refactor
     return @motivation if v.nil?
     @motivation = Haml::Engine.new(v).render
   end
-  # def self.get_motivation; @motivation; end
-  # def self.get_steps
-  #   [].tap{|steps|
-  #     @steps.each_with_index{|s,i|
-  #       steps << {
-  #         name: s.name,
-  #         description: s.description,
-  #         filenames: s.filenames(i)
-  #       }
-  #     }
-  #   }
-  # end
 
   class Step
     attr_accessor :name, :description
