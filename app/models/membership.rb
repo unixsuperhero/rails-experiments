@@ -2,7 +2,7 @@ class Membership
   attr_accessor :string_status
   # private attribute :enum_status
 
-
+#----------------------------------- <strong>
 # Self-Encapsulating Field (get/set)
 #-----------------------------------
 
@@ -24,6 +24,7 @@ class Membership
       3 => 'Other',
     }
   end
+#</strong>-----------------------------------
 
 
 # For Experimental Conditionals
@@ -35,6 +36,14 @@ class Membership
 
   def enum_status_id
     instance_variable_get :@enum_status
+  end
+
+  def active?
+    enum_status_id == 1
+  end
+
+  def cancelled?
+    enum_status_id == 2
   end
 
 end

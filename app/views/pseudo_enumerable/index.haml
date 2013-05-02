@@ -6,8 +6,42 @@
   .inline
     width: 45%
     float: left
+
+%h1 To Do
+%ul
+  %li
+    Extract the tests in this view, into a spec
+    %pre
+      :escaped
+        # Meta Hash
+        { enum_status_id: { 1 => 1,
+                            2 => 2,
+                            'Active' => 1,
+                            'Cancelled' => 2, },
+             enum_status: { 1 => 'Active',
+                            'Active' => 'Active', }
+        }.map{|fun,assertions|
+          assertions.each{|arg,ret|
+      %strong
+        :escaped
+            it "calling enum_status_id should == \#{ret} when passed \#{arg}" do
+              m = Membership.new
+              m.enum_status = arg
+              m.send(:fun).should == ret
+            end
+      :escaped
+          }
+        }
+  %li
+    Summarize the specs into a rspec should expectation around Self Encapsulating Field, like so:
+    %pre
+      :escaped
+        Example:
+          Membership.should self_encapsulate(:enum_status)
+
+%hr
 %h1 Membership Class Code
-%pre= IO.read('./app/models/membership.rb')
+%pre= raw IO.read('./app/models/membership.rb')
 
 %hr
 %h1 Test Scenarios - Setting and Getting
@@ -59,24 +93,26 @@
       m.enum_status                         # => #{m.enum_status}
       m.enum_status_id       # @enum_status # => #{m.enum_status_id}
       m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
-
-
 %hr
-%h1 Experimental Conditional
+%h1 Experimental Conditionals
 %p
   Writing conditionals so that we don't have the string values
   scattered all over our code.
 %pre
   m = Membership.new
   m.enum_status = 1
-  \# ... somewhere else ...
   if m.enum_status == Membership.enum_status_by_id(1)
 %p ...or...
 %pre
   m = Membership.new
   m.enum_status = 1
-  \# ... somewhere else ...
   if m.enum_status_id == 1
+%p ...or...
+%pre
+  m = Membership.new
+  m.enum_status = 1
+  if m.active?     # true
+  if m.cancelled?  # false
 
 
 %hr
