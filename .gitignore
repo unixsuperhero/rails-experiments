@@ -9,3 +9,5 @@ config/development.yml
 config/test.yml
 public/uploads/
 coverage
+.DS_Store
+stubs/
