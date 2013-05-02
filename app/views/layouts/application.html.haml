@@ -18,18 +18,31 @@
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = favicon_link_tag "favicon.png"
+    :sass
+      body
+        padding: 10px
+      .navigation li
+        list-style: none
+        a
+          border-left: solid 1px black
+          padding-left: 3px
+        a:first-child
+          border-left: none
 %body
   .row-fluid
     .span12
-      %ul#navigation
+      %b Navigation
+      %ul.navigation
         %li
-          %a(href="/admins/sign_in") Admin Sign In
+          %a(href="/") Home
+      %b Experiments
+      %ul.navigation
+        %li
+          %a(href=pseudo_enumerable_test_path) Ruby Enumerable Pattern
   .row-fluid
     .span12
       .clearfix
-      - if notice.present?
-        %p.notice= notice
-      - if alert.present?
-        %p.alert= alert
+      - flash.each do |k,v|
+        %p(class=k)= v
       = yield
 

@@ -18,5 +18,6 @@ RailsBase::Application.routes.draw do
 
   #match '/test' => redirect {|ps,request| 'http://asdf.com/?' + ps.to_query }
 
+  get '/ruby-enum' => 'pseudo_enumerable#index', as: :pseudo_enumerable_test
   root :to => 'pages#index'
 end

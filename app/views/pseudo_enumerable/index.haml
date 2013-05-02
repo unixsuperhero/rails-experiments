@@ -1,0 +1,161 @@
+:sass
+  pre
+    width: 80%
+  h1, hr
+    clear: both
+  .inline
+    width: 45%
+    float: left
+%h1 Membership Class Code
+%pre= IO.read('./app/models/membership.rb')
+
+%hr
+%h1 Test Scenarios - Setting and Getting
+.inline
+  %h3 string_status
+  %b m.string_status = &quot;Active&quot; (should be &quot;Active&quot; on object)
+  %pre
+    - m = Membership.new; m.string_status = 'Active'
+    :escaped
+        m = Membership.new
+      m.string_status = 'Active'
+      m.string_status                         # => #{m.string_status}
+      m.instance_variable_get :@string_status # => #{m.instance_variable_get :@string_status}
+.inline
+  %h3 enum_status
+  %b m.enum_status = &quot;Active&quot; (should be 1 on object)
+  %pre
+    - m = Membership.new; m.enum_status = 'Active'
+    :escaped
+        m = Membership.new
+      m.enum_status = 'Active'
+      m.enum_status                         # => #{m.enum_status}
+      m.enum_status_id       # @enum_status # => #{m.enum_status_id}
+      m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
+  %b m.enum_status = 1 (should be 1 on object)
+  %pre
+    - m = Membership.new; m.enum_status = 1
+    :escaped
+        m = Membership.new
+      m.enum_status = 1
+      m.enum_status                         # => #{m.enum_status}
+      m.enum_status_id       # @enum_status # => #{m.enum_status_id}
+      m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
+  %b m.enum_status = &quot;Cancelled&quot; (should be 2 on object)
+  %pre
+    - m = Membership.new; m.enum_status = 'Cancelled'
+    :escaped
+        m = Membership.new
+      m.enum_status = 'Cancelled'
+      m.enum_status                         # => #{m.enum_status}
+      m.enum_status_id       # @enum_status # => #{m.enum_status_id}
+      m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
+  %b m.enum_status = 2 (should be 2 on object)
+  %pre
+    - m = Membership.new; m.enum_status = 2
+    :escaped
+        m = Membership.new
+      m.enum_status = 2
+      m.enum_status                         # => #{m.enum_status}
+      m.enum_status_id       # @enum_status # => #{m.enum_status_id}
+      m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
+
+
+%hr
+%h1 Experimental Conditional
+%p
+  Writing conditionals so that we don't have the string values
+  scattered all over our code.
+%pre
+  m = Membership.new
+  m.enum_status = 1
+  \# ... somewhere else ...
+  if m.enum_status == Membership.enum_status_by_id(1)
+%p ...or...
+%pre
+  m = Membership.new
+  m.enum_status = 1
+  \# ... somewhere else ...
+  if m.enum_status_id == 1
+
+
+%hr
+
+%h1 Original Test Code - Undigestable Format
+
+%hr
+:sass
+  table
+    width: 90%
+    border-collapse: collapse
+    margin: 0 auto
+  table,td,th
+    padding: 3px
+    border: solid 1px black
+
+%table
+  %thead
+    %tr
+      %th Object
+      %th Status Attribute
+      %th Set Status As
+      %th Set Status Code
+      %th Get Status Code
+      %th Status Getter
+      %th Status Instance Variable
+  %tbody
+    %tr
+      %td
+        - m = Membership.new
+        - m.string_status = 'Active'
+        m = Membership.new
+      %td string_status
+      %td Active
+      %td m.string_status = &quot;Active&quot;
+      %td m.string_status
+      %td= m.string_status
+      %td= m.instance_variable_get :@string_status
+    %tr
+      %td
+        - m = Membership.new
+        - m.enum_status = 'Active'
+        m = Membership.new
+      %td enum_status
+      %td Active
+      %td m.enum_status = &quot;Active&quot;
+      %td m.enum_status
+      %td= m.enum_status
+      %td= m.instance_variable_get :@enum_status
+    %tr
+      %td
+        - m = Membership.new
+        - m.enum_status = 1
+        m = Membership.new
+      %td enum_status
+      %td 1
+      %td m.enum_status = 1
+      %td m.enum_status
+      %td= m.enum_status
+      %td= m.instance_variable_get :@enum_status
+    %tr
+      %td
+        - m = Membership.new
+        - m.enum_status = 'Cancelled'
+        m = Membership.new
+      %td enum_status
+      %td Cancelled
+      %td m.enum_status = &quot;Cancelled&quot;
+      %td m.enum_status
+      %td= m.enum_status
+      %td= m.instance_variable_get :@enum_status
+    %tr
+      %td
+        - m = Membership.new
+        - m.enum_status = 2
+        m = Membership.new
+      %td enum_status
+      %td 2
+      %td m.enum_status = 2
+      %td m.enum_status
+      %td= m.enum_status
+      %td= m.instance_variable_get :@enum_status

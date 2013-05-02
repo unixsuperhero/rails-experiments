@@ -1,0 +1,2 @@
+class PseudoEnumerableController < ApplicationController
+end
