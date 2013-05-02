@@ -1,3 +1,4 @@
 class RefactorController < ApplicationController
-  expose(:name)
+  expose(:name) { params[:name] }
+  expose(:klass) { "refactor/#{name}".classify.constantize }
 end

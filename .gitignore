@@ -11,3 +11,4 @@ public/uploads/
 coverage
 .DS_Store
 stubs/
+.sass-cache/
