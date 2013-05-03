@@ -20,18 +20,20 @@
     = favicon_link_tag "favicon.png"
 %body
   .row-fluid
-    .span12
-      %b Navigation
-      %ul.navigation
-        %li
-          %a(href="/") Home
-      %b Experiments
-      %ul.navigation
-        %li
-          %a(href=pseudo_enumerable_test_path) .NET Enum in Ruby?
-          %a(href=refactoring_patterns_path) Refactoring Patterns
-  .row-fluid
-    .span12
+    .span2.navigation
+      .pre
+        .h1 Navigation
+        %hr.separate
+        = link_to 'Home', '/'
+        %hr.separate
+        .h2 Experiments
+        %hr
+        = link_to '.NET Enum in Ruby?', pseudo_enumerable_test_path
+        %hr.separate
+        .h2 Refactoring Patterns
+        %hr
+        = link_to 'Refactoring Patterns', refactoring_patterns_path
+    .span10.page
       .clearfix
       - flash.each do |k,v|
         %p(class=k)= v
