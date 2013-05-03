@@ -18,7 +18,7 @@
             it "calling enum_status_id should == \#{ret} when passed \#{arg}" do
               m = Membership.new
               m.enum_status = arg
-              m.send(:fun).should == ret
+              m.send(fun).should == ret
             end
       :escaped
           }

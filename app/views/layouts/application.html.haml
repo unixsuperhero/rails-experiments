@@ -32,7 +32,8 @@
         %hr.separate
         .h2 Refactoring Patterns
         %hr
-        = link_to 'Refactoring Patterns', refactoring_patterns_path
+        - refactoring_patterns.each do |pattern|
+          = link_to pattern.titleize, show_refactor_path(pattern)
     .span10.page
       .clearfix
       - flash.each do |k,v|

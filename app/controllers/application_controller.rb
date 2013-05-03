@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def after_sign_in_path_for(resource)
-    return '/admins' if resource.is_a? Admin
-    '/'
-  end
+  expose(:refactoring_patterns) {
+    Dir.glob('./app/models/refactor/*/').map do |file|
+      file.split('/').last
+    end
+  }
 end
