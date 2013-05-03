@@ -1,4 +1,4 @@
-class Membership
+class PseudoEnum
   attr_accessor :string_status
   # private attribute :enum_status
 
@@ -38,12 +38,24 @@ class Membership
     instance_variable_get :@enum_status
   end
 
+  # <strong> Conditional Testing Methods
+  # ----------------------------
   def active?
     enum_status_id == 1
   end
 
   def cancelled?
     enum_status_id == 2
+  end # </strong>
+
+  # <strong> Set status without magic numbers throughout the code ( ps_enum.status = PseudoEnum.active )
+  # --------------------------------------------------------------------------------------------
+  def self.active
+    1
   end
+
+  def self.cancelled
+    2
+  end # </strong>
 
 end

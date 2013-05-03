@@ -16,7 +16,7 @@
       %strong
         :escaped
             it "calling enum_status_id should == \#{ret} when passed \#{arg}" do
-              m = Membership.new
+              m = PseudoEnum.new
               m.enum_status = arg
               m.send(fun).should == ret
             end
@@ -24,25 +24,28 @@
           }
         }
   %li
-    Summarize the specs into a rspec should expectation around Self Encapsulating Field, like so:
+    Summarize the Pattern's specs into a reusable rspec expectation, like so:
     %pre
       :escaped
         Example:
-          Membership.should self_encapsulate(:enum_status)
+          PseudoEnum.should self_encapsulate(:enum_status)
 
 %hr
-%h1 Membership Class Code
-%pre= raw IO.read('./app/models/membership.rb')
+%h2 Sample Code
+%em app/models/pseudo_enum.rb
+%pre= raw IO.read('./app/models/pseudo_enum.rb')
+%em app/models/pseudo_enum_status.rb
+%pre= raw IO.read('./app/models/pseudo_enum_status.rb')
 
 %hr
-%h1 Test Scenarios - Setting and Getting
+%h2 Test Scenarios - Setting and Getting
 .inline
   %h3 string_status
   %b m.string_status = &quot;Active&quot; (should be &quot;Active&quot; on object)
   %pre
-    - m = Membership.new; m.string_status = 'Active'
+    - m = PseudoEnum.new; m.string_status = 'Active'
     :escaped
-        m = Membership.new
+        m = PseudoEnum.new
       m.string_status = 'Active'
       m.string_status                         # => #{m.string_status}
       m.instance_variable_get :@string_status # => #{m.instance_variable_get :@string_status}
@@ -50,57 +53,67 @@
   %h3 enum_status
   %b m.enum_status = &quot;Active&quot; (should be 1 on object)
   %pre
-    - m = Membership.new; m.enum_status = 'Active'
+    - m = PseudoEnum.new; m.enum_status = 'Active'
     :escaped
-        m = Membership.new
+        m = PseudoEnum.new
       m.enum_status = 'Active'
       m.enum_status                         # => #{m.enum_status}
       m.enum_status_id       # @enum_status # => #{m.enum_status_id}
       m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
   %b m.enum_status = 1 (should be 1 on object)
   %pre
-    - m = Membership.new; m.enum_status = 1
+    - m = PseudoEnum.new; m.enum_status = 1
     :escaped
-        m = Membership.new
+        m = PseudoEnum.new
       m.enum_status = 1
       m.enum_status                         # => #{m.enum_status}
       m.enum_status_id       # @enum_status # => #{m.enum_status_id}
       m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
   %b m.enum_status = &quot;Cancelled&quot; (should be 2 on object)
   %pre
-    - m = Membership.new; m.enum_status = 'Cancelled'
+    - m = PseudoEnum.new; m.enum_status = 'Cancelled'
     :escaped
-        m = Membership.new
+        m = PseudoEnum.new
       m.enum_status = 'Cancelled'
       m.enum_status                         # => #{m.enum_status}
       m.enum_status_id       # @enum_status # => #{m.enum_status_id}
       m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
   %b m.enum_status = 2 (should be 2 on object)
   %pre
-    - m = Membership.new; m.enum_status = 2
+    - m = PseudoEnum.new; m.enum_status = 2
     :escaped
-        m = Membership.new
+        m = PseudoEnum.new
       m.enum_status = 2
       m.enum_status                         # => #{m.enum_status}
       m.enum_status_id       # @enum_status # => #{m.enum_status_id}
       m.instance_variable_get :@enum_status # => #{m.instance_variable_get :@enum_status}
 %hr
-%h1 Experimental Conditionals
+%h2 Experimental Conditionals
 %p
   Writing conditionals so that we don't have the string values
   scattered all over our code.
+%b Ignore this one, it sucks...
 %pre
-  m = Membership.new
+  m = PseudoEnum.new
   m.enum_status = 1
-  if m.enum_status == Membership.enum_status_by_id(1)
-%p ...or...
+  if m.enum_status == PseudoEnum.enum_status_by_id(1)
+%b Use the method defined in PseudoEnumStatus
 %pre
-  m = Membership.new
+  m = PseudoEnum.new
+  m.enum_status = 1
+  if m.enum_status_id == PseudoEnumStatus.ACTIVE
+%p
+  %b Compare conditionals against the type_id.  Magic numbers suck, don't do this.
+%p
+  %b This makes me realize that I don't like the setter.
+%pre
+  m = PseudoEnum.new
   m.enum_status = 1
   if m.enum_status_id == 1
-%p ...or...
+%p
+  %b Define methods that test the conditional for you and return true or false.
 %pre
-  m = Membership.new
+  m = PseudoEnum.new
   m.enum_status = 1
   if m.active?     # true
   if m.cancelled?  # false
@@ -108,7 +121,7 @@
 
 %hr
 
-%h1 Original Test Code - Undigestable Format
+%h2 Original Test Code - Undigestable Format
 
 %hr
 :sass
@@ -133,9 +146,9 @@
   %tbody
     %tr
       %td
-        - m = Membership.new
+        - m = PseudoEnum.new
         - m.string_status = 'Active'
-        m = Membership.new
+        m = PseudoEnum.new
       %td string_status
       %td Active
       %td m.string_status = &quot;Active&quot;
@@ -144,9 +157,9 @@
       %td= m.instance_variable_get :@string_status
     %tr
       %td
-        - m = Membership.new
+        - m = PseudoEnum.new
         - m.enum_status = 'Active'
-        m = Membership.new
+        m = PseudoEnum.new
       %td enum_status
       %td Active
       %td m.enum_status = &quot;Active&quot;
@@ -155,9 +168,9 @@
       %td= m.instance_variable_get :@enum_status
     %tr
       %td
-        - m = Membership.new
+        - m = PseudoEnum.new
         - m.enum_status = 1
-        m = Membership.new
+        m = PseudoEnum.new
       %td enum_status
       %td 1
       %td m.enum_status = 1
@@ -166,9 +179,9 @@
       %td= m.instance_variable_get :@enum_status
     %tr
       %td
-        - m = Membership.new
+        - m = PseudoEnum.new
         - m.enum_status = 'Cancelled'
-        m = Membership.new
+        m = PseudoEnum.new
       %td enum_status
       %td Cancelled
       %td m.enum_status = &quot;Cancelled&quot;
@@ -177,9 +190,9 @@
       %td= m.instance_variable_get :@enum_status
     %tr
       %td
-        - m = Membership.new
+        - m = PseudoEnum.new
         - m.enum_status = 2
-        m = Membership.new
+        m = PseudoEnum.new
       %td enum_status
       %td 2
       %td m.enum_status = 2
