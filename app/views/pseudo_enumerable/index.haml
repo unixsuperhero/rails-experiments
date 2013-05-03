@@ -1,4 +1,40 @@
-%h1 To Do
+.alert.alert-warn
+  %p I've added so many ideas to this; it's not simple to follow anymore.
+  %p I should either:
+  %ul
+    %li Remove less favorable ideas and keep the version I agree with most (everything is in git), or...
+    %li
+      Separate Versions, marking the one I prefer:
+      %ul
+        %li different ideas for setters (setter v1, setter v2)
+        %li different ideas for conditionals (conditional v1, conditional v2)
+
+%h1 Pseudo-Enum in Ruby
+
+%hr
+%h2 Description
+%p
+  A co-worker mentioned that .NET, and the IDE, handle Type Columns nicely with its
+  %em enum
+  data structure.
+%p Rails and ActiveRecord don't have a convention for Type Columns.
+%p
+  An example of a Type Column, would be Payment.status:
+  %ul
+    %li DB Column Type: integer (for storing the ID of the status, e.g. Active = 1; Inactive = 2)
+    %li In code, conditionals are compared against the Status Name (if payment.status == Payment.ACTIVE || if payment.active?)
+%p
+  The benefits are something along the lines of:
+  %ul
+    %li There is one central definition of which status_id = which status_name
+    %li
+      To rename a status, it simply involves either:
+      %ol
+        %li Changing it in 1 place, or...
+        %li Having an easy pattern to follow to update all references
+
+%hr
+%h2 To Do
 %ul
   %li
     Extract the tests in this view, into a spec
