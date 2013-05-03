@@ -6,13 +6,11 @@ class Refactor
     @name = v
   end
   def self.steps(v=nil)
-    return [].tap{|steps|
-      @steps.each_with_index{|s,i|
-        steps << {
-          name: s.name,
-          description: s.description,
-          filenames: s.filenames(i)
-        }
+    return @steps.map.with_index{|s,i|
+      {
+        name: s.name,
+        description: s.description,
+        filenames: s.filenames(i)
       }
     } if v.nil?
     @steps = v
