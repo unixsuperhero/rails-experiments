@@ -23,9 +23,9 @@ RailsBase::Application.routes.draw do
 
 # EXPERIMENTS
   # exp: route param catching slashes
-  get '/route(/*experiment)' => 'pages#route_params', as: :route_exp
-  # WORKS!
-  # get '/route(/:experiment)' => 'pages#route_params', as: :route_exp, constraints: { experiment: /.*/ }
+  get '/route((/*experiment)/:act)' => 'pages#route_params', as: :route_exp
+  # WORKS!  # get '/route(/*experiment)' => 'pages#route_params', as: :route_exp
+  # WORKS!  # get '/route(/:experiment)' => 'pages#route_params', as: :route_exp, constraints: { experiment: /.*/ }
 
   # exp: .net style enum for rails
   get '/ruby-enum' => 'pseudo_enumerable#index', as: :pseudo_enumerable_test
