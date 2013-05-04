@@ -22,6 +22,9 @@ RailsBase::Application.routes.draw do
   get '/todo' => 'todo#index', as: :todo
 
 # EXPERIMENTS
+  get '/basic-auth' => 'basic_auth#index', as: :basic_auth
+  get '/basic-auth/private' => 'basic_auth#private', as: :basic_auth_private
+
   get '/ruby-enum' => 'pseudo_enumerable#index', as: :pseudo_enumerable_test
   get '/refactor/:name' => 'refactor#show', as: :show_refactor
   root :to => 'pages#index'
