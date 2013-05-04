@@ -1,0 +1,11 @@
+
+params[:experiment]: #{params[:experiment].inspect}
+
+%p
+  Test links:
+  %ul
+    %li= link_to "/route", route_exp_path
+    - paths = %w{ one one/two one/two/three }
+    - paths.each do |path|
+      %li= link_to "/route/#{path}", route_exp_path(path)
+
