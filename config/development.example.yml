@@ -1,0 +1,2 @@
+HTTP_USER: 'basic_auth_username'
+HTTP_PASS: 'basic_auth_password'
