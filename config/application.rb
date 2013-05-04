@@ -16,7 +16,18 @@ module RailsBase
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{Rails.root}/lib)
+
+    config.before_initialize do
+      environments = %W(development) << Rails.env
+      environments.uniq.each do |e|
+        custom_configure = File.join(Rails.root, 'config', "#{e}.yml")
+        next unless File.exists?(custom_configure)
+        YAML.load(File.open(custom_configure)).each do |key, value|
+          ENV[key.to_s] = value
+        end
+      end
+    end
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
