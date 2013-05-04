@@ -1,0 +1,16 @@
+%h1 Change routes
+%hr
+
+From:
+%ul
+  %li /experiment/:name
+  %li /test/:name
+  %li /refactor/:name
+  %li /todo/:name
+
+To:
+%ul
+  %li match &quot;/experiment(/:action)&quot; =&gt; controller: :experiment
+  %li match &quot;/test(/:action)&quot; =&gt; controller: :test
+  %li match &quot;/refactor(/:action)&quot; =&gt; controller: :refactor
+  %li match &quot;/todo(/:action)&quot; =&gt; controller: :todo

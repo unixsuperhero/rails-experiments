@@ -1,0 +1,40 @@
+%h1 Routes Cheatsheet
+%hr
+Rails Routes: &lt;keyword&gt; &lt;destination&gt; &lt;options&gt;
+%ul
+  %li root 'controller#action'
+  %li resources :collection_name (:users =&gt; /users/new, /users/create)
+  %li
+    get,post,put,delete,match
+    %ul
+      %li '/route' =&gt; 'controller#action'
+      %li , as:
+      %li , constraints:
+      %li , defaults:
+  %li scope,namespace :name
+  %li collection,member,shallow
+  %li
+    &lt;destination&gt; = &lt;controller&gt; | &lt;pattern&gt; =&gt; &lt;action&gt;
+    %ul
+      %li
+        &lt;controller&gt;
+        %ul
+          %li controller: :ui
+      %li
+        &lt;pattern&gt; =&gt; &lt;action&gt;
+        %ul
+          %li
+            Patterns
+            %ul
+              %li '/a'
+              %li '/a/:b' # '/a/asdf' =&gt; params[:b] = 'asdf'
+              %li '/a/*b' # '/a/b/c/d' =&gt; params[:b] = 'b/c/d'
+              %li '/a/*b/:c' # 'a/as/df/jk' =&gt; params[:b]: 'as/df'; params[:c]: 'jk'
+              %li '/a(/b)' # '/a' or '/a/b' # '/b' is an optional pattern
+              %li '/a(/:b(/:c))' # '/a/asdf' =&gt; params[:b] = 'asdf'; params[:c] = nil
+              %li '/a((/:b)/:c)' # '/a/asdf' =&gt; params[:b] = nil; params[:c] = 'asdf'
+          %li
+            Destinations
+            %ul
+              %li 'controller#action'
+              %li redirect(url)

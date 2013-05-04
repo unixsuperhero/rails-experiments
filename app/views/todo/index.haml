@@ -3,58 +3,20 @@ Todo Coming Soon...
 
 %hr
 
+%h3 Site
 %ul.spaced
-  %li
-    Refactor / Redesign TDSM
-    %ul
-      %li lib/tdsm.rb
-      %li lib/tdsm/*
-  %li
-    Refactor / Redesign YesMail
-    %ul
-      %li app/jobs/application_event_queue.rb
-      %li app/jobs/yes_mail_email_queue.rb
-      %li app/views/yes_mail/envelope.xml.builder
-      %li app/models/yes_mail_email.rb
-      %li app/models/yes_mail_email_event.rb
-      %li app/models/yes_mail_status.rb
-  %li
-    Cleanup Shell Startup Scripts
-    %ul
-      %li
-        make Control Flow Chart of the order and origin for each .bashrc and .zshrc file.
-        %ul
-          %li
-            \~/.zshrc
-            %ul
-              %li
-                \~/.bashrc.local
-                %ul
-                  %li ~/.osxrc
-                  %li ~/.bashrc.git
-                  %li ~/.bashrc.vim
-                  %li ~/.bashrc.function
-                  %li ~/.bashrc.alias
-                  %li ~/.bashrc.battery
-                  %li ~/.bashrc.export
-                  %li ~/.bashrc.ps1
-                  %li ~/.bashrc.saveology
-                  %li ~/.bashrc.heroku
-                  %li ~/.bashrc.autocomplete.git
-              %li ~/.oh-my-zsh/oh-my-zsh.sh
+  %li= link_to 'Change Routes', todo_path(:change_routes)
 
-  %li
-    Change routes from:
-    %ul
-      %li /experiment/:name
-      %li /test/:name
-      %li /refactor/:name
-      %li /todo/:name
-    to:
-    %ul
-      %li match &quot;/experiment(/:action)&quot; =&gt; controller: :experiment
-      %li match &quot;/test(/:action)&quot; =&gt; controller: :test
-      %li match &quot;/refactor(/:action)&quot; =&gt; controller: :refactor
-      %li match &quot;/todo(/:action)&quot; =&gt; controller: :todo
+%h3 Content
+%ul.spaced
+  %li= link_to 'Routes Cheatsheet', todo_path(:routes_cheatsheet)
 
+%h3 General
+%ul.spaced
+  %li= link_to 'Cleanup Shell Startup Scripts', todo_path(:optimize_cli_startup)
+
+%h3 Saveology
+%ul.spaced
+  %li= link_to 'Refactor / Redesign TDSM', todo_path(:refactor_tdsm)
+  %li= link_to 'Refactor / Redesign YesMail', todo_path(:refactor_yesmail)
 
