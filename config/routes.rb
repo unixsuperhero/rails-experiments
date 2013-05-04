@@ -22,6 +22,9 @@ RailsBase::Application.routes.draw do
   get '/todo(/:action)', controller: :todo, as: :todo
 
 # EXPERIMENTS
+  # exp: nested controller route test
+  get '/routes/*controller(/:action)'
+
   # exp: route param catching slashes
   get '/route((/*experiment)/:act)' => 'pages#route_params', as: :route_exp
   # WORKS!  # get '/route(/*experiment)' => 'pages#route_params', as: :route_exp

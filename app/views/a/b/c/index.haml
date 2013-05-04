@@ -1,0 +1,46 @@
+.alert.alert-success You made it!
+.alert.alert-danger It's not working when passing an action...fuck.
+
+%h1 Nested Controller Route Test
+%hr
+
+%h3 Why This is Awesome
+%p
+  The fact that this was successful, makes this test awesome.
+
+%p
+  It has a lot of implications.  Specifically, how I can
+  %ul
+    %li setup 1 route per &quot;section&quot; (A list of sections: experiments, refactoring patterns)
+    %li
+      %b UPDATE: setup 1 route for all automated sections
+      (i think it has to be this way...this route should be after all specific routes)
+    %li drive each section completely (almost) thru views
+    %li
+      if a subsection's controller requires code:
+      %ul
+        %li make a nested controller containing only related code
+        %li no need to update routes
+
+%h3 The Code
+
+%em config/routes.rb
+%pre
+  :escaped
+    # exp: nested controller route test
+    #
+    # NOTE: In practice, not as an experiment
+    # the route should probably be:
+    #   get '/*controller(/:action)'
+    #
+    # but this is an experiment...
+    #
+
+    get '/routes/*controller(/:action)'
+
+
+%em app/controllers/a/b/c_controller.rb
+%pre= IO.read('./app/controllers/a/b/c_controller.rb')
+
+%em app/views/a/b/c/index.haml
+%pre You made it!
