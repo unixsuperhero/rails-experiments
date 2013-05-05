@@ -1,5 +1,4 @@
 .alert.alert-success You made it!
-.alert.alert-danger It's not working when passing an action...fuck.
 
 %h1 Nested Controller Route Test
 %hr
@@ -24,6 +23,19 @@
         %li make a nested controller containing only related code
         %li no need to update routes
 
+%hr
+%h3 Issues
+%ul
+  %li
+    The only issue I see, is if you have a custom
+    route, and it is below the following 2 routes.
+    It will try to apply the last "/*" to an action
+    on the controller.  If the action doesn't exist
+    you get an Unknown Action exception.
+  %li
+    Ideally, these routes go near the bottom of your file.
+
+%hr
 %h3 The Code
 %hr
 %h4 Routes
