@@ -23,7 +23,8 @@ RailsBase::Application.routes.draw do
 
 # EXPERIMENTS
   # exp: nested controller route test
-  get '/routes/*controller(/:action)'
+  get '/routes/*controller/:action'
+  get '/routes/*controller', action: :index
 
   # exp: route param catching slashes
   get '/route((/*experiment)/:act)' => 'pages#route_params', as: :route_exp
