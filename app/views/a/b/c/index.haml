@@ -34,10 +34,9 @@
     :escaped
       # exp: nested controller route test
 
-      get '/routes/*controller/:action'
       get '/routes/*controller(/:action)'
-  %p I like this version, because it looks cleaner.
-  %p The problem is, the 2nd route's function isn't obvious.
+      get '/routes/*controller/:action'
+  %p The problem is, the 1st route's function isn't obvious.
 
 .inline
   %em config/routes.rb
@@ -46,10 +45,9 @@
     :escaped
       # exp: nested controller route test
 
-      get '/routes/*controller/:action'
       get '/routes/*controller', action: :index
-  %p I like this version, because it is explicit.
-  %p The 2nd route tells you, I'm assuming the action is index, everything else is the controller.
+      get '/routes/*controller/:action'
+  %p The 1st route tells you, I'm assuming the action is index, everything else is the controller.
 
 %hr
 

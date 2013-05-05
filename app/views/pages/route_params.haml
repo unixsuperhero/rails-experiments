@@ -7,8 +7,8 @@
 %p
   Test links:
   %ul
-    %li= link_to "/route", route_exp_path
+    %li= link_to "/get-slashes", route_exp_path
     - paths = %w{ one one/two one/two/three }
     - paths.each do |pth|
-      %li= link_to "/route/#{pth}", "/route/#{pth}"
+      %li= link_to "/get-slashes/#{pth}", "/get-slashes/#{pth}"
 

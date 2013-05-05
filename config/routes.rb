@@ -18,16 +18,16 @@ RailsBase::Application.routes.draw do
 
   #match '/test' => redirect {|ps,request| 'http://asdf.com/?' + ps.to_query }
 
-# PERSONAL TOOLS
-  get '/todo(/:action)', controller: :todo, as: :todo
+# Handle all flexible sections with these 2 routes
+  match '/*controller(/:action)'
+  match '/*controller/:action'
 
 # EXPERIMENTS
   # exp: nested controller route test
-  get '/routes/*controller/:action'
-  get '/routes/*controller', action: :index
+  # see: '/*controller/:action'
 
   # exp: route param catching slashes
-  get '/route((/*experiment)/:act)' => 'pages#route_params', as: :route_exp
+  get '/get-slashes((/*experiment)/:act)' => 'pages#route_params', as: :route_exp
   # WORKS!  # get '/route(/*experiment)' => 'pages#route_params', as: :route_exp
   # WORKS!  # get '/route(/:experiment)' => 'pages#route_params', as: :route_exp, constraints: { experiment: /.*/ }
 
