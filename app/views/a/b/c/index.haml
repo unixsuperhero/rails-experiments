@@ -11,10 +11,12 @@
 %p
   It has a lot of implications.  Specifically, how I can
   %ul
-    %li setup 1 route per &quot;section&quot; (A list of sections: experiments, refactoring patterns)
+    %li setup 2 routes per &quot;section&quot; (A list of sections: experiments, refactoring patterns)
     %li
-      %b UPDATE: setup 1 route for all automated sections
-      (i think it has to be this way...this route should be after all specific routes)
+      %b UPDATE: setup 2 routes for all automated sections
+      %p (i think it has to be this way...this route should be after all specific routes)
+    %li
+      %b UPDATE: (might not need to be after everything)
     %li drive each section completely (almost) thru views
     %li
       if a subsection's controller requires code:
@@ -23,24 +25,40 @@
         %li no need to update routes
 
 %h3 The Code
+%hr
+%h4 Routes
+.inline
+  %em config/routes.rb
+  %strong v1
+  %pre
+    :escaped
+      # exp: nested controller route test
 
-%em config/routes.rb
-%pre
-  :escaped
-    # exp: nested controller route test
-    #
-    # NOTE: In practice, not as an experiment
-    # the route should probably be:
-    #   get '/*controller(/:action)'
-    #
-    # but this is an experiment...
-    #
+      get '/routes/*controller/:action'
+      get '/routes/*controller(/:action)'
+  %p I like this version, because it looks cleaner.
+  %p The problem is, the 2nd route's function isn't obvious.
 
-    get '/routes/*controller(/:action)'
+.inline
+  %em config/routes.rb
+  %strong v2
+  %pre
+    :escaped
+      # exp: nested controller route test
 
+      get '/routes/*controller/:action'
+      get '/routes/*controller', action: :index
+  %p I like this version, because it is explicit.
+  %p The 2nd route tells you, I'm assuming the action is index, everything else is the controller.
 
+%hr
+
+%h4 Controller
 %em app/controllers/a/b/c_controller.rb
 %pre= IO.read('./app/controllers/a/b/c_controller.rb')
 
+%hr
+
+%h4 View
 %em app/views/a/b/c/index.haml
 %pre You made it!
