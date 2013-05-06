@@ -1,0 +1,57 @@
+<item>
+  <title>Ruby on Rails: Render a view from a model</title>
+  <link>http://unixsuperhero.com/2012/10/17/ruby-on-rails-render-a-view-from-a-model/</link>
+  <pubDate>Wed, 17 Oct 2012 15:23:55 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=59</guid>
+  <content:encoded><![CDATA[Before getting flamed.  I don't condone this, or consider it good practice.  However, the day may come when  you want to build an interface for a 3rd party api, and would like to use a view to help generate the (xml) request packet.
+
+The render and render_to_string methods are available thru the ActionController::Base class.  So naturally, to render a view you can do this:
+<pre>ActionController::Base.new.render_to_string 'api_name/viewname.xml.erb'</pre>
+Now, the question is, how do I get data to this view?  Well, the view has access to the controller's instance variables.  So, we can tap the controller object and set some instance variables, like so:
+<pre>ActionController::Base.new.tap{|controller|
+  controller.instance_variable_set( :@email, email )
+  controller.instance_variable_set( :@full_name, full_name )
+}.render_to_string 'api_name/view.xml.erb'</pre>
+This way, when you try to access these instance variables from within the view:
+<pre>&lt;full_name&gt;&lt;%= @full_name %&gt;&lt;/full_name&gt;
+&lt;email&gt;&lt;%= @email %&gt;&lt;/email&gt;</pre>
+They will now be available.
+
+Full Code:
+<pre>class ApiName
+  def render_view
+    @email = 'unix@superheroes.com'
+    @full_name = 'Secret Identity'
+    ActionController::Base.new.tap{|controller|
+      controller.instance_variable_set( :@email, @email )
+      controller.instance_variable_set( :@full_name, @full_name )
+    }.render_to_string 'api_name/view.xml.erb'
+  end
+end
+
+# api_name/view.xml.erb
+&lt;user&gt;
+  &lt;email&gt;&lt;%= @email %&gt;&lt;/email&gt;
+  &lt;full_name&gt;&lt;%= @full_name %&gt;&lt;/email&gt;
+&lt;/user&gt;
+
+#output
+&lt;user&gt;
+  &lt;email&gt;unix@superheroes.com&lt;/email&gt;
+  &lt;full_name&gt;Secret Identity&lt;/full_name&gt;
+&lt;/user&gt;</pre>
+Enjoy!]]></content:encoded>
+  <wp:post_id>59</wp:post_id>
+  <wp:post_date>2012-10-17 15:23:55</wp:post_date>
+  <wp:post_date_gmt>2012-10-17 15:23:55</wp:post_date_gmt>
+  <wp:post_name>ruby-on-rails-render-a-view-from-a-model</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_type>post</wp:post_type>
+  <wp:post_password></wp:post_password>
+  <TAGS>
+  rails trick
+  render view
+  ruby on rails
+  Uncategorized
+  </TAGS>
+</item>

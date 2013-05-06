@@ -1,0 +1,58 @@
+<item>
+  <title>Rails Tip: See How Rails Converts ERB Into Valid Ruby</title>
+  <link>http://unixsuperhero.com/2013/01/15/rails-tip-see-how-rails-converts-erb-into-valid-ruby/</link>
+  <pubDate>Tue, 15 Jan 2013 05:07:46 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.com/?p=172</guid>
+  <content:encoded><![CDATA[  <h2>Background Info</h2>
+
+  <p>I am working on a project that handles data within a template
+  in a, slightly, different-than-normal way. &nbsp;At one point, I
+  thought it would be super helpful if I saw how the markup outside
+  of &lt;% %&gt; tags was incorporated into, say, an :each
+  block.  Just to clarify, in the following example, I am wondering 
+  about the "The item has the number" part of the erb.</p>
+
+  <p>Example:</p>
+  <pre>
+&lt;ul&gt;<br>
+  &lt;% [1,2,3,4].each do |number| %&gt;<br>
+    &lt;li&gt;The item has the number &lt;%= number %&gt;&lt;/li&gt;<br>
+  &lt;% end %&gt;<br>
+&lt;/ul&gt;<br>
+  </pre>
+<br><br>
+Naturally, I looked up the ERB docs.  What do you know?  ERB has the method :src.  So I did this:
+<pre>
+def examine_erb
+  erb = ERB.new &lt;&lt;-ERBCODE
+    &lt;% [1,2,3,4].each do |x| %&gt;
+      Hello World: &lt;%= x %&gt;
+    &lt;% end %&gt;
+  ERBCODE
+  erb.src
+end
+</pre>
+
+After running it, this is what I found out:
+<pre>
+#coding:UTF-8
+_erbout = ''; _erbout.concat "    ";  [1,2,3,4].each do |x| ; _erbout.concat "\n      Hello World: "
+; _erbout.concat(( x ).to_s); _erbout.concat "\n    "
+;  end ; _erbout.concat "\n"
+; _erbout.force_encoding(__ENCODING__)
+</pre>
+
+I thought it was interesting...
+
+...and in the end, it helped me figure out what I was wondering in the first place.  So, I learned something new, and more...]]></content:encoded>
+  <wp:post_id>172</wp:post_id>
+  <wp:post_date>2013-01-15 05:07:46</wp:post_date>
+  <wp:post_date_gmt>2013-01-15 05:07:46</wp:post_date_gmt>
+  <wp:post_name>rails-tip-see-how-rails-converts-erb-into-valid-ruby</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_type>post</wp:post_type>
+  <wp:post_password></wp:post_password>
+  <TAGS>
+  Uncategorized
+  </TAGS>
+</item>

@@ -1,0 +1,39 @@
+<item>
+  <title>Make git-push Easier with a Small Config Change</title>
+  <link>http://unixsuperhero.com/2012/10/06/make-git-push-easier-with-a-small-config-change/</link>
+  <pubDate>Sat, 06 Oct 2012 09:29:13 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=43</guid>
+  <content:encoded><![CDATA[When pushing to a remote branch, normally you need both a remote and a branch name, like so:
+<pre>$&gt; git push &lt;remote-repo-name&gt; &lt;branch-to-push&gt;</pre>
+Setting a remote repo's push config to "HEAD" will make this process easier:
+<pre>[remote "github"]
+  url = https://github.com/username/repo.git
+  refs = # ...
+  push = HEAD</pre>
+This will do two things:
+
+1. You no longer need to specify the branch when you push
+2. It will automatically push the branch you are currently in
+
+Pushing now looks something like this:
+<pre>$&gt; git push &lt;remote-repo-name&gt;</pre>
+This way, if you are in master, it will update the remote’s master branch.
+
+If you are in a new branch and you push, it will create that remote branch. For example, if we just checked-out “sakura” and we push, it will create the “sakura” branch in the remote repository.]]></content:encoded>
+  <wp:post_id>43</wp:post_id>
+  <wp:post_date>2012-10-06 09:29:13</wp:post_date>
+  <wp:post_date_gmt>2012-10-06 09:29:13</wp:post_date_gmt>
+  <wp:post_name>make-git-push-easier-with-a-small-config-change</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_type>post</wp:post_type>
+  <wp:post_password></wp:post_password>
+  <TAGS>
+  .gitconfig
+  cli
+  Git
+  git configuration
+  git tricks
+  shortcut
+  Uncategorized
+  </TAGS>
+</item>

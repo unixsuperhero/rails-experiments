@@ -1,0 +1,7 @@
+
+%h1 Posts
+
+%ul
+  - posts.each do |post|
+    %li= link_to post.titleize, "/blog/posts/#{post}"
+

@@ -1,0 +1,78 @@
+<item>
+  <title>Fuzzy Finder in the Style of Bash</title>
+  <link>http://unixsuperhero.com/2012/10/05/fuzzy-finder-in-the-style-of-bash/</link>
+  <pubDate>Fri, 05 Oct 2012 01:43:17 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=23</guid>
+  <content:encoded><![CDATA[<h2>TL;DR</h2>
+I find fuzzy finders useful, they save me time and keystrokes.  I wrote one for bash, the shell.  I call it ff.
+<pre>ff () {
+  # Author: Joshua Toyota (Unix Superhero)
+  find . -type f | grep -i "$(echo "$1" | sed 's/./&amp;.*/g')"
+}</pre>
+<h2>Intro</h2>
+Fuzzy Finders are extremely useful, and appear popular in the Vim community.  There are a few plugins that provide fuzzy finding capabilities:
+<ul>
+	<li>Command-T</li>
+	<li>Ctrl-P</li>
+	<li><a href="https://github.com/vim-scripts/FuzzyFinder">FuzzyFinder</a></li>
+</ul>
+<h2>What is Fuzzy Finding?</h2>
+Fuzzy finding, is a type of pattern matching.  In this case, it is being used to match against filenames.  This is my best description of fuzzy finding in one sentence:
+<pre>Find every letter in the pattern, in any position, as long as the order of the letters is the same.</pre>
+For the following examples, we will be checking the patterns against the following subject:
+<pre style="padding-left:30px;"> cat dog house</pre>
+First, let's start with the search pattern: "cdh".  This pattern is a match.  These are the steps used to determine whether it is a matching pattern:
+<ul>
+	<li>First, search for the letter: "c".  We found it: "<span style="text-decoration:underline;">c</span>at dog house"<strong>
+</strong></li>
+	<li>After the "c", do we find the letter "d"?  Yes, there is. "<span style="text-decoration:underline;">c</span>at <span style="text-decoration:underline;">d</span>og house"</li>
+	<li>After the "d", do we find the letter "h"?  Yes, we do. "<span style="text-decoration:underline;">c</span>at <span style="text-decoration:underline;">d</span>og <span style="text-decoration:underline;">h</span>ouse"</li>
+</ul>
+Alternatively, visualize the "cdh" search pattern like this: "c -&gt; d -&gt; h".  This is because, the order of the letters must match, however they don't have to be found side-by-side.
+
+Consider searching for "qy" in "quality".  This pattern <strong>matches.</strong>  However, if we search for "yq" in the same subject, the pattern <strong>fails.</strong>  Even though both "y" and "q" are found in "quality", the order of the letters does not match.
+<h2>Ways to Use ff</h2>
+The usage of ff might look like this:
+<pre>Usage: ff [search-pattern]</pre>
+When viewing examples of ff, the pattern may look like a garbled mess. However, as you are typing, it will make perfect sense. Let's pretend I am searching for "app/views/admins/users/create.html.haml". I might use ff like this:
+<pre>ff apviadmususecrhaml</pre>
+In my head I typed:
+<pre><strong>ap</strong>(p/)<strong>vi</strong>(ews/)<strong>adm</strong>(ins/)<strong>use</strong>(rs/)<strong>cr</strong>(eate.html.)<strong>haml
+
+</strong><span style="text-decoration:underline;">ap</span>p/<span style="text-decoration:underline;">vi</span>ews/<span style="text-decoration:underline;">adm</span>ins/<span style="text-decoration:underline;">use</span>rs/<span style="text-decoration:underline;">cr</span>eate.html.<span style="text-decoration:underline;">haml</span></pre>
+Of course, it isn't required that you specify something from every directory.  The same file could be found with this command:
+<pre>ff viewadmincreate.haml</pre>
+Combining ff with other commands is extremely useful too:
+<pre>$&gt; vim $(ff viewadmincreate.haml)  # open the matching view with vim
+
+$&gt; grep -i 'pattern' $(ff appviewadmin)  # search for pattern in all of the admin views</pre>]]></content:encoded>
+  <wp:post_id>23</wp:post_id>
+  <wp:post_date>2012-10-05 01:43:17</wp:post_date>
+  <wp:post_date_gmt>2012-10-05 01:43:17</wp:post_date_gmt>
+  <wp:post_name>fuzzy-finder-in-the-style-of-bash</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_type>post</wp:post_type>
+  <wp:post_password></wp:post_password>
+  <TAGS>
+  Bash
+  bash tips
+  bash tricks
+  fuzzy finder
+  shell script
+  Uncategorized
+  </TAGS>
+  <wp:comment>
+    <wp:comment_id>4</wp:comment_id>
+    <wp:comment_author><![CDATA[Enhancing git status with gs | Unix Superhero]]></wp:comment_author>
+    <wp:comment_author_email></wp:comment_author_email>
+    <wp:comment_author_url>http://unixsuperhero.wordpress.com/2012/10/04/enhancing-git-status-with-gs/</wp:comment_author_url>
+    <wp:comment_author_IP>74.200.247.41</wp:comment_author_IP>
+    <wp:comment_date>2012-10-19 14:48:40</wp:comment_date>
+    <wp:comment_date_gmt>2012-10-19 14:48:40</wp:comment_date_gmt>
+    <wp:comment_content><![CDATA[[...] I never intended for this command to be useful by itself.  It becomes useful when combined with other commands.  It&#8217;s not about making git status searchable, but cleaning the output to make it reusable.  The search filtering feature is simply an added bonus.  p.s. The techniques used with this command are also useful with ff(). [...]]]></wp:comment_content>
+    <wp:comment_approved>1</wp:comment_approved>
+    <wp:comment_type>pingback</wp:comment_type>
+    <wp:comment_parent>0</wp:comment_parent>
+    <wp:comment_user_id>0</wp:comment_user_id>
+  </wp:comment>
+</item>

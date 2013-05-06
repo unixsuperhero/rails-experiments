@@ -1,0 +1,12 @@
+- content_for :title do
+  12factor app
+
+Greg from heroku suggested reading this.  Dante and I found it a while ago.  It is a great guideline for scalable apps.  Some of the "factors" that stood out for me are:
+
+The dependency one.  By extracting dependencies you don't have your code coupled with them.  For example, sending email thru a third party.  By having a class, with a well-defined interface, such as changing
+-#
+  <wp:post_id>88
+  <wp:post_date>2012-11-10 23:34:23
+  <wp:status>draft
+  <TAGS>
+  Uncategorized

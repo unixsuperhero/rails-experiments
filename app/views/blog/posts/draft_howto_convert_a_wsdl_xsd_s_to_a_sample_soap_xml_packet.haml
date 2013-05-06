@@ -1,0 +1,58 @@
+<item>
+  <title>Draft: HOWTO: Convert a WSDL/XSD(s) to a sample SOAP/XML Packet</title>
+  <link>http://unixsuperhero.com/2013/03/21/draft-howto-convert-a-wsdlxsds-to-a-sample-soapxml-packet/</link>
+  <pubDate>Thu, 21 Mar 2013 04:21:26 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.com/?p=304</guid>
+  <content:encoded><![CDATA[<h1>NOTE: This is not complete, simply a brief snippet of an article I plan to write in the near future...</h1>
+&nbsp;
+<h2>Introduction</h2>
+The software I use everyday, at both work and home, largely consists of Open Source Software (OSS).  Over the last 2 years, I have had to write libraries for several SOAP APIs.  Many of these APIs don't have great documentation, and at the very least they hopefully distribute a WSDL.  A WSDL is an XML document that describes, in detail, the structure of the XML request/response packets that a Web Service expects.
+
+I have spent a large amount of time looking for OSS to pragmatically convert a WSDL to a sample XML packet, all without success.  I have found SoapUI.  But, before said discovery, I had been forced to reverse engineer how a WSDL defines these packets.
+
+Which is why I am writing this.  Not only do I plan on explaining HOW to do this manually, I also plan on building an Open Source tool to do so.  I find it important to explain the process, because I haven't found any other article that does this, and someone should do it.
+<h2>Super Rough Outline</h2>
+A WSDL has 1 tag at the root &lt;definitions /&gt;.  Inside of <em>definitions</em>, we have a few more tags:
+<ul>
+	<li><span style="line-height:14px;">&lt;types /&gt;</span></li>
+	<li>&lt;message /&gt;</li>
+	<li>&lt;portType /&gt;</li>
+	<li>&lt;binding /&gt;</li>
+	<li>&lt;service /&gt;</li>
+</ul>
+The way to read a WSDL, is almost from the bottom up:
+
+<strong>&lt;service /&gt;</strong> describes the URL the send requests to.  It also describes which <strong>&lt;binding /&gt;</strong> to use.
+
+<strong>&lt;binding /&gt;</strong> has several <strong>&lt;operations /&gt;</strong>.  Each operation is essentially what you will use as an API call.
+
+Each <strong>&lt;operations /&gt;</strong> tag has an <b>&lt;operation /&gt;</b> which describes 3 things:
+<ol>
+	<li><span style="line-height:14px;">The <strong>SOAPAction</strong> HTTP Header to send with the request
+</span></li>
+	<li>The <strong>&lt;input /&gt;</strong><strong></strong></li>
+	<li>The <strong>&lt;output /&gt;</strong></li>
+</ol>
+<strong>&lt;input /&gt;</strong> and <strong>&lt;output /&gt;</strong> each describe a top-level view of their packets.  In other words, the <strong>&lt;header /&gt;</strong> tags, and the <strong>&lt;body /&gt;</strong> tag.
+
+<strong></strong>The <strong>&lt;binding /&gt;</strong> has a type attribute.  This describes the portType.
+
+The <strong>&lt;portType /&gt;</strong> describes which <strong>&lt;message /&gt;</strong> to use.<strong>
+</strong>
+
+The <strong>&lt;message /&gt;</strong> describes the main <strong>&lt;element /&gt;</strong>.
+
+Each <strong>&lt;element /&gt;</strong> may describe zero or more sub <strong>&lt;element /&gt;</strong>(s).
+
+From this general flow, you start building the XML Packets.]]></content:encoded>
+  <wp:post_id>304</wp:post_id>
+  <wp:post_date>2013-03-21 04:21:26</wp:post_date>
+  <wp:post_date_gmt>2013-03-21 04:21:26</wp:post_date_gmt>
+  <wp:post_name>draft-howto-convert-a-wsdlxsds-to-a-sample-soapxml-packet</wp:post_name>
+  <wp:status>publish</wp:status>
+  <wp:post_type>post</wp:post_type>
+  <wp:post_password></wp:post_password>
+  <TAGS>
+  Uncategorized
+  </TAGS>
+</item>
