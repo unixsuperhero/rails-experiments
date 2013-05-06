@@ -12,3 +12,4 @@ coverage
 .DS_Store
 stubs/
 .sass-cache/
+/development.yml
