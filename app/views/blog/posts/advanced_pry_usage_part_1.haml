@@ -1,9 +1,6 @@
-<item>
-  <title>Advanced Pry Usage: Part #1</title>
-  <link>http://unixsuperhero.com/2013/01/05/advanced-pry-usage-part-1/</link>
-  <pubDate>Sat, 05 Jan 2013 04:32:40 +0000</pubDate>
-  <guid isPermaLink="false">http://unixsuperhero.com/?p=120</guid>
-  <content:encoded><![CDATA[<h3>Intro: What is pry?</h3>
+= content_for :title
+	Advanced Pry Usage: Part #1
+<h3>Intro: What is pry?</h3>
 <b>pry</b> is an interactive shell for executing ruby code. When you open it, you are given a prompt:
 <pre>[1] pry(main)&gt;</pre>
 You are then able to do almost anything with it. Define new classes, make temporary monkey patches. In other words, you can create anything, or rewrite anything on-the-fly.
@@ -38,7 +35,8 @@ Now, you only have a few, but effective ways to inspect this object:
 </ul>
 But the first 2 alone are very useful.  Have you ever received a Wrong # of Arguments error?  Grab the method's Method instance, and call parameters on it.  Wondering how it works, call source on it.  Want to see the whole class and how its dependencies work together, call source_location and inspect it with vim.
 <p style="padding-left:30px;"><strong>NOTE: If you have trouble with these methods.  Sometimes it helps to call :to_proc on the Method instance, then calling :source[_location], or :parameters, etc.</strong></p>
-Hopefully that is enough for now...]]></content:encoded>
+Hopefully that is enough for now...
+-#
   <wp:post_id>120</wp:post_id>
   <wp:post_date>2013-01-05 04:32:40</wp:post_date>
   <wp:post_date_gmt>2013-01-05 04:32:40</wp:post_date_gmt>
@@ -49,4 +47,6 @@ Hopefully that is enough for now...]]></content:encoded>
   <TAGS>
   Uncategorized
   </TAGS>
-</item>
+  <link>http://unixsuperhero.com/2013/01/05/advanced-pry-usage-part-1/</link>
+  <pubDate>Sat, 05 Jan 2013 04:32:40 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.com/?p=120</guid>

@@ -1,9 +1,6 @@
-<item>
-  <title>Ruby on Rails: Render a view from a model</title>
-  <link>http://unixsuperhero.com/2012/10/17/ruby-on-rails-render-a-view-from-a-model/</link>
-  <pubDate>Wed, 17 Oct 2012 15:23:55 +0000</pubDate>
-  <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=59</guid>
-  <content:encoded><![CDATA[Before getting flamed.  I don't condone this, or consider it good practice.  However, the day may come when  you want to build an interface for a 3rd party api, and would like to use a view to help generate the (xml) request packet.
+= content_for :title
+	Ruby on Rails: Render a view from a model
+Before getting flamed.  I don't condone this, or consider it good practice.  However, the day may come when  you want to build an interface for a 3rd party api, and would like to use a view to help generate the (xml) request packet.
 
 The render and render_to_string methods are available thru the ActionController::Base class.  So naturally, to render a view you can do this:
 <pre>ActionController::Base.new.render_to_string 'api_name/viewname.xml.erb'</pre>
@@ -40,7 +37,8 @@ end
   &lt;email&gt;unix@superheroes.com&lt;/email&gt;
   &lt;full_name&gt;Secret Identity&lt;/full_name&gt;
 &lt;/user&gt;</pre>
-Enjoy!]]></content:encoded>
+Enjoy!
+-#
   <wp:post_id>59</wp:post_id>
   <wp:post_date>2012-10-17 15:23:55</wp:post_date>
   <wp:post_date_gmt>2012-10-17 15:23:55</wp:post_date_gmt>
@@ -54,4 +52,6 @@ Enjoy!]]></content:encoded>
   ruby on rails
   Uncategorized
   </TAGS>
-</item>
+  <link>http://unixsuperhero.com/2012/10/17/ruby-on-rails-render-a-view-from-a-model/</link>
+  <pubDate>Wed, 17 Oct 2012 15:23:55 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=59</guid>

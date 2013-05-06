@@ -1,9 +1,6 @@
-<item>
-  <title>i wish pry (or all command prompts...) would...</title>
-  <link>http://unixsuperhero.com/2012/12/15/i-wish-pry-or-all-command-prompts-would/</link>
-  <pubDate>Sat, 15 Dec 2012 01:34:22 +0000</pubDate>
-  <guid isPermaLink="false">http://unixsuperhero.com/?p=113</guid>
-  <content:encoded><![CDATA[<ol>
+= content_for :title
+	i wish pry (or all command prompts...) would...
+<ol>
 	<li>do some things the same way zsh does them. bash might even do these things. one, for example: when using special keywords that are references to previous things. like "!!" in the shell, referring to the last command run, what zsh does is...it expands the reference from the relative keywords to the literal element from the history. in other words, it changes "!!" into "command args" if the last command i ran was "command args". this way, after i hit enter to execute the command. if i hit up (or ctrl-p, like a boss,</li>
 </ol>
 <h3>The way pry works, but the example is using shell commands:</h3>
@@ -55,7 +52,8 @@ _(1) # this would be the current history up 1 line.</pre>
 echo "command listing lasers: $(!!)"
 ## ...press up...
 echo "command listing lasers: $(!-1)"
-## which is actually valid history notation for bash</pre>]]></content:encoded>
+## which is actually valid history notation for bash</pre>
+-#
   <wp:post_id>113</wp:post_id>
   <wp:post_date>2012-12-15 01:34:22</wp:post_date>
   <wp:post_date_gmt>2012-12-15 01:34:22</wp:post_date_gmt>
@@ -66,4 +64,6 @@ echo "command listing lasers: $(!-1)"
   <TAGS>
   Uncategorized
   </TAGS>
-</item>
+  <link>http://unixsuperhero.com/2012/12/15/i-wish-pry-or-all-command-prompts-would/</link>
+  <pubDate>Sat, 15 Dec 2012 01:34:22 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.com/?p=113</guid>

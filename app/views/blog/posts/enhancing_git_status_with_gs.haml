@@ -1,9 +1,6 @@
-<item>
-  <title>Enhancing git status with gs</title>
-  <link>http://unixsuperhero.com/2012/10/04/enhancing-git-status-with-gs/</link>
-  <pubDate>Thu, 04 Oct 2012 17:52:26 +0000</pubDate>
-  <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=6</guid>
-  <content:encoded><![CDATA[<h2><strong>Update: 2012-10-19</strong></h2>
+= content_for :title
+	Enhancing git status with gs
+<h2><strong>Update: 2012-10-19</strong></h2>
 I never intended for this command to be useful by itself.  It becomes useful when combined with other commands.  It's not about making git status searchable, but cleaning the output to make it reusable.  The search filtering feature is simply an added bonus.  p.s. The techniques used with this command are also useful with <a href="http://unixsuperhero.wordpress.com/2012/10/05/fuzzy-finder-in-the-style-of-bash/">ff()</a>.
 <h2>TL;DR</h2>
 <code>gs</code> is a bash function that lists/searches the files that are currently modified in your git repository. You can take that list, and use it with other commands to do some useful things. Watch the screencast I made, demonstrating how to use <code>gs</code>.
@@ -46,7 +43,8 @@ Here is the code for gs:
 
 If search-pattern is not provided, list all of the changed files yet to be committed.
 
-If search-pattern is provided, only the file names and paths that match the search-pattern will be returned.</pre>]]></content:encoded>
+If search-pattern is provided, only the file names and paths that match the search-pattern will be returned.</pre>
+-#
   <wp:post_id>6</wp:post_id>
   <wp:post_date>2012-10-04 17:52:26</wp:post_date>
   <wp:post_date_gmt>2012-10-04 17:52:26</wp:post_date_gmt>
@@ -65,4 +63,6 @@ If search-pattern is provided, only the file names and paths that match the sear
   shell script
   Uncategorized
   </TAGS>
-</item>
+  <link>http://unixsuperhero.com/2012/10/04/enhancing-git-status-with-gs/</link>
+  <pubDate>Thu, 04 Oct 2012 17:52:26 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=6</guid>

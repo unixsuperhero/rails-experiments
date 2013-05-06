@@ -1,9 +1,6 @@
-<item>
-  <title>Shell Tip: Run an aliased command, ignoring the alias (Solution #1)</title>
-  <link>http://unixsuperhero.com/2012/11/21/shell-tip-run-an-aliased-command-ignoring-the-alias-solution-1/</link>
-  <pubDate>Wed, 21 Nov 2012 05:15:12 +0000</pubDate>
-  <guid isPermaLink="false">http://unixsuperhero.com/?p=97</guid>
-  <content:encoded><![CDATA[<h4>How Bash Uses Aliases/Commands</h4>
+= content_for :title
+	Shell Tip: Run an aliased command, ignoring the alias (Solution #1)
+<h4>How Bash Uses Aliases/Commands</h4>
 First, it will try to find an alias for the given name.  If no alias is found, then it will use the first command in your $PATH by the given name.
 <h3>Scenario</h3>
 You set default options for <strong>cmd-x</strong> by creating an alias with the same name (<strong>cmd-x</strong>).  In this example, the alias and command are both called "grep".
@@ -11,7 +8,8 @@ You set default options for <strong>cmd-x</strong> by creating an alias with the
 <strong>BUT!</strong>  What if you want to run grep <strong>without</strong> the "--color" option?
 <h3>Solution #1: Wrap the command name in quotes</h3>
 <pre>$&gt; "grep" #...</pre>
-This is the same situation as <a href="http://wp.me/p2MUFm-1u">Solution #0</a>.  There aren't any aliases that match "grep" (with quotes).  Also, "grep" wrapped in quotes is just a string that evaluations to grep.  The shell will then find grep in our $PATH and run it normally.]]></content:encoded>
+This is the same situation as <a href="http://wp.me/p2MUFm-1u">Solution #0</a>.  There aren't any aliases that match "grep" (with quotes).  Also, "grep" wrapped in quotes is just a string that evaluations to grep.  The shell will then find grep in our $PATH and run it normally.
+-#
   <wp:post_id>97</wp:post_id>
   <wp:post_date>2012-11-21 05:15:12</wp:post_date>
   <wp:post_date_gmt>2012-11-21 05:15:12</wp:post_date_gmt>
@@ -32,4 +30,6 @@ This is the same situation as <a href="http://wp.me/p2MUFm-1u">Solution #0</a>. 
   unalias
   unix
   </TAGS>
-</item>
+  <link>http://unixsuperhero.com/2012/11/21/shell-tip-run-an-aliased-command-ignoring-the-alias-solution-1/</link>
+  <pubDate>Wed, 21 Nov 2012 05:15:12 +0000</pubDate>
+  <guid isPermaLink="false">http://unixsuperhero.com/?p=97</guid>
