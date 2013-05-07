@@ -1,0 +1,68 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/01/29/howto-add-postgres-to-a-wheelhousecms-app/", :rel => "bookmark"} HOWTO: Add postgres to a wheelhousecms&nbsp;app
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/01/29/howto-add-postgres-to-a-wheelhousecms-app/#respond", :title => "Comment on HOWTO: Add postgres to a wheelhousecms&nbsp;app"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p In your config/application.rb:
+  %pre
+    :preserve
+      # below all the other require ".../railtie" lines add:
+      require "active_record/railtie"
+  %p In your Gemfile add:
+  %pre
+    :preserve
+      gem 'pg'
+  %p Run in bash:
+  %pre
+    :preserve
+      mkdir -pv db/migrate
+      bundle install   # if you use bundler/Gemfile(s)
+  %p Now you can make migrations and models the way you would in most standard rails apps.  Doing this won’t interfere with the existing mongodb functionality.  This is because we didn’t remove any of that stuff.  We simply added postgres to work side-by-side with mongodb.
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/ruby/", :rel => "tag"} ruby
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/mongodb/", :rel => "tag"} mongodb
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/postgres/", :rel => "tag"} postgres
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/wheelhouse/", :rel => "tag"} wheelhouse
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/wheelhousecms/", :rel => "tag"} wheelhousecms
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/pg/", :rel => "tag"} pg
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/gems/", :rel => "tag"} gems
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/rails/", :rel => "tag"} rails
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/cms/", :rel => "tag"} cms
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/hack/", :rel => "tag"} hack
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/rails-tips/", :rel => "tag"} rails tips
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/activerecord/", :rel => "tag"} activerecord
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/active_record/", :rel => "tag"} active_record
+  %a{:href => "http://unixsuperhero.com/tag/postgresql/", :rel => "tag"} postgresql
+  on
+  %a{:href => "http://unixsuperhero.com/2013/01/29/howto-add-postgres-to-a-wheelhousecms-app/", :rel => "bookmark", :title => "5:22 pm"}
+    %time.entry-date{:datetime => "2013-01-29T17:22:21+00:00"} January 29, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=193&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

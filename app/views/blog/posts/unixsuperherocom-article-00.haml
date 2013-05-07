@@ -1,0 +1,53 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/05/03/ruby-tip-map-with-index/", :rel => "bookmark"} Ruby Tip: Map with&nbsp;Index
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/05/03/ruby-tip-map-with-index/#respond", :title => "Comment on Ruby Tip: Map with&nbsp;Index"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p The Enumerable mixin is awesome. &nbsp;It’s where arrays and hashes get their :each, :map, :sort, :select, :collect, :find, etc. methods.
+  %p
+    When iterating over an array, it sometimes comes in handy to have the index, thus :each_with_index. &nbsp;However, if you want to iterate thru the array, returning a new object, like you would with :map, how do you do it? &nbsp;
+    %strong There is no :map_with_index.
+  %p
+    Luckily, instances of Enumerator have a method called&nbsp;
+    %strong :with_index.
+    \&nbsp;This lets you do this:
+  %pre
+    \%w{zero one two three}
+    %strong> .map.with_index
+    {|word,index|
+    %br/
+    "The index is: \#{index}; The word is: \#{word};"
+    %br>/
+    }
+    %br/
+    = succeed "Output:" do
+      %br/
+    = succeed "#" do
+      %br/
+    The index is: 0; The word is: zero;
+    %br>/
+    \# The index is: 1; The word is: one;
+    %br>/
+    \# The index is: 2; The word is: two;
+    %br>/
+    \# The index is: 3; The word is: three;
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2013/05/03/ruby-tip-map-with-index/", :rel => "bookmark", :title => "12:15 am"}
+    %time.entry-date{:datetime => "2013-05-03T00:15:54+00:00"} May 3, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=429&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

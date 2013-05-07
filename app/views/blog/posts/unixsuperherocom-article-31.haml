@@ -1,0 +1,31 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/10/06/planning-for-the-future/", :rel => "bookmark"} Protected: Planning For the&nbsp;Future
+  .comments-link
+    Enter your password to view comments.
+  / .comments-link
+/ .entry-header
+.entry-content
+  %form{:action => "http://unixsuperhero.com/wp-pass.php", :method => "post"}
+    %p This post is password protected. To view it please enter your password below:
+    %p
+      %label{:for => "pwbox-33"}
+        Password:
+        %input#pwbox-33{:name => "post_password", :size => "20", :type => "password"}/
+      %input{:name => "Submit", :type => "submit", :value => "Submit"}/
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2012/10/06/planning-for-the-future/", :rel => "bookmark", :title => "8:15 am"}
+    %time.entry-date{:datetime => "2012-10-06T08:15:40+00:00"} October 6, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=33&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

@@ -1,0 +1,39 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/02/22/vim-quick-tip-easily-open-all-buffers-in-vertical-splits/", :rel => "bookmark"} Vim Quick Tip: Easily open all buffers in (vertical)&nbsp;splits
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/02/22/vim-quick-tip-easily-open-all-buffers-in-vertical-splits/#respond", :title => "Comment on Vim Quick Tip: Easily open all buffers in (vertical)&nbsp;splits"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p I just started vim and I passed in 3 filenames. &nbsp;I do this often. &nbsp;Not only was I trying to open 3 files, I was trying to have them all displayed next to each other in vertical splits. &nbsp;To do this, the options passed to vim are different: vim -O file1 file2 file3;
+  %p Anyway, it’s simple to do this once vim has finished loading.
+  %pre :bufdo vs
+  %p The only issue is the last buffer, #3 in our case, is open twice. &nbsp;Execute :q and you are done.
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bufdof/", :rel => "tag"} bufdof
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/quicktip/", :rel => "tag"} quicktip
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/vim/", :rel => "tag"} Vim
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/vim-command/", :rel => "tag"} vim command
+  %a{:href => "http://unixsuperhero.com/tag/vim-shortcuts/", :rel => "tag"} vim shortcuts
+  on
+  %a{:href => "http://unixsuperhero.com/2013/02/22/vim-quick-tip-easily-open-all-buffers-in-vertical-splits/", :rel => "bookmark", :title => "11:04 am"}
+    %time.entry-date{:datetime => "2013-02-22T11:04:35+00:00"} February 22, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=259&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

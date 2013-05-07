@@ -1,0 +1,120 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/10/05/fuzzy-finder-in-the-style-of-bash/", :rel => "bookmark"} Fuzzy Finder in the Style of&nbsp;Bash
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/10/05/fuzzy-finder-in-the-style-of-bash/#comments", :title => "Comment on Fuzzy Finder in the Style of&nbsp;Bash"} 1 Reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %h2 TL;DR
+  %p I find fuzzy finders useful, they save me time and keystrokes.  I wrote one for bash, the shell.  I call it ff.
+  %pre
+    :preserve
+      ff () {
+        # Author: Joshua Toyota (Unix Superhero)
+        find . -type f | grep -i "$(echo "$1" | sed 's/./&amp;.*/g')"
+      }  %h2 Intro
+  %p Fuzzy Finders are extremely useful, and appear popular in the Vim community.  There are a few plugins that provide fuzzy finding capabilities:
+  %ul
+    %li Command-T
+    %li Ctrl-P
+    %li
+      %a{:href => "https://github.com/vim-scripts/FuzzyFinder"} FuzzyFinder
+  %h2 What is Fuzzy Finding?
+  %p Fuzzy finding, is a type of pattern matching.  In this case, it is being used to match against filenames.  This is my best description of fuzzy finding in one sentence:
+  %pre Find every letter in the pattern, in any position, as long as the order of the letters is the same.
+  %p For the following examples, we will be checking the patterns against the following subject:
+  %pre{:style => "padding-left:30px;"} cat dog house
+  %p First, let’s start with the search pattern: “cdh”.  This pattern is a match.  These are the steps used to determine whether it is a matching pattern:
+  %ul
+    %li
+      First, search for the letter: “c”.  We found it: “
+      %span{:style => "text-decoration:underline;"}> c
+      at dog house”
+      %strong
+        %br/
+    %li
+      After the “c”, do we find the letter “d”?  Yes, there is. “
+      %span{:style => "text-decoration:underline;"}> c
+      at
+      = succeed "og" do
+        %span{:style => "text-decoration:underline;"} d
+      house”
+    %li
+      After the “d”, do we find the letter “h”?  Yes, we do. “
+      %span{:style => "text-decoration:underline;"}> c
+      at
+      = succeed "og" do
+        %span{:style => "text-decoration:underline;"} d
+      = succeed "ouse\u{201d}" do
+        %span{:style => "text-decoration:underline;"} h
+  %p Alternatively, visualize the “cdh” search pattern like this: “c -&gt; d -&gt; h”.  This is because, the order of the letters must match, however they don’t have to be found side-by-side.
+  %p
+    Consider searching for “qy” in “quality”.  This pattern
+    %strong matches.
+    However, if we search for “yq” in the same subject, the pattern
+    %strong fails.
+    Even though both “y” and “q” are found in “quality”, the order of the letters does not match.
+  %h2 Ways to Use ff
+  %p The usage of ff might look like this:
+  %pre Usage: ff [search-pattern]
+  %p When viewing examples of ff, the pattern may look like a garbled mess. However, as you are typing, it will make perfect sense. Let’s pretend I am searching for “app/views/admins/users/create.html.haml”. I might use ff like this:
+  %pre ff apviadmususecrhaml
+  %p In my head I typed:
+  %pre
+    %strong> ap
+    (p/)
+    %strong> vi
+    (ews/)
+    %strong> adm
+    (ins/)
+    %strong> use
+    (rs/)
+    %strong> cr
+    (eate.html.)
+    %strong
+      haml
+    = succeed "p/" do
+      %span{:style => "text-decoration:underline;"} ap
+    = succeed "ews/" do
+      %span{:style => "text-decoration:underline;"} vi
+    = succeed "ins/" do
+      %span{:style => "text-decoration:underline;"} adm
+    = succeed "rs/" do
+      %span{:style => "text-decoration:underline;"} use
+    = succeed "eate.html." do
+      %span{:style => "text-decoration:underline;"} cr
+    %span{:style => "text-decoration:underline;"} haml
+  %p Of course, it isn’t required that you specify something from every directory.  The same file could be found with this command:
+  %pre ff viewadmincreate.haml
+  %p Combining ff with other commands is extremely useful too:
+  %pre
+    :preserve
+      $&gt; vim $(ff viewadmincreate.haml)  # open the matching view with vim
+      
+      $&gt; grep -i 'pattern' $(ff appviewadmin)  # search for pattern in all of the admin views  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash/", :rel => "tag"} Bash
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tips/", :rel => "tag"} bash tips
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tricks/", :rel => "tag"} bash tricks
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/fuzzy-finder/", :rel => "tag"} fuzzy finder
+  %a{:href => "http://unixsuperhero.com/tag/shell-script/", :rel => "tag"} shell script
+  on
+  %a{:href => "http://unixsuperhero.com/2012/10/05/fuzzy-finder-in-the-style-of-bash/", :rel => "bookmark", :title => "1:43 am"}
+    %time.entry-date{:datetime => "2012-10-05T01:43:17+00:00"} October 5, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=23&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

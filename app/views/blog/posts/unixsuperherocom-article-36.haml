@@ -1,0 +1,93 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/10/04/shell-essentials-pt-1-apropos-man/", :rel => "bookmark"} Shell Essentials, Pt. 1 – apropos &amp;&nbsp;man
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/10/04/shell-essentials-pt-1-apropos-man/#respond", :title => "Comment on Shell Essentials, Pt. 1 – apropos &amp;&nbsp;man"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p It seems that I am always teaching someone something about the command line. It also appears to be happening more and more frequently. While the advice is most commonly about using bash, most of this advice is independent of the shell used.
+  %p
+    I believe that great systems are systems with a foundation composed of small, complimentary parts. When combined, these parts can form large, solid, dependable systems. Unix is a system like this. It even has a 3-point philosophy,
+    = succeed "." do
+      %a{:href => "http://en.wikipedia.org/wiki/Unix_philosophy", :target => "_blank", :title => "The Unix Philosophy"} The Unix Philosophy
+  %p
+    I believe that teaching you to use these 2 commands and use them together, you will have the strongest foundation possible. As well as, the ability and the confidence to use
+    %strong any
+    Unix command available to you.
+  %p The 2 commands I am referring to are:
+  %ol
+    %li
+      %code apropos
+    %li
+      %code man
+  %p
+    The first command,
+    = succeed "," do
+      %code apropos
+    will help you determine which command to use in a given situation. For example, let’s pretend you just downloaded a .zip file, but you don’t know if there is a command that will uncompress it. Try the following command:
+  %pre{:style => "padding-left:30px;"}
+    %code apropos zip
+  %p In the output, you might see the line:
+  %pre{:style => "padding-left:30px;"}
+    %code unzip(1) - list, test and extract compressed files in a ZIP archive
+  %p
+    Now that we have found
+    = succeed "," do
+      %code unzip
+    the command that we were looking for, we can use the second command to learn how it is used.
+  %p
+    That second command,
+    = succeed "," do
+      %code man
+    will describe
+    %code unzip
+    and the different possible ways to use it.
+    %code man
+    is an abbreviation for manual. These manuals are called man pages. Try the following command, it will open the
+    %code unzip
+    man page:
+  %pre
+    %code man unzip
+  %p
+    While reading the
+    %code unzip
+    man page, press “h”. This will show you the many keystrokes used to navigate the manual, or close it by pressing “q”.
+  %p Now that you know these commands, use them shamelessly as you master the Unix command line.
+  %p Here are a few man pages to skim over. It won’t hurt you to practice the commands you just learned:
+  %pre{:style => "padding-left:30px;"}
+    %code
+      :preserve
+        man man # that's right, the manual for man
+        man bash
+        man ls  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/apropos/", :rel => "tag"} apropos
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash/", :rel => "tag"} Bash
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-lesson/", :rel => "tag"} bash lesson
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tips/", :rel => "tag"} bash tips
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tutorial/", :rel => "tag"} bash tutorial
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/man/", :rel => "tag"} man
+  %a{:href => "http://unixsuperhero.com/tag/manpages/", :rel => "tag"} manpages
+  on
+  %a{:href => "http://unixsuperhero.com/2012/10/04/shell-essentials-pt-1-apropos-man/", :rel => "bookmark", :title => "5:47 pm"}
+    %time.entry-date{:datetime => "2012-10-04T17:47:50+00:00"} October 4, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=4&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

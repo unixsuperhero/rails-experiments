@@ -1,0 +1,32 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/04/11/push-to-github-without-typing-usernamepassword/", :rel => "bookmark"} Push to github without typing&nbsp;username/password
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/04/11/push-to-github-without-typing-usernamepassword/#respond", :title => "Comment on Push to github without typing&nbsp;username/password"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p Change your gitconfig or repo url to ssh.
+  %p It involves setting up ssh keys if you haven’t.  But it’s worth it.
+  %p In your .git/config (or where ever u have the git url)
+  %p Change:
+  %pre https://github.com
+  %p To:
+  %pre git@github.com:
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2013/04/11/push-to-github-without-typing-usernamepassword/", :rel => "bookmark", :title => "4:59 am"}
+    %time.entry-date{:datetime => "2013-04-11T04:59:23+00:00"} April 11, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=327&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

@@ -1,0 +1,42 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/11/21/fizzbuzz-solutions/", :rel => "bookmark"} FizzBuzz&nbsp;Solutions
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/11/21/fizzbuzz-solutions/#respond", :title => "Comment on FizzBuzz&nbsp;Solutions"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %h2 First Solution: Tap
+  %pre
+    :preserve
+      def fizzbuzz_tap
+        1.upto(100) { |x|
+          puts x.tap{|z|
+            x = '' if [x%3,x%5].include?(0)
+            x += 'Fizz' if x%3 == 0
+            x += 'Buzz' if x%5 == 0
+          }
+        }
+      end  %h2 Second Solution: Hash
+  %pre
+    :preserve
+      def fizzbuzz_hash
+        puts 1.upto(100).map{|x| (z={Fizz: x % 3, Buzz: x % 5}.keep_if{|k,v| v == 0}.keys).any? &amp;&amp; z.join || x }
+      end
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2012/11/21/fizzbuzz-solutions/", :rel => "bookmark", :title => "5:43 am"}
+    %time.entry-date{:datetime => "2012-11-21T05:43:27+00:00"} November 21, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=103&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

@@ -1,0 +1,71 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/01/15/rails-tip-see-how-rails-converts-erb-into-valid-ruby/", :rel => "bookmark"} Rails Tip: See How Rails Converts ERB Into Valid&nbsp;Ruby
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/01/15/rails-tip-see-how-rails-converts-erb-into-valid-ruby/#respond", :title => "Comment on Rails Tip: See How Rails Converts ERB Into Valid&nbsp;Ruby"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %h2 Background Info
+  %p
+    I am working on a project that handles data within a template
+    %br/
+    in a, slightly, different-than-normal way. &nbsp;At one point, I
+    %br/
+    thought it would be super helpful if I saw how the markup outside
+    %br/
+    of &lt;% %&gt; tags was incorporated into, say, an :each
+    %br/
+    block.  Just to clarify, in the following example, I am wondering
+    %br/
+    about the “The item has the number” part of the erb.
+  %p Example:
+  %pre
+    \&lt;ul&gt;
+    %br/
+    \&lt;% [1,2,3,4].each do |number| %&gt;
+    %br/
+    \&lt;li&gt;The item has the number &lt;%= number %&gt;&lt;/li&gt;
+    %br/
+    \&lt;% end %&gt;
+    %br/
+    \&lt;/ul&gt;
+    %br/
+  %p Naturally, I looked up the ERB docs.  What do you know?  ERB has the method :src.  So I did this:
+  %pre
+    :preserve
+      def examine_erb
+        erb = ERB.new &lt;&lt;-ERBCODE
+          &lt;% [1,2,3,4].each do |x| %&gt;
+            Hello World: &lt;%= x %&gt;
+          &lt;% end %&gt;
+        ERBCODE
+        erb.src
+      end
+  %p After running it, this is what I found out:
+  %pre
+    :preserve
+      #coding:UTF-8
+      _erbout = ''; _erbout.concat "    ";  [1,2,3,4].each do |x| ; _erbout.concat "\n      Hello World: "
+      ; _erbout.concat(( x ).to_s); _erbout.concat "\n    "
+      ;  end ; _erbout.concat "\n"
+      ; _erbout.force_encoding(__ENCODING__)
+  %p I thought it was interesting…
+  %p …and in the end, it helped me figure out what I was wondering in the first place.  So, I learned something new, and more…
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2013/01/15/rails-tip-see-how-rails-converts-erb-into-valid-ruby/", :rel => "bookmark", :title => "5:07 am"}
+    %time.entry-date{:datetime => "2013-01-15T05:07:46+00:00"} January 15, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=172&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

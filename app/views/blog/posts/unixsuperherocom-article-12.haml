@@ -1,0 +1,45 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/01/26/general-update-notes-to-self/", :rel => "bookmark"} General Update – Notes to&nbsp;Self
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/01/26/general-update-notes-to-self/#respond", :title => "Comment on General Update – Notes to&nbsp;Self"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %h2 There were more than these 2…i just forgot what they were…
+  %h3 Potential proj. -or- quick alias to write
+  %pre man pages in text format by default...(man pagename | col -b)
+  %h3 Practice Multiple Document Formats
+  %p
+    Formats:
+  %ol
+    %li (n|g|tr)off
+    %li latex
+  %p eg.
+  %pre
+    :preserve
+      cat &lt;&lt;DOCUMENT | nroff -man
+      .TP 10
+      term
+      definition goes here
+      .TP 10
+      term_two
+      term_two's definition goes here
+      DOCUMENT
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2013/01/26/general-update-notes-to-self/", :rel => "bookmark", :title => "4:38 am"}
+    %time.entry-date{:datetime => "2013-01-26T04:38:01+00:00"} January 26, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=188&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

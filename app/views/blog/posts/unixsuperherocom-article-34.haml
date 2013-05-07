@@ -1,0 +1,43 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/10/04/hashrocket-gameplan/", :rel => "bookmark"} Private: Hashrocket&nbsp;Gameplan
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/10/04/hashrocket-gameplan/#respond", :title => "Comment on Private: Hashrocket&nbsp;Gameplan"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p ok, instead of having a long description in my pull request to hashrocket’s dotmatrix repo:
+  %p just put a link to a blogpost here on wordpress, like so:
+  %pre
+    :preserve
+      function gs() {
+        # http://anshoudesu.wordpress.com/2012/10/04/git-status-alias-with-searching
+        git status -s | sed 's/...(.*-&gt; )?//' | grep "$1"
+      }  %p The same thing with the fuzzy-finder
+  %pre
+    :preserve
+      function ff() {
+      &nbsp; # http://anshoudesu.wordpress.com/2012/10/04/fuzzy-finder-for-bash
+      &nbsp; find . -type f | grep "$1"
+      }  %p The posts will be something like:
+  %pre
+    :preserve
+      USAGE: vim $(gs migrate)
+      USAGE: gs migra | while read file; do gco "$file"; done
+      USAGE: gs migr | vim -  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2012/10/04/hashrocket-gameplan/", :rel => "bookmark", :title => "5:53 pm"}
+    %time.entry-date{:datetime => "2012-10-04T17:53:47+00:00"} October 4, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=9&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

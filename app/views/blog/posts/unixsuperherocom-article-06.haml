@@ -1,0 +1,109 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/03/21/draft-howto-convert-a-wsdlxsds-to-a-sample-soapxml-packet/", :rel => "bookmark"} Draft: HOWTO: Convert a WSDL/XSD(s) to a sample SOAP/XML&nbsp;Packet
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/03/21/draft-howto-convert-a-wsdlxsds-to-a-sample-soapxml-packet/#respond", :title => "Comment on Draft: HOWTO: Convert a WSDL/XSD(s) to a sample SOAP/XML&nbsp;Packet"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %h1 NOTE: This is not complete, simply a brief snippet of an article I plan to write in the near future…
+  %p &nbsp;
+  %h2 Introduction
+  %p The software I use everyday, at both work and home, largely consists of Open Source Software (OSS). &nbsp;Over the last 2 years, I have had to write libraries for several SOAP APIs. &nbsp;Many of these APIs don’t have great documentation, and at the very least they hopefully distribute a WSDL. &nbsp;A WSDL is an XML document that describes, in detail, the structure of the XML request/response packets that a Web Service expects.
+  %p I have spent a large amount of time looking for OSS to pragmatically convert a WSDL to a sample XML packet, all without success. &nbsp;I have found SoapUI. &nbsp;But, before said discovery, I had been forced to reverse engineer how a WSDL defines these packets.
+  %p Which is why I am writing this. &nbsp;Not only do I plan on explaining HOW to do this manually, I also plan on building an Open Source tool to do so. &nbsp;I find it important to explain the process, because I haven’t found any other article that does this, and someone should do it.
+  %h2 Super Rough Outline
+  %p
+    A WSDL has 1 tag at the root &lt;definitions /&gt;. &nbsp;Inside of&nbsp;
+    %em> definitions
+    , we have a few more tags:
+  %ul
+    %li
+      %span{:style => "line-height:14px;"} &lt;types /&gt;
+    %li &lt;message /&gt;
+    %li &lt;portType /&gt;
+    %li &lt;binding /&gt;
+    %li &lt;service /&gt;
+  %p The way to read a WSDL, is almost from the bottom up:
+  %p
+    %strong &lt;service /&gt;
+    describes the URL the send requests to. &nbsp;It also describes which&nbsp;
+    %strong &lt;binding /&gt;
+    to use.
+  %p
+    %strong &lt;binding /&gt;
+    has several&nbsp;
+    %strong> &lt;operations /&gt;
+    \. &nbsp;Each operation is essentially what you will use as an API call.
+  %p
+    Each&nbsp;
+    %strong &lt;operations /&gt;
+    tag has an
+    %b &lt;operation /&gt;
+    which describes 3 things:
+  %ol
+    %li
+      %span{:style => "line-height:14px;"}
+        The&nbsp;
+        %strong> SOAPAction
+        \&nbsp;HTTP Header to send with the request
+        %br/
+    %li
+      The&nbsp;
+      %strong &lt;input /&gt;
+      %strong
+    %li
+      The&nbsp;
+      %strong &lt;output /&gt;
+  %p
+    %strong &lt;input /&gt;
+    and&nbsp;
+    %strong &lt;output /&gt;
+    each describe a top-level view of their packets. &nbsp;In other words, the&nbsp;
+    %strong &lt;header /&gt;
+    tags, and the&nbsp;
+    %strong &lt;body /&gt;
+    tag.
+  %p
+    %strong>
+    The&nbsp;
+    %strong> &lt;binding /&gt;
+    \&nbsp;has a type attribute. &nbsp;This describes the portType.
+  %p
+    The&nbsp;
+    %strong &lt;portType /&gt;
+    describes which&nbsp;
+    %strong &lt;message /&gt;
+    to use.
+    %strong
+      %br/
+  %p
+    The&nbsp;
+    %strong &lt;message /&gt;
+    describes the main&nbsp;
+    %strong> &lt;element /&gt;
+    \.
+  %p
+    Each&nbsp;
+    %strong &lt;element /&gt;
+    may describe zero or more sub&nbsp;
+    %strong> &lt;element /&gt;
+    (s).
+  %p From this general flow, you start building the XML Packets.
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2013/03/21/draft-howto-convert-a-wsdlxsds-to-a-sample-soapxml-packet/", :rel => "bookmark", :title => "4:21 am"}
+    %time.entry-date{:datetime => "2013-03-21T04:21:26+00:00"} March 21, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=304&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

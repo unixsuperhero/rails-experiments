@@ -1,0 +1,54 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/10/06/make-git-push-easier-with-a-small-config-change/", :rel => "bookmark"} Make git-push Easier with a Small Config&nbsp;Change
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/10/06/make-git-push-easier-with-a-small-config-change/#respond", :title => "Comment on Make git-push Easier with a Small Config&nbsp;Change"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p When pushing to a remote branch, normally you need both a remote and a branch name, like so:
+  %pre $&gt; git push &lt;remote-repo-name&gt; &lt;branch-to-push&gt;
+  %p Setting a remote repo’s push config to “HEAD” will make this process easier:
+  %pre
+    :preserve
+      [remote "github"]
+        url = https://github.com/username/repo.git
+        refs = # ...
+        push = HEAD  %p This will do two things:
+  %p
+    1. You no longer need to specify the branch when you push
+    %br/
+    2. It will automatically push the branch you are currently in
+  %p Pushing now looks something like this:
+  %pre $&gt; git push &lt;remote-repo-name&gt;
+  %p This way, if you are in master, it will update the remote’s master branch.
+  %p If you are in a new branch and you push, it will create that remote branch. For example, if we just checked-out “sakura” and we push, it will create the “sakura” branch in the remote repository.
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/gitconfig/", :rel => "tag"} .gitconfig
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/cli/", :rel => "tag"} cli
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/git/", :rel => "tag"} Git
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/git-configuration/", :rel => "tag"} git configuration
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/git-tricks/", :rel => "tag"} git tricks
+  %a{:href => "http://unixsuperhero.com/tag/shortcut/", :rel => "tag"} shortcut
+  on
+  %a{:href => "http://unixsuperhero.com/2012/10/06/make-git-push-easier-with-a-small-config-change/", :rel => "bookmark", :title => "9:29 am"}
+    %time.entry-date{:datetime => "2012-10-06T09:29:13+00:00"} October 6, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=43&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

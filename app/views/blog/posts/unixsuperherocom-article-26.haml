@@ -1,0 +1,70 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/10/17/ruby-on-rails-render-a-view-from-a-model/", :rel => "bookmark"} Ruby on Rails: Render a view from a&nbsp;model
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/10/17/ruby-on-rails-render-a-view-from-a-model/#respond", :title => "Comment on Ruby on Rails: Render a view from a&nbsp;model"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p Before getting flamed. &nbsp;I don’t condone this, or consider it good practice. &nbsp;However, the day may come when &nbsp;you want to build an interface for a 3rd party api, and would like to use a view to help generate the (xml) request packet.
+  %p The render and render_to_string methods are available thru the ActionController::Base class. &nbsp;So naturally, to render a view you can do this:
+  %pre ActionController::Base.new.render_to_string 'api_name/viewname.xml.erb'
+  %p Now, the question is, how do I get data to this view? &nbsp;Well, the view has access to the controller’s instance variables. &nbsp;So, we can tap the controller object and set some instance variables, like so:
+  %pre
+    :preserve
+      ActionController::Base.new.tap{|controller|
+        controller.instance_variable_set( :@email, email )
+        controller.instance_variable_set( :@full_name, full_name )
+      }.render_to_string 'api_name/view.xml.erb'  %p This way, when you try to access these instance variables from within the view:
+  %pre
+    :preserve
+      &lt;full_name&gt;&lt;%= @full_name %&gt;&lt;/full_name&gt;
+      &lt;email&gt;&lt;%= @email %&gt;&lt;/email&gt;  %p They will now be available.
+  %p Full Code:
+  %pre
+    :preserve
+      class ApiName
+      &nbsp; def render_view
+      &nbsp; &nbsp; @email = 'unix@superheroes.com'
+      &nbsp; &nbsp; @full_name = 'Secret Identity'
+      &nbsp; &nbsp; ActionController::Base.new.tap{|controller|
+            controller.instance_variable_set( :@email, @email )
+            controller.instance_variable_set( :@full_name, @full_name )
+      &nbsp; &nbsp; }.render_to_string 'api_name/view.xml.erb'
+        end
+      end
+      
+      # api_name/view.xml.erb
+      &lt;user&gt;
+       &nbsp;&lt;email&gt;&lt;%= @email %&gt;&lt;/email&gt;
+       &nbsp;&lt;full_name&gt;&lt;%= @full_name %&gt;&lt;/email&gt;
+      &lt;/user&gt;
+      
+      #output
+      &lt;user&gt;
+        &lt;email&gt;unix@superheroes.com&lt;/email&gt;
+        &lt;full_name&gt;Secret Identity&lt;/full_name&gt;
+      &lt;/user&gt;  %p Enjoy!
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/rails-trick/", :rel => "tag"} rails trick
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/render-view/", :rel => "tag"} render view
+  %a{:href => "http://unixsuperhero.com/tag/ruby-on-rails/", :rel => "tag"} ruby on rails
+  on
+  %a{:href => "http://unixsuperhero.com/2012/10/17/ruby-on-rails-render-a-view-from-a-model/", :rel => "bookmark", :title => "3:23 pm"}
+    %time.entry-date{:datetime => "2012-10-17T15:23:55+00:00"} October 17, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=59&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

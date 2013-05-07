@@ -1,0 +1,98 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/12/15/vim-essentials-the-best-vim-cheatsheet-is-in-vim/", :rel => "bookmark"} Vim essentials: the best vim cheatsheet…is in&nbsp;vim
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/12/15/vim-essentials-the-best-vim-cheatsheet-is-in-vim/#respond", :title => "Comment on Vim essentials: the best vim cheatsheet…is in&nbsp;vim"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p This tip is for the vim users that are past the basics.  At this point, I hope you understand:
+  %ul
+    %li Moving around: hjkl
+    %li Basic ex commands (:w, :q, :e, etc,)
+    %li yanking/putting (copy/paste)
+    %li
+      Vim’s modes:
+      %ul
+        %li what they are
+        %li what they are used for
+        %li (normal | visual | ex) modes
+  %h2 The Best Tip
+  %pre
+    :preserve
+      :help index
+      
+      I take this back. The quickref help doc is the best one for someone looking for a great cheatsheet. It is even laid out in a way that can be read from top to bottom, or simply as a reference that is searched whenever needed.
+      
+      I don't think the list of shortcuts is as complete as index. But it's a great starting point.
+  %h2 Wait! I’m not being a smartass, please read why.
+  %p
+    The index help file is
+    %strong nothing
+    like the average help file. It is basically a vim
+    %strong cheatsheet
+    for
+    = succeed "!" do
+      %strong every default keyboard shortcut
+    It is also 1 of the 3 best resources for learning about vim, and my personal favorite.  The best part is, it comes with vim. There is no searching, downloading, opening other programs.  It’s a few keystrokes away.
+  %p People are always writing vim tutorials and teaching people a handful of shortcuts. Why give someone a couple shortcuts, when you can hand them a complete list of the quickest ways to do everything vim was made to do.
+  %p When I first found this document, I had it open every day for 2 months. People see me use vim and ask how I know all the things I know. Here is their answer.
+  %h2 I mentioned that there are 3 great resources, here is another.
+  %p This one is actually 2 different lists of the same info.
+  %pre
+    :preserve
+      :help option-summary        " detailed explanation of every vim option
+      
+      :help option-list                  " a shorter explanation of every vim option
+  %h3 The last one…
+  %p
+    That previous command:
+    %u :help option-list
+    is only a small part of a bigger document:
+  %pre :help quickref
+  %p . Quickref is what the title suggests. It acts as a super cheatsheet for vim.  More than just keymappings.
+  %h1 Now go read, and practice what you read, to then learn it!
+  %h1 Summary
+  %pre
+    :preserve
+      :h quickref
+      :h option-list
+      :h option-summary
+      :h index
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/keyboard-shortcuts/", :rel => "tag"} keyboard shortcuts
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/shell-2/", :rel => "tag"} shell
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/tips/", :rel => "tag"} tips
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/tricks/", :rel => "tag"} tricks
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/unix/", :rel => "tag"} unix
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/vim/", :rel => "tag"} Vim
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/vim-cheatsheet/", :rel => "tag"} vim cheatsheet
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/vim-keyboard-shortcuts/", :rel => "tag"} vim keyboard shortcuts
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/vim-mappings/", :rel => "tag"} vim mappings
+  %a{:href => "http://unixsuperhero.com/tag/vim-shortcuts/", :rel => "tag"} vim shortcuts
+  on
+  %a{:href => "http://unixsuperhero.com/2012/12/15/vim-essentials-the-best-vim-cheatsheet-is-in-vim/", :rel => "bookmark", :title => "4:08 am"}
+    %time.entry-date{:datetime => "2012-12-15T04:08:36+00:00"} December 15, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=121&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

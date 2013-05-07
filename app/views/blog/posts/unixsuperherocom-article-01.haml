@@ -1,0 +1,160 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/05/02/reading-journal-refactoring-fowler-habit-building/", :rel => "bookmark"} Reading Journal: Refactoring (Fowler) — Habit&nbsp;Building
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/05/02/reading-journal-refactoring-fowler-habit-building/#respond", :title => "Comment on Reading Journal: Refactoring (Fowler) — Habit&nbsp;Building"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %h1 Reading Journal – Refactoring: Improving the Design of Existing Code
+  %h2 Chapter 1 – Refactoring, a first example
+  %h3 1a. The starting point
+  %p The book uses a movie rental app as the example program.
+  %p Initial refactorings are around Customer’s statement() and htmlStatement() methods.
+  %p
+    %strong Tip:
+    If program design makes adding a feature inconvenient. &nbsp;Refactor first, until the feature is convenient to add.
+  %h3 1b. The first step in refactoring
+  %p Write test cases for the code yet to be refactored.
+  %p Tests give you confidence that your changes haven’t broken anything.
+  %h3 1c. decomposing and redistributing the statement method
+  %p Smaller pieces of code are more manageable.
+  %p
+    %strong Goal:
+    Write htmlStatement() without much code duplication from statement().
+  %pre
+    %span{:style => "text-decoration:underline;"}> Pattern:
+    \&nbsp;
+    %strong>
+      Extract Method
+      %br/
+    \- Find a logical group of code within an existing method. &nbsp;Create a new method with it.
+    %br>/
+    \- Look for local variables in code. &nbsp;Pass variables from original method to newly extracted method as parameters. &nbsp;If the extracted method changes the variable, return it to be reassigned in the original method.
+  %p
+    %strong Tip:
+    Make small incremental changes, it is easier to identify where bugs were introduced.
+  %p
+    %strong Tip:
+    Use descriptive names for variables and methods. &nbsp;Code should read like a story, or pseudo-code.
+  %pre
+    %span{:style => "text-decoration:underline;"}> Pattern:
+    \&nbsp;
+    %strong>
+      Move Method
+      %br/
+    \- Use this pattern when a method is accessing a lot of data from a different class.
+    %br>/
+    \- Move an entire method from one class to the class with the data being accessed.
+    %br>/
+    \- Update all references to the new method.
+  %p &nbsp;
+  %pre
+    %span{:style => "text-decoration:underline;"}> Pattern:
+    \&nbsp;
+    %strong>
+      Replace Temp with Query
+      %br/
+    \- Instead of cluttering a method with a temp variable whose value doesn't change, call the method retrieving the value each place the temp variable is used.
+    %br>/
+    \- Downside, computations retrieving the value are performed on each method call (unless memoize cached).
+  %p
+    %strong Tip:
+    Don’t worry about performance when refactoring. &nbsp;Worry about it when optimizing.
+  %h3 1d. Replacing the conditional login on price code with polymorphism
+  %p Don’t have a switch checking an attribute on a class other than yourself. &nbsp;Use Move Method in this case.
+  %pre
+    %span{:style => "text-decoration:underline;"} Pattern:
+    = succeed "-" do
+      %strong
+        Self-Encapsulate Field
+        %br/
+    Create sets/gets for a field
+    %br>/
+    \- Only use these sets/gets to access field
+    %br>/
+    \- Make field private, preventing direct access
+  %pre
+    %span{:style => "text-decoration:underline;"} Pattern:
+    %strong Replace Type Code with State/Strategy
+    = succeed "-" do
+      %br/
+    Self Encapsulate the Type Field
+    %br>/
+    \- Create a new class, name it after the type (UserType)
+    %br>/
+    \- Add a subclass for each type EliteUserType, DiningUserType
+    %br>/
+    \- Add getType() to UserType base class
+    %br>/
+    \- Override getType() in each subclass
+    %br>/
+    \- Type Code getter calls getType() on [Subclass]UserType
+    %br>/
+    \- Type Code setter sets proper Subclass
+  %pre
+    %span{:style => "text-decoration:underline;"}> Pattern:
+    \&nbsp;
+    %strong>
+      Replace Conditional with Polymorphism
+      %br/
+    \- Take each branch of the conditional, create a base class User, and subclasses for each branch ActiveUser, InactiveUser
+    %br>/
+    \- Create a method name similar to the method with the conditional in it.  User.get_benefits -&gt; ActiveUser.get_benefits; InactiveUser.get_benefits
+    %br>/
+    \- This way, getting benefits is not handled by logic, but language convention.
+  %pre
+    All Together:
+    %br>/
+    \- Method with conditional uses self-encapsulated getter
+    %br>/
+    \- Which returns the subclass
+    %br>/
+    \- Calls the method overwritten in that subclass executing only the code from that branch in the original conditional
+    %br>/
+    e.g. (if) get_user_type returns ActiveUser, and that branch, calculates benefits, then the steps are:
+    %br>/
+    def original_conditional_method
+    %br/
+    get_user_type.get_benefits
+    %br/
+    \# get_user_type = ActiveUser (or InactiveUser based on the object)
+    %br/
+    \# return ActiveUser.get_benefits
+    %br>/
+    end
+  %h3 &nbsp;1e. Final Thoughts
+  %p Refactoring rhythm: Test, Small Change, Test, Small Change, Test…
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/book/", :rel => "tag"} book
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/cliff-notes/", :rel => "tag"} cliff notes
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/notes/", :rel => "tag"} notes
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/patterns/", :rel => "tag"} patterns
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/programming/", :rel => "tag"} programming
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/reading-journal/", :rel => "tag"} reading journal
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/refactoring/", :rel => "tag"} refactoring
+  %a{:href => "http://unixsuperhero.com/tag/spark-notes/", :rel => "tag"} spark notes
+  on
+  %a{:href => "http://unixsuperhero.com/2013/05/02/reading-journal-refactoring-fowler-habit-building/", :rel => "bookmark", :title => "6:01 am"}
+    %time.entry-date{:datetime => "2013-05-02T06:01:41+00:00"} May 2, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=352&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

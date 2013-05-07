@@ -1,0 +1,99 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/12/15/i-wish-pry-or-all-command-prompts-would/", :rel => "bookmark"} Private: i wish pry (or all command prompts…)&nbsp;would…
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/12/15/i-wish-pry-or-all-command-prompts-would/#respond", :title => "Comment on Private: i wish pry (or all command prompts…)&nbsp;would…"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %ol
+    %li do some things the same way zsh does them. bash might even do these things. one, for example: when using special keywords that are references to previous things. like “!!” in the shell, referring to the last command run, what zsh does is…it expands the reference from the relative keywords to the literal element from the history. in other words, it changes “!!” into “command args” if the last command i ran was “command args”. this way, after i hit enter to execute the command. if i hit up (or ctrl-p, like a boss,
+  %h3 The way pry works, but the example is using shell commands:
+  %pre
+    %span{:style => "color:#993300;"}
+      ls /home/unixsuperhero/special-code-powers/lasers.*
+      echo "command to list my lasers: $(!!)"
+    \## at this point, if i press up, the "$(!!)" part will evaluate to:
+    %span{:style => "color:#993300;"} echo "command to list my lasers: $(echo "command to list my lasers: $(ls /home/unixsuperhero/special-code-powers/lasers.*)")"
+    instead of:
+    %span{:style => "color:#993300;"} echo "command to list my lasers: $(ls /home/unixsuperhero/special-code-powers/lasers.*)"
+  %h3 Example of how pry works, actually using pry:
+  %pre
+    %span{:style => "color:#993300;"}>
+      %span{:style => "color:#993300;"}>
+        %span{:style => "color:#000000;"}> (pry)&gt;
+        unused_variable
+      \=
+      %span{:style => "color:#993300;"}
+        "underscore (_) refers to the most recent return value, which will be this string..."
+      %span{:style => "color:#993300;"}
+        \# this will run, and it returns the string on the right side of the "="
+      %span{:style => "color:#993300;"}
+        %span{:style => "color:#000000;"} (pry)&gt;
+        puts _
+    \# will echo
+    %span{:style => "color:#993300;"} "underscore (_) refers..."
+    and
+    = succeed "#" do
+      %span{:style => "color:#993300;"}
+        return nil
+    \...press up...
+    = succeed "#" do
+      %span{:style => "color:#993300;"}
+        %span{:style => "color:#000000;"} (pry)&gt;
+        puts _
+    will echo a blank line, because the last command was a puts, which always returns nil
+  %h3 The right way (aka the zsh way):
+  %pre
+    :preserve
+      puts "i am the return value"
+      
+      _.upcase
+      ## pry should modify the history to have _ represent "i am the return value" like this:
+      
+      "i am the return value".upcase  %p Visually, I know that modifying the history like that won’t really work. Because, what if the last return value was an array of 9999 hashes, even if they only have 1 key, like this: {a: 1}. Imagine how: “[{a: 1}, {a: 1}, ... 9999x +/- a few ... {a: 1}]” would look. Also, imagine moving the cursor to add/remove text from that command. It would be a nightmare, no doubt.
+  %h3 So, I haven’t thought it thru, but…
+  %p
+    …you get the idea, I hope. There must be a way to have more static history references that aren’t always
+    %b strictly
+    relative to the current place in history. Even if you do this:
+  %pre
+    :preserve
+      unused_again = "return me, weee~!"
+      
+      _.upcase
+      ## "RETURN ME, WEEE~!"
+      ## ... press up ...
+      
+      _[-1].upcase
+      ## or something similar.  %p of course, this depends on what _ actually is. something tells me that _ isn’t one of the pry console’s local_variables. I’m guess it is more like a method. Which may be a little easier. Instead of trying to access it like an array, you could simply pass it an argument:
+  %pre
+    :preserve
+      unused_again = "return value is me"
+      _.upcase
+      _(-1)
+      ## or assume the arg is the other way:
+      _(1) # this would be the current history up 1 line.  %h4 The bash way would be something like:
+  %pre
+    :preserve
+      ls lasers.*
+      echo "command listing lasers: $(!!)"
+      ## ...press up...
+      echo "command listing lasers: $(!-1)"
+      ## which is actually valid history notation for bash  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2012/12/15/i-wish-pry-or-all-command-prompts-would/", :rel => "bookmark", :title => "1:34 am"}
+    %time.entry-date{:datetime => "2012-12-15T01:34:22+00:00"} December 15, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=113&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

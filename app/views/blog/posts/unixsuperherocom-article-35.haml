@@ -1,0 +1,124 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/10/04/enhancing-git-status-with-gs/", :rel => "bookmark"} Enhancing git status with&nbsp;gs
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/10/04/enhancing-git-status-with-gs/#respond", :title => "Comment on Enhancing git status with&nbsp;gs"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %h2
+    %strong Update: 2012-10-19
+  %p
+    I never intended for this command to be useful by itself. &nbsp;It becomes useful when combined with other commands. &nbsp;It’s not about making git status searchable, but cleaning the output to make it reusable. &nbsp;The search filtering feature is simply an added bonus. &nbsp;p.s. The techniques used with this command are also useful with
+    = succeed "." do
+      %a{:href => "http://unixsuperhero.wordpress.com/2012/10/05/fuzzy-finder-in-the-style-of-bash/"} ff()
+  %h2 TL;DR
+  %p
+    %code gs
+    is a bash function that lists/searches the files that are currently modified in your git repository. You can take that list, and use it with other commands to do some useful things. Watch the screencast I made, demonstrating how to use
+    = succeed "." do
+      %code gs
+  %span.embed-youtube{:style => "text-align:center; display: block;"}
+    %iframe.youtube-player{:frameborder => "0", :height => "570", :src => "http://www.youtube.com/embed/_fFzgnyYYD4?version=3&amp;rel=1&amp;fs=1&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=1&amp;wmode=transparent", :type => "text/html", :width => "960"}
+  %h3 Search is Everything
+  %p
+    Imagine this scenario. I have a project that is being tracked under git. For the last 2 hours I have been editing files and making all sorts of changes. When I run git status, it isn’t enough to just list the files that have changed. What if I want to reopen all the views that I have been working on? Am I supposed to copy each filename (using
+    = succeed "," do
+      %span{:style => "text-decoration:underline;"} tmux
+    %strong not
+    the mouse!) and piece together the vim command? That sounds like a horrible, tedious process. Why isn’t there an easy way to get only a list of the views, and pass them as arguments to vim? This is the type of scenario where
+    %code gs
+    pays off. With
+    = succeed "," do
+      %code gs
+    you can search for all the modified files in the views directory, and with command substitution or pipes, open them with vim.
+  %p
+    Without search, your
+    %code git status
+    is just a report. With search, your
+    %code git status
+    is now a
+    = succeed "." do
+      %strong tool
+    This tool,
+    = succeed "," do
+      %code gs
+    lets you quickly target only the files relevant to your current task.
+  %h3 gs is an enhanced git status
+  %p
+    %code gs
+    is a bash function that lists/searches the files that are modified in your git repository. For example, since your last commit, if you have edited 3 files, those 3 files will be listed when you run:
+  %pre
+    :preserve
+      $&gt; gs
+      path/to/file1
+      path/to/file2
+      path/to/file3  %p
+    It is useful to pipe
+    %code gs
+    to other commands, or use it in a command substitution another command.
+  %p
+    Either way, here are a few different ways to use
+    = succeed ":" do
+      %code gs
+  %pre
+    :preserve
+      # reopen all of the files you have been working on
+      $&gt; vim $(gs)
+      
+      # check the syntax of all the modified ruby files
+      $&gt; gs '\.rb' | while read file; do ruby -c $file; done
+      
+      # view the diff of a specific file
+      $&gt; git diff $(gs _form.html)
+      
+      # re-run the tests that you worked on
+      $&gt; rspec $(gs spec)
+      
+      # git checkout, aka revert, all of your modified models
+      $&gt; git checkout $(gs models)  %p Here is the code for gs:
+  %pre
+    :preserve
+      gs () {
+        # Author: Joshua Toyota (Unix Superhero)
+        git status -s | sed "s/...//;s/.* -&gt; //" | grep "$1" | sort -u
+      }  %div Here is what the usage/synopsis would look like:
+  %pre
+    :preserve
+      Usage: gs [search-pattern]
+      
+      If search-pattern is not provided, list all of the changed files yet to be committed.
+      
+      If search-pattern is provided, only the file names and paths that match the search-pattern will be returned.  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash/", :rel => "tag"} Bash
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tips/", :rel => "tag"} bash tips
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tricks/", :rel => "tag"} bash tricks
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/git/", :rel => "tag"} Git
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/git-status/", :rel => "tag"} git status
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/git-tips/", :rel => "tag"} git tips
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/git-tricks/", :rel => "tag"} git tricks
+  %a{:href => "http://unixsuperhero.com/tag/shell-script/", :rel => "tag"} shell script
+  on
+  %a{:href => "http://unixsuperhero.com/2012/10/04/enhancing-git-status-with-gs/", :rel => "bookmark", :title => "5:52 pm"}
+    %time.entry-date{:datetime => "2012-10-04T17:52:26+00:00"} October 4, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=6&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

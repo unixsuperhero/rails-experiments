@@ -1,0 +1,43 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/10/06/regex-quicktip-1-using-dot-properly/", :rel => "bookmark"} RegEx Quicktip #1: Using Dot (“.”)&nbsp;Properly
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/10/06/regex-quicktip-1-using-dot-properly/#comments", :title => "Comment on RegEx Quicktip #1: Using Dot (“.”)&nbsp;Properly"} 2 Replies
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p
+    When building a regular expression, use a dot to match special characters. &nbsp;Using a dot as a placeholder&nbsp;is great, because&nbsp;it&nbsp;is easy to type and it can represent&nbsp;
+    %strong> any key
+    \.
+  %p Examples:
+  %ol
+    %li Match “as:df@jk” with the regex “as.df.jk”
+    %li
+      Match “
+      %a{:href => "http://google.com/search&amp;#8221", :rel => "nofollow"}> http://google.com/search&amp;#8221
+      ; with “http…google.com.search”
+    %li Match “under_scores_suck_too” with “under.scores.suck.too”
+  %p I have yet to see someone, besides myself, use “.” for something other than “.*”. &nbsp;That tells me that &nbsp;few people understand regular expressons. &nbsp;I hope we can change that. &nbsp;^_^;
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/quicktip/", :rel => "tag"} quicktip
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/regex/", :rel => "tag"} regex
+  %a{:href => "http://unixsuperhero.com/tag/regular-expression/", :rel => "tag"} regular expression
+  on
+  %a{:href => "http://unixsuperhero.com/2012/10/06/regex-quicktip-1-using-dot-properly/", :rel => "bookmark", :title => "8:30 am"}
+    %time.entry-date{:datetime => "2012-10-06T08:30:28+00:00"} October 6, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=36&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

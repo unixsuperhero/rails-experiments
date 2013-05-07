@@ -1,0 +1,87 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2012/11/21/shell-tip-run-an-aliased-command-ignoring-the-alias-solution-0/", :rel => "bookmark"} Shell Tip: Run an aliased command, ignoring the alias (Solution&nbsp;#0)
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2012/11/21/shell-tip-run-an-aliased-command-ignoring-the-alias-solution-0/#respond", :title => "Comment on Shell Tip: Run an aliased command, ignoring the alias (Solution&nbsp;#0)"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %h4 How Bash Uses Aliases/Commands
+  %p First, it will try to find an alias for the given name. &nbsp;If no alias is found, then it will use the first command in your $PATH by the given name.
+  %h3 Scenario
+  %p
+    You set default options for
+    %strong cmd-x
+    by creating an alias with the same name (
+    %strong> cmd-x
+    ). &nbsp;In this example, the alias and command are both called “grep”.
+  %pre $&gt; alias grep="grep --color"
+  %p
+    %strong BUT!
+    \&nbsp;What if you want to run grep&nbsp;
+    %strong without
+    the “–color” option?
+  %h3 Solution #0: Escape a letter in the command name with “\”
+  %pre $&gt; \grep #...
+  %p This successfully completes our goal. &nbsp;The shell does not use the alias, because “\grep” does not match any of our alias names.
+  %p
+    It is still able to find grep in our $PATH, because escaping a character tells the shell to use the character literally. &nbsp;In other words, “\g” is the same thing as “g”. (for proof see:
+    = succeed ")" do
+      %strong How Bash Treats Escaped Letters
+  %h3 How Bash Treats Escaped Letters
+  %p Here is proof that bash will treat “\grep” and “grep” the same.
+  %pre
+    :preserve
+         # OPTIONS FOR diff:
+         # -q only tell us if the files are different, not all of the differences
+         # -s tell us if the files are identical
+         #    (by default, diff only tells the differences between files
+         #     and silently ignores files that are the same)
+      
+      $&gt; diff -sq &lt;(echo grep) &lt;(echo \g\r\e\p)
+      Files /dev/fd/63 and /dev/fd/62 are identical
+      
+      $&gt; diff -sq &lt;(echo grep) &lt;(echo notgrep)
+      Files /dev/fd/63 and /dev/fd/62 differ
+      
+         # See for yourself:
+      $&gt; echo grep
+      $&gt; echo \grep
+      $&gt; echo \g\r\e\p  # just to really emphasize that there is no difference  %p Basically, the slash has no effect besides fooling the alias matcher.
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/shell/", :rel => "category tag", :title => "View all posts in Shell"} Shell
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/alias/", :rel => "tag"} alias
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/aliases/", :rel => "tag"} aliases
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash/", :rel => "tag"} Bash
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tips/", :rel => "tag"} bash tips
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/cli/", :rel => "tag"} cli
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/command-line/", :rel => "tag"} command line
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/shell-2/", :rel => "tag"} shell
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/terminal/", :rel => "tag"} terminal
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/unalias/", :rel => "tag"} unalias
+  %a{:href => "http://unixsuperhero.com/tag/unix/", :rel => "tag"} unix
+  on
+  %a{:href => "http://unixsuperhero.com/2012/11/21/shell-tip-run-an-aliased-command-ignoring-the-alias-solution-0/", :rel => "bookmark", :title => "5:11 am"}
+    %time.entry-date{:datetime => "2012-11-21T05:11:55+00:00"} November 21, 2012
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=92&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

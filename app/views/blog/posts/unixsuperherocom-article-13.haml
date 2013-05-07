@@ -1,0 +1,83 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/01/24/faster-bash-fuzzy-finder-ignores-gitignore-files-combined-with-vim/", :rel => "bookmark"} Faster Bash Fuzzy Finder; Ignores .gitignore Files; Combined with&nbsp;vim
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/01/24/faster-bash-fuzzy-finder-ignores-gitignore-files-combined-with-vim/#respond", :title => "Comment on Faster Bash Fuzzy Finder; Ignores .gitignore Files; Combined with&nbsp;vim"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p I use grep a lot and at work we have a large code base, many different apps.  Grep’s switches to exclude files from the search aren’t exactly quick to type.
+  %p The files I normally want to exclude from my greps, I normally don’t want in my git repo anyway: logs, dumps, etc.  In other words, files that are in my .gitignore.
+  %p That’s where git grep comes in.  It automatically ignores anything in your .gitignore.
+  %p This being said, instead of doing a $(find . -type f) everytime we want to fuzzy-find.  We can use git grep to list every file:
+  %pre git grep -l '.' -- '*'
+  %ul
+    %li ‘.’ will match any file that has even a single character in it.  without this the &lt;filespec&gt; won’t work.  You can even leave empty quotes: ”, this will still cause the &lt;filespec&gt; to behave the way we want it to.
+    %li -l lists the filename only
+    %li – ‘*’ searches in every file tracked by the repo
+  %p This will let us change ff() from:
+  %pre
+    :preserve
+      ff() {
+        find . -type f | grep -i "$(echo "$1" | sed 's/./&amp;.*/g')"
+      }
+  %p To:
+  %pre
+    :preserve
+      ff() {
+        git grep -l '.' -- '*' | grep -i "$(echo "$1" | sed 's/./&amp;.*/g')"
+      }
+  %p Not only that, the &lt;filespec&gt; argument matches against the (relative) path of the file.  Grep’s file matching, on the other hand, only matches against the filename itself.
+  %p This will let us take the new ff() and make it even smaller:
+  %pre
+    :preserve
+      ff() {
+        git grep -l '' -- "$(echo "$1" | sed 's/./&amp;*/g')"
+      }
+  %p Now, our bash fuzzy-finder is:
+  %ul
+    %li faster
+    %li restricted to only relevant files
+  %h3 Bonus: Combine it with vim:
+  %pre
+    :preserve
+      vff() {
+        vim $(ff $1)
+      }
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/category/bash-2/", :rel => "category tag", :title => "View all posts in bash"} bash
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/category/shell/", :rel => "category tag", :title => "View all posts in Shell"} Shell
+  %a{:href => "http://unixsuperhero.com/category/vim-2/", :rel => "category tag", :title => "View all posts in vim"} vim
+  and tagged
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash/", :rel => "tag"} Bash
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tips/", :rel => "tag"} bash tips
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/bash-tricks/", :rel => "tag"} bash tricks
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/fuzzy-finder/", :rel => "tag"} fuzzy finder
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/git/", :rel => "tag"} Git
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/grep/", :rel => "tag"} grep
+  = succeed "," do
+    %a{:href => "http://unixsuperhero.com/tag/shell-2/", :rel => "tag"} shell
+  %a{:href => "http://unixsuperhero.com/tag/vim/", :rel => "tag"} Vim
+  on
+  %a{:href => "http://unixsuperhero.com/2013/01/24/faster-bash-fuzzy-finder-ignores-gitignore-files-combined-with-vim/", :rel => "bookmark", :title => "2:46 pm"}
+    %time.entry-date{:datetime => "2013-01-24T14:46:52+00:00"} January 24, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=185&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

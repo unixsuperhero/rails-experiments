@@ -1,0 +1,57 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/03/16/deprecation-warning-nested-i18n-namespace-lookup-under-activerecord-attributes-order-is-no-longer-supported/", :rel => "bookmark"} [DEPRECATION WARNING] Nested I18n namespace lookup under “activerecord.attributes.order” is no longer&nbsp;supported
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/03/16/deprecation-warning-nested-i18n-namespace-lookup-under-activerecord-attributes-order-is-no-longer-supported/#respond", :title => "Comment on [DEPRECATION WARNING] Nested I18n namespace lookup under “activerecord.attributes.order” is no longer&nbsp;supported"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p Every time we load the rails environment:
+  %pre [DEPRECATION WARNING] Nested I18n namespace lookup under "activerecord.attributes.order" is no longer supported
+  %h3 We don’t care
+  %p We don’t. &nbsp;It’s one line, displayed when we start a console or some other rails task. &nbsp;It doesn’t slow anything down. &nbsp;No harm done.
+  %h3 Fixed it
+  %p I randomly got annoyed and fixed it. &nbsp;What is it? &nbsp;In your i18n yml files, having models nested under each other is deprecated.
+  %p{:style => "padding-left:30px;"}
+    %em config/locales/en.yml
+  %pre
+    :preserve
+      en:
+        activerecord:
+          attributes:
+            order:
+              line_item:
+                column_name: 'Column Name Translation'
+  %p See how the LineItem model (line_item:) is under the Order model (order:)?
+  %p Take it out:
+  %p{:style => "padding-left:30px;"}
+    %em
+      config/locales/en.yml
+      %b (updated)
+  %pre
+    :preserve
+      en:
+        activerecord:
+          attributes:
+            order:
+              order_column_name: 'Some Order Column Translation'
+            line_item:
+              column_name: 'Column Name Translation'
+  %h1 All better!
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2013/03/16/deprecation-warning-nested-i18n-namespace-lookup-under-activerecord-attributes-order-is-no-longer-supported/", :rel => "bookmark", :title => "2:15 am"}
+    %time.entry-date{:datetime => "2013-03-16T02:15:27+00:00"} March 16, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=298&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta

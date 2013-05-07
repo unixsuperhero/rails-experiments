@@ -1,0 +1,33 @@
+%header.entry-header
+  %h1.entry-title
+    %a{:href => "http://unixsuperhero.com/2013/03/21/vim-tips-2-regular-expressions-to-eliminate-sets-of-duplicate-lines/", :rel => "bookmark"} Vim Tips: 2 Regular Expressions to eliminate sets of duplicate&nbsp;lines
+  .comments-link
+    %a{:href => "http://unixsuperhero.com/2013/03/21/vim-tips-2-regular-expressions-to-eliminate-sets-of-duplicate-lines/#respond", :title => "Comment on Vim Tips: 2 Regular Expressions to eliminate sets of duplicate&nbsp;lines"}
+      %span.leave-reply Leave a reply
+  / .comments-link
+/ .entry-header
+.entry-content
+  %p
+    %strong The Standard one:
+  %pre %s@^\(.*\n\)\(\1\)\+@\1@gc
+  %p This one, removes any single line that is repeated x number of times, and leaves only the first one.
+  %p
+    %strong The good one:
+  %pre %s@^\(\(.*\n\)\+\)\(\1\)\+@\1@gc
+  %p This one, takes sets of multiple lines. &nbsp;Say, there are 3 lines, that are repeated 3 times. &nbsp;It will remove the second one. &nbsp;It needs to be improved to remove all dupes, and only leave the first one. &nbsp;But, this one has to be run multiple times to finish the job.
+  #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
+/ .entry-content
+%footer.entry-meta
+  This entry was posted in
+  %a{:href => "http://unixsuperhero.com/category/uncategorized/", :rel => "category tag", :title => "View all posts in Uncategorized"} Uncategorized
+  on
+  %a{:href => "http://unixsuperhero.com/2013/03/21/vim-tips-2-regular-expressions-to-eliminate-sets-of-duplicate-lines/", :rel => "bookmark", :title => "4:25 am"}
+    %time.entry-date{:datetime => "2013-03-21T04:25:00+00:00"} March 21, 2013
+  = succeed "." do
+    %span.by-author
+      by
+      %span.author.vcard
+        %a.url.fn.n{:href => "http://unixsuperhero.com/author/unixsuperhero/", :rel => "author", :title => "View all posts by unixsuperhero"} unixsuperhero
+  %span.edit-link
+    %a.post-edit-link{:href => "http://unixsuperhero.wordpress.com/wp-admin/post.php?post=306&amp;action=edit", :title => "Edit Post"} Edit
+/ .entry-meta
