@@ -40,5 +40,5 @@ RailsBase::Application.routes.draw do
 
 # REFACTORING PATTERNS
   get '/refactor/:name' => 'refactor#show', as: :show_refactor
-  root :to => 'pages#index'
+  root :to => 'blog#index'
 end

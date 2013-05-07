@@ -1,5 +1,5 @@
 class BlogController < ApplicationController
 
-  expose(:posts) { Section.new('blog/posts').files }
+  expose(:posts) { BlogSection.new('blog/posts').files.reverse }
 
 end
