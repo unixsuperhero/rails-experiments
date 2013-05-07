@@ -1,0 +1,15 @@
+%h1 Javascript to create/download a file dynamically...
+
+.alert.alert-info
+  I think this only works in chrome. (This should be a blue box.)
+
+%pre
+  :escaped
+    function dynamic_download(data, name) {
+      var content = new Blob([data], {type:'text/plain'});
+
+      var temp_link = document.createElement("a");
+      temp_link.href = window.webkitURL.createObjectURL(content);
+      temp_link.download = name;
+      temp_link.click();
+    }
