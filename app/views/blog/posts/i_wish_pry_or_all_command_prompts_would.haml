@@ -1,38 +1,89 @@
+<!--
 = content_for :title
 	i wish pry (or all command prompts...) would...
+-->
+
 <ol>
-	<li>do some things the same way zsh does them. bash might even do these things. one, for example: when using special keywords that are references to previous things. like "!!" in the shell, referring to the last command run, what zsh does is...it expands the reference from the relative keywords to the literal element from the history. in other words, it changes "!!" into "command args" if the last command i ran was "command args". this way, after i hit enter to execute the command. if i hit up (or ctrl-p, like a boss,</li>
+	
+<li>do some things the same way zsh does them. bash might even do these things. one, for example: when using special keywords that are references to previous things. like "!!" in the shell, referring to the last command run, what zsh does is...it expands the reference from the relative keywords to the literal element from the history. in other words, it changes "!!" into "command args" if the last command i ran was "command args". this way, after i hit enter to execute the command. if i hit up (or ctrl-p, like a boss,
+</li>
+
 </ol>
-<h3>The way pry works, but the example is using shell commands:</h3>
-<pre><span style="color:#993300;">ls /home/unixsuperhero/special-code-powers/lasers.*
-echo "command to list my lasers: $(!!)"</span>
+
+<h3>The way pry works, but the example is using shell commands:
+</h3>
+
+<pre>
+<span style="color:#993300;">ls /home/unixsuperhero/special-code-powers/lasers.*
+echo "command to list my lasers: $(!!)"
+</span>
 
 ## at this point, if i press up, the "$(!!)" part will evaluate to:
-<span style="color:#993300;">echo "command to list my lasers: $(echo "command to list my lasers: $(ls /home/unixsuperhero/special-code-powers/lasers.*)")"</span>
+
+<span style="color:#993300;">echo "command to list my lasers: $(echo "command to list my lasers: $(ls /home/unixsuperhero/special-code-powers/lasers.*)")"
+</span>
 
 instead of:
-<span style="color:#993300;">echo "command to list my lasers: $(ls /home/unixsuperhero/special-code-powers/lasers.*)"</span></pre>
-<h3>Example of how pry works, actually using pry:</h3>
-<pre><span style="color:#993300;"><span style="color:#993300;"><span style="color:#000000;">(pry)&gt; </span>unused_variable</span>=<span style="color:#993300;">"underscore (_) refers to the most recent return value, which will be this string..."
-</span><span style="color:#993300;"># this will run, and it returns the string on the right side of the "="
+
+<span style="color:#993300;">echo "command to list my lasers: $(ls /home/unixsuperhero/special-code-powers/lasers.*)"
 </span>
-<span style="color:#993300;"><span style="color:#000000;">(pry)&gt;</span> puts _
-</span></span># will echo <span style="color:#993300;">"underscore (_) refers..."</span> and <span style="color:#993300;">return nil
+</pre>
+
+<h3>Example of how pry works, actually using pry:
+</h3>
+
+<pre>
+<span style="color:#993300;">
+<span style="color:#993300;">
+<span style="color:#000000;">(pry)&gt; 
+</span>unused_variable
+</span>=
+<span style="color:#993300;">"underscore (_) refers to the most recent return value, which will be this string..."
+
+</span>
+<span style="color:#993300;"># this will run, and it returns the string on the right side of the "="
+
+</span>
+
+<span style="color:#993300;">
+<span style="color:#000000;">(pry)&gt;
+</span> puts _
+
+</span>
+</span># will echo 
+<span style="color:#993300;">"underscore (_) refers..."
+</span> and 
+<span style="color:#993300;">return nil
+
 
 </span># ...press up...
 
-<span style="color:#993300;"><span style="color:#000000;">(pry)&gt;</span> puts _
-</span># will echo a blank line, because the last command was a puts, which always returns nil</pre>
-<h3>The right way (aka the zsh way):</h3>
+
+<span style="color:#993300;">
+<span style="color:#000000;">(pry)&gt;
+</span> puts _
+
+</span># will echo a blank line, because the last command was a puts, which always returns nil
+</pre>
+
+<h3>The right way (aka the zsh way):
+</h3>
+
 <pre>puts "i am the return value"
 
 _.upcase
 ## pry should modify the history to have _ represent "i am the return value" like this:
 
-"i am the return value".upcase</pre>
+"i am the return value".upcase
+</pre>
 Visually, I know that modifying the history like that won't really work. Because, what if the last return value was an array of 9999 hashes, even if they only have 1 key, like this: {a: 1}. Imagine how: "[{a: 1}, {a: 1}, ... 9999x +/- a few ... {a: 1}]" would look. Also, imagine moving the cursor to add/remove text from that command. It would be a nightmare, no doubt.
-<h3>So, I haven't thought it thru, but...</h3>
-...you get the idea, I hope. There must be a way to have more static history references that aren't always <b>strictly</b> relative to the current place in history. Even if you do this:
+
+<h3>So, I haven't thought it thru, but...
+</h3>
+...you get the idea, I hope. There must be a way to have more static history references that aren't always 
+<b>strictly
+</b> relative to the current place in history. Even if you do this:
+
 <pre>unused_again = "return me, weee~!"
 
 _.upcase
@@ -40,19 +91,27 @@ _.upcase
 ## ... press up ...
 
 _[-1].upcase
-## or something similar.</pre>
+## or something similar.
+</pre>
 of course, this depends on what _ actually is. something tells me that _ isn't one of the pry console's local_variables. I'm guess it is more like a method. Which may be a little easier. Instead of trying to access it like an array, you could simply pass it an argument:
+
 <pre>unused_again = "return value is me"
 _.upcase
 _(-1)
 ## or assume the arg is the other way:
-_(1) # this would be the current history up 1 line.</pre>
-<h4>The bash way would be something like:</h4>
+_(1) # this would be the current history up 1 line.
+</pre>
+
+<h4>The bash way would be something like:
+</h4>
+
 <pre>ls lasers.*
 echo "command listing lasers: $(!!)"
 ## ...press up...
 echo "command listing lasers: $(!-1)"
-## which is actually valid history notation for bash</pre>
+## which is actually valid history notation for bash
+</pre>
+<!--
 -#
   <wp:post_id>113</wp:post_id>
   <wp:post_date>2012-12-15 01:34:22</wp:post_date>
@@ -67,3 +126,4 @@ echo "command listing lasers: $(!-1)"
   <link>http://unixsuperhero.com/2012/12/15/i-wish-pry-or-all-command-prompts-would/</link>
   <pubDate>Sat, 15 Dec 2012 01:34:22 +0000</pubDate>
   <guid isPermaLink="false">http://unixsuperhero.com/?p=113</guid>
+-->

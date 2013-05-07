@@ -1,12 +1,23 @@
+<!--
 = content_for :title
 	Vim Tips: 2 Regular Expressions to eliminate sets of duplicate lines
-<strong>The Standard one:</strong>
-<pre>%s@^\(.*\n\)\(\1\)\+@\1@gc</pre>
+-->
+
+<strong>The Standard one:
+</strong>
+
+<pre>%s@^\(.*\n\)\(\1\)\+@\1@gc
+</pre>
 This one, removes any single line that is repeated x number of times, and leaves only the first one.
 
-<strong>The good one:</strong>
-<pre>%s@^\(\(.*\n\)\+\)\(\1\)\+@\1@gc</pre>
+
+<strong>The good one:
+</strong>
+
+<pre>%s@^\(\(.*\n\)\+\)\(\1\)\+@\1@gc
+</pre>
 This one, takes sets of multiple lines.  Say, there are 3 lines, that are repeated 3 times.  It will remove the second one.  It needs to be improved to remove all dupes, and only leave the first one.  But, this one has to be run multiple times to finish the job.
+<!--
 -#
   <wp:post_id>306</wp:post_id>
   <wp:post_date>2013-03-21 04:25:00</wp:post_date>
@@ -21,3 +32,4 @@ This one, takes sets of multiple lines.  Say, there are 3 lines, that are repea
   <link>http://unixsuperhero.com/2013/03/21/vim-tips-2-regular-expressions-to-eliminate-sets-of-duplicate-lines/</link>
   <pubDate>Thu, 21 Mar 2013 04:25:00 +0000</pubDate>
   <guid isPermaLink="false">http://unixsuperhero.com/?p=306</guid>
+-->

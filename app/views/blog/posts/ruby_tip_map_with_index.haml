@@ -1,6 +1,31 @@
+<!--
 = content_for :title
 	Ruby Tip: Map with Index
-<p>The Enumerable mixin is awesome.  It's where arrays and hashes get their :each, :map, :sort, :select, :collect, :find, etc. methods.</p><p>When iterating over an array, it sometimes comes in handy to have the index, thus :each_with_index.  However, if you want to iterate thru the array, returning a new object, like you would with :map, how do you do it?  <strong>There is no :map_with_index.</strong></p><p>Luckily, instances of Enumerator have a method called <strong>:with_index.</strong>  This lets you do this:</p><pre>%w{zero one two three}<strong>.map.with_index</strong>{|word,index|<br />  "The index is: #{index}; The word is: #{word};"<br />}<br /><br />Output:<br /># The index is: 0; The word is: zero;<br /># The index is: 1; The word is: one;<br /># The index is: 2; The word is: two;<br /># The index is: 3; The word is: three;</pre>
+-->
+
+<p>The Enumerable mixin is awesome.  It's where arrays and hashes get their :each, :map, :sort, :select, :collect, :find, etc. methods.
+</p>
+<p>When iterating over an array, it sometimes comes in handy to have the index, thus :each_with_index.  However, if you want to iterate thru the array, returning a new object, like you would with :map, how do you do it?  
+<strong>There is no :map_with_index.
+</strong>
+</p>
+<p>Luckily, instances of Enumerator have a method called 
+<strong>:with_index.
+</strong>  This lets you do this:
+</p>
+<pre>%w{zero one two three}
+<strong>.map.with_index
+</strong>{|word,index|
+<br />  "The index is: #{index}; The word is: #{word};"
+<br />}
+<br />
+<br />Output:
+<br /># The index is: 0; The word is: zero;
+<br /># The index is: 1; The word is: one;
+<br /># The index is: 2; The word is: two;
+<br /># The index is: 3; The word is: three;
+</pre>
+<!--
 -#
   <wp:post_id>429</wp:post_id>
   <wp:post_date>2013-05-03 00:15:54</wp:post_date>
@@ -15,3 +40,4 @@
   <link>http://unixsuperhero.com/2013/05/03/ruby-tip-map-with-index/</link>
   <pubDate>Fri, 03 May 2013 00:15:54 +0000</pubDate>
   <guid isPermaLink="false">http://unixsuperhero.com/?p=429</guid>
+-->

@@ -1,49 +1,51 @@
-= content_for :title
-	[DEPRECATION WARNING] Nested I18n namespace lookup under "activerecord.attributes.order" is no longer supported
-<p>Every time we load the rails environment:</p>
-<pre>[DEPRECATION WARNING] Nested I18n namespace lookup under "activerecord.attributes.order" is no longer supported</pre>
+= content_for :title do
+  [DEPRECATION WARNING] Nested I18n namespace lookup under "activerecord.attributes.order" is no longer supported
 
-<h3>We don't care</h3>
-<p>We don't.  It's one line, displayed when we start a console or some other rails task.  It doesn't slow anything down.  No harm done.</p>
-<h3>Fixed it</h3>
-<p>I randomly got annoyed and fixed it.  What is it?  In your i18n yml files, having models nested under each other is deprecated.</p>
-
-<p style="padding-left:30px;"><em>config/locales/en.yml</em></p>
-<pre>
-en:
-  activerecord:
-    attributes:
-      order:
-        line_item:
-          column_name: 'Column Name Translation'
-</pre>
-<br /><br />
-See how the LineItem model (line_item:) is under the Order model (order:)?<br />
-<br />
+%p Every time we load the rails environment:
+%pre [DEPRECATION WARNING] Nested I18n namespace lookup under "activerecord.attributes.order" is no longer supported
+%h3 We don't care
+%p We don't.  It's one line, displayed when we start a console or some other rails task.  It doesn't slow anything down.  No harm done.
+%h3 Fixed it
+%p I randomly got annoyed and fixed it.  What is it?  In your i18n yml files, having models nested under each other is deprecated.
+%p(style="padding-left:30px;")
+  %em config/locales/en.yml
+%pre
+  :escaped
+    en:
+      activerecord:
+        attributes:
+          order:
+            line_item:
+              column_name: 'Column Name Translation'
+%br
+%br
+See how the LineItem model (line_item:) is under the Order model (order:)?
+%br
+%br
 Take it out:
-<p style="padding-left:30px;"><em>config/locales/en.yml <b>(updated)</b></em></p>
-<pre>
-en:
-  activerecord:
-    attributes:
-      order:
-        order_column_name: 'Some Order Column Translation'
-      line_item:
-        column_name: 'Column Name Translation'
-</pre>
-
-<h1>All better!</h1>
+%p(style="padding-left:30px;")
+  %em config/locales/en.yml
+  %b (updated)
+%pre
+  :escaped
+    en:
+      activerecord:
+        attributes:
+          order:
+            order_column_name: 'Some Order Column Translation'
+          line_item:
+            column_name: 'Column Name Translation'
+%h1 All better!
 -#
-  <wp:post_id>298</wp:post_id>
-  <wp:post_date>2013-03-16 02:15:27</wp:post_date>
-  <wp:post_date_gmt>2013-03-16 02:15:27</wp:post_date_gmt>
-  <wp:post_name>deprecation-warning-nested-i18n-namespace-lookup-under-activerecord-attributes-order-is-no-longer-supported</wp:post_name>
-  <wp:status>publish</wp:status>
-  <wp:post_type>post</wp:post_type>
-  <wp:post_password></wp:post_password>
-  <TAGS>
+  %wp:post_id 298
+  %wp:post_date 2013-03-16 02:15:27
+  %wp:post_date_gmt 2013-03-16 02:15:27
+  %wp:post_name deprecation-warning-nested-i18n-namespace-lookup-under-activerecord-attributes-order-is-no-longer-supported
+  %wp:status publish
+  %wp:post_type post
+  %wp:post_password
+  %TAGS
   Uncategorized
-  </TAGS>
-  <link>http://unixsuperhero.com/2013/03/16/deprecation-warning-nested-i18n-namespace-lookup-under-activerecord-attributes-order-is-no-longer-supported/</link>
-  <pubDate>Sat, 16 Mar 2013 02:15:27 +0000</pubDate>
-  <guid isPermaLink="false">http://unixsuperhero.com/?p=298</guid>
+  %link http://unixsuperhero.com/2013/03/16/deprecation-warning-nested-i18n-namespace-lookup-under-activerecord-attributes-order-is-no-longer-supported/
+  %pubDate Sat, 16 Mar 2013 02:15:27 +0000
+  %guid(isPermaLink="false") http://unixsuperhero.com/?p=298

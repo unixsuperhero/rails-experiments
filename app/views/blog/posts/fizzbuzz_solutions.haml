@@ -1,6 +1,11 @@
+<!--
 = content_for :title
 	FizzBuzz Solutions
-<h2>First Solution: Tap</h2>
+-->
+
+<h2>First Solution: Tap
+</h2>
+
 <pre>def fizzbuzz_tap
   1.upto(100) { |x|
     puts x.tap{|z|
@@ -9,13 +14,19 @@
       x += 'Buzz' if x%5 == 0
     }
   }
-end</pre>
-<h2>Second Solution: Hash</h2>
+end
+</pre>
+
+<h2>Second Solution: Hash
+</h2>
+
 <pre>
 def fizzbuzz_hash
   puts 1.upto(100).map{|x| (z={Fizz: x % 3, Buzz: x % 5}.keep_if{|k,v| v == 0}.keys).any? &amp;&amp; z.join || x }
 end
+
 </pre>
+<!--
 -#
   <wp:post_id>103</wp:post_id>
   <wp:post_date>2012-11-21 05:43:27</wp:post_date>
@@ -30,3 +41,4 @@ end
   <link>http://unixsuperhero.com/2012/11/21/fizzbuzz-solutions/</link>
   <pubDate>Wed, 21 Nov 2012 05:43:27 +0000</pubDate>
   <guid isPermaLink="false">http://unixsuperhero.com/?p=103</guid>
+-->

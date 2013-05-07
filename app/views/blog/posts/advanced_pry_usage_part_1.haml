@@ -1,52 +1,108 @@
-= content_for :title
-	Advanced Pry Usage: Part #1
-<h3>Intro: What is pry?</h3>
-<b>pry</b> is an interactive shell for executing ruby code. When you open it, you are given a prompt:
-<pre>[1] pry(main)&gt;</pre>
-You are then able to do almost anything with it. Define new classes, make temporary monkey patches. In other words, you can create anything, or rewrite anything on-the-fly.
-<h3>What could possibly be advanced about pry?</h3>
-You're right. For the most part, pry is straight forward. "Advanced pry" isn't so much about pry, as much as it is about ruby itself. As a result of pry giving you the interface to run arbitrary ruby code, you are able to use all sorts of inflection to learn just about everything there is to know about the code you are messing with.
-<h3>Getting started: examine the pry environment</h3>
-NOTE: I don't know if some of these inflection methods are always available, or if they are only available thru the awesome_print gem.
+= content_for :title do
+  Advanced Pry Usage: Part #1
 
-However, there is a method for the class Object (which nearly every class extends from) called :methods. In case you can't guess what it does, it returns an array of method names that the particular object responds to.
-<h3>Pry specific elements</h3>
-pry&gt; local_variables
+%h3 Intro: What is pry?
+%p
+  %b pry
+  is an interactive shell for executing ruby code. When you open it, you are given a prompt:
 
-Will alert you to a few variables: [:_in_, :_out_, :_].  _in_ is an array of the input per line you executed in the shell.  The index is the numbered index at the left of the prompt.  _out_, as you can probably imagine, is the output.  This is useful when the return value you wish to reuse is no longer the last one, thus the final variable: _, won't work.
-<h3>Reflection: Examining Anything and Everything</h3>
-Ruby has a class called Method.  This class represents just that: a method.  This may not sound very interesting.  However!  After inspecting it's methods, you may find yourself curious.  At least, I hope you do.  The #1 that stands out to me is :source.  That's right, once you have an instance of Method, you can view the source for that method.  This can come in handy if you ever find yourself wondering how certain <b>core</b> ruby methods work:
-<blockquote>How does Array.uniq work?
+  %pre [1] pry(main)&gt;
 
-How does String.to_sym work?</blockquote>
+%p
+  You are then able to do almost anything with it. Define new classes, make temporary monkey patches. In other words, you can create anything, or rewrite anything on-the-fly.
+
+%h3 What could possibly be advanced about pry?
+%p
+  You're right. For the most part, pry is straight forward. "Advanced pry" isn't so much about pry, as much as it is about ruby itself. As a result of pry giving you the interface to run arbitrary ruby code, you are able to use all sorts of inflection to learn just about everything there is to know about the code you are messing with.
+
+%h3 Getting started: examine the pry environment
+
+%p
+  NOTE: I don't know if some of these inflection methods are always available, or if they are only available thru the awesome_print gem.
+
+%p
+  However, there is a method for the class Object (which nearly every class extends from) called :methods. In case you can't guess what it does, it returns an array of method names that the particular object responds to.
+
+%h3 Pry specific elements
+
+%p
+  pry&gt; local_variables
+
+%p
+  Will alert you to a few variables: [:_in_, :_out_, :_].  _in_ is an array of the input per line you executed in the shell.  The index is the numbered index at the left of the prompt.  _out_, as you can probably imagine, is the output.  This is useful when the return value you wish to reuse is no longer the last one, thus the final variable: _, won't work.
+
+%h3 Reflection: Examining Anything and Everything
+
+
+Ruby has a class called Method.  This class represents just that: a method.  This may not sound very interesting.  However!  After inspecting it's methods, you may find yourself curious.  At least, I hope you do.  The #1 that stands out to me is :source.  That's right, once you have an instance of Method, you can view the source for that method.  This can come in handy if you ever find yourself wondering how certain
+%b core
+ruby methods work:
+
+%blockquote How does Array.uniq work?
+
+How does String.to_sym work?
+
+
 These may not be the best examples, but I hope you get the idea.  Now that you see the significance, you might be wondering, how you get an instance of the Method class.  Well, nearly every object has 2 methods:
-<ol>
-	<li>method()</li>
-	<li>instance_method()</li>
-</ol>
+
+%ol
+
+%li method()
+
+
+
+%li instance_method()
+
+
+
+
+
 Surely there are more, but we'll just focus on these for now.  Each of these methods take a symbol as their only argument, the name of the method you want to retrieve.
-<pre>Array.method(:uniq)</pre>
+
+%pre Array.method(:uniq)
+
+
 Now, you only have a few, but effective ways to inspect this object:
-<ul>
-	<li><span style="line-height:14px;">.source()</span></li>
-	<li>.parameters()</li>
-	<li>.source_location()</li>
-	<li>etc...</li>
-</ul>
-But the first 2 alone are very useful.  Have you ever received a Wrong # of Arguments error?  Grab the method's Method instance, and call parameters on it.  Wondering how it works, call source on it.  Want to see the whole class and how its dependencies work together, call source_location and inspect it with vim.
-<p style="padding-left:30px;"><strong>NOTE: If you have trouble with these methods.  Sometimes it helps to call :to_proc on the Method instance, then calling :source[_location], or :parameters, etc.</strong></p>
+
+%ul
+  %li
+    %span(style="line-height:14px;") .source()
+  %li .parameters()
+  %li .source_location()
+  %li etc...
+
+%p
+  But the first 2 alone are very useful.  Have you ever received a Wrong # of Arguments error?  Grab the method's Method instance, and call parameters on it.  Wondering how it works, call source on it.  Want to see the whole class and how its dependencies work together, call source_location and inspect it with vim.
+
+%p(style="padding-left:30px;")
+  %strong NOTE: If you have trouble with these methods.  Sometimes it helps to call :to_proc on the Method instance, then calling :source[_location], or :parameters, etc.
+
+
+
+
 Hopefully that is enough for now...
 -#
-  <wp:post_id>120</wp:post_id>
-  <wp:post_date>2013-01-05 04:32:40</wp:post_date>
-  <wp:post_date_gmt>2013-01-05 04:32:40</wp:post_date_gmt>
-  <wp:post_name>advanced-pry-usage-part-1</wp:post_name>
-  <wp:status>publish</wp:status>
-  <wp:post_type>post</wp:post_type>
-  <wp:post_password>sakura</wp:post_password>
-  <TAGS>
+  %wp:post_id 120
+
+  %wp:post_date 2013-01-05 04:32:40
+
+  %wp:post_date_gmt 2013-01-05 04:32:40
+
+  %wp:post_name advanced-pry-usage-part-1
+
+  %wp:status publish
+
+  %wp:post_type post
+
+  %wp:post_password sakura
+
+  %TAGS
   Uncategorized
-  </TAGS>
-  <link>http://unixsuperhero.com/2013/01/05/advanced-pry-usage-part-1/</link>
-  <pubDate>Sat, 05 Jan 2013 04:32:40 +0000</pubDate>
-  <guid isPermaLink="false">http://unixsuperhero.com/?p=120</guid>
+
+
+  %link http://unixsuperhero.com/2013/01/05/advanced-pry-usage-part-1/
+
+  %pubDate Sat, 05 Jan 2013 04:32:40 +0000
+
+  %guid(isPermaLink="false") http://unixsuperhero.com/?p=120
+

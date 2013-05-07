@@ -1,21 +1,30 @@
+<!--
 = content_for :title
 	Hashrocket Gameplan
+-->
 ok, instead of having a long description in my pull request to hashrocket's dotmatrix repo:
 
 just put a link to a blogpost here on wordpress, like so:
+
 <pre>function gs() {
   # http://anshoudesu.wordpress.com/2012/10/04/git-status-alias-with-searching
   git status -s | sed 's/...(.*-&gt; )?//' | grep "$1"
-}</pre>
+}
+</pre>
 The same thing with the fuzzy-finder
+
 <pre>function ff() {
   # http://anshoudesu.wordpress.com/2012/10/04/fuzzy-finder-for-bash
   find . -type f | grep "$1"
-}</pre>
+}
+</pre>
 The posts will be something like:
+
 <pre>USAGE: vim $(gs migrate)
 USAGE: gs migra | while read file; do gco "$file"; done
-USAGE: gs migr | vim -</pre>
+USAGE: gs migr | vim -
+</pre>
+<!--
 -#
   <wp:post_id>9</wp:post_id>
   <wp:post_date>2012-10-04 17:53:47</wp:post_date>
@@ -30,3 +39,4 @@ USAGE: gs migr | vim -</pre>
   <link>http://unixsuperhero.com/2012/10/04/hashrocket-gameplan/</link>
   <pubDate>Thu, 04 Oct 2012 17:53:47 +0000</pubDate>
   <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=9</guid>
+-->

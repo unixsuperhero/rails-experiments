@@ -1,33 +1,68 @@
+<!--
 = content_for :title
 	Planning For the Future
-<h1>Plans for Future Posts</h1>
-<h3>Shell Essentials Series</h3>
+-->
+
+<h1>Plans for Future Posts
+</h1>
+
+<h3>Shell Essentials Series
+</h3>
 What this series will be comprised of, I don't know.  sed, awk, find, grep?  I don't want to add commands like git, because I think I want to have a dev series.
-<h3>Development Series</h3>
-<h4>Commands, Tools, and Functions</h4>
+
+<h3>Development Series
+</h3>
+
+<h4>Commands, Tools, and Functions
+</h4>
 The workflow, and the tools.
-<h4>Git</h4>
+
+<h4>Git
+</h4>
 The Push Configuration Setting
 
 When pushing to a remote branch, normally you run:
-<pre>$&gt; git push &lt;remote-repo-name&gt; &lt;branch-to-push&gt;</pre>
+
+<pre>$&gt; git push &lt;remote-repo-name&gt; &lt;branch-to-push&gt;
+</pre>
 In a remote repo's configuration, if you set push to "HEAD", two things will happen.
+
 <ol>
-	<li>You no longer need to specify the branch when you push</li>
-	<li>It will automatically push the branch you are currently in</li>
+	
+<li>You no longer need to specify the branch when you push
+</li>
+	
+<li>It will automatically push the branch you are currently in
+</li>
+
 </ol>
 This way, if you are in master, it will update the remote's master branch.
 
 If you are in a new branch and you push, it will create that branch in the remote repo.  For example, if we just checked out "sakura" and we push, it will create the "sakura" branch in the remote repository.
-<h4>Regex</h4>
-<h5><span style="color:#008000;">PUBLISHED: Quicktip #1 - Using Dot Properly</span></h5>
-<h3>Underlying Philosophy: Inside the Mind of my Tools</h3>
-<h5>TL;DR</h5>
+
+<h4>Regex
+</h4>
+
+<h5>
+<span style="color:#008000;">PUBLISHED: Quicktip #1 - Using Dot Properly
+</span>
+</h5>
+
+<h3>Underlying Philosophy: Inside the Mind of my Tools
+</h3>
+
+<h5>TL;DR
+</h5>
 The underlying philosophy is:  The tools used, should fit into my workflow.  My workflow should never be broken.  Now, my workflow is: bash, vim, browser (optional).
-<h5>More Info</h5>
-This is why <span style="text-decoration:underline;">lists</span> is almost like a wiki for the terminal.  It is a single bash script that leverages vim and its gf shortcut.
+
+<h5>More Info
+</h5>
+This is why 
+<span style="text-decoration:underline;">lists
+</span> is almost like a wiki for the terminal.  It is a single bash script that leverages vim and its gf shortcut.
 
 I worked on a pivotaltracker system that is similar.  It was supposed to allow you to download all of your stories.  Create new stories, add comments, change the status.  Use a story to automatically check out a branch, guessing the name from the story.  It really was supposed to do something about tracking branches, or diffs.  It was really supposed to incorporate git in some cool way.  I wish I could remember.
+<!--
 -#
   <wp:post_id>33</wp:post_id>
   <wp:post_date>2012-10-06 08:15:40</wp:post_date>
@@ -42,3 +77,4 @@ I worked on a pivotaltracker system that is similar.  It was supposed to allow 
   <link>http://unixsuperhero.com/2012/10/06/planning-for-the-future/</link>
   <pubDate>Sat, 06 Oct 2012 08:15:40 +0000</pubDate>
   <guid isPermaLink="false">http://unixsuperhero.wordpress.com/?p=33</guid>
+-->

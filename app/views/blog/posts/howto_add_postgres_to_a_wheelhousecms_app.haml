@@ -1,26 +1,35 @@
+<!--
 = content_for :title
 	HOWTO: Add postgres to a wheelhousecms app
+-->
 In your config/application.rb:
+
 
 <pre>
 # below all the other require ".../railtie" lines add:
 require "active_record/railtie"
+
 </pre>
 
 In your Gemfile add:
 
+
 <pre>
 gem 'pg'
+
 </pre>
 
 Run in bash:
 
+
 <pre>
 mkdir -pv db/migrate
 bundle install   # if you use bundler/Gemfile(s)
+
 </pre>
 
 Now you can make migrations and models the way you would in most standard rails apps.  Doing this won't interfere with the existing mongodb functionality.  This is because we didn't remove any of that stuff.  We simply added postgres to work side-by-side with mongodb.
+<!--
 -#
   <wp:post_id>193</wp:post_id>
   <wp:post_date>2013-01-29 17:22:21</wp:post_date>
@@ -49,3 +58,4 @@ Now you can make migrations and models the way you would in most standard rails 
   <link>http://unixsuperhero.com/2013/01/29/howto-add-postgres-to-a-wheelhousecms-app/</link>
   <pubDate>Tue, 29 Jan 2013 17:22:21 +0000</pubDate>
   <guid isPermaLink="false">http://unixsuperhero.com/?p=193</guid>
+-->
