@@ -1,0 +1,109 @@
+
+%h2 Site Layout 1: Model Driven
+%hr
+
+%h3 Description
+%p
+  I am re-reading
+  %em Refactoring: Improving the Design of Existing Code
+  and keeping a reading journal.
+
+%p
+  I plan on cateloging each Refactoring Pattern.  This includes a name, description, when and why it is used, and sample code outlining the process of completing each pattern.
+
+%hr
+%h3 Structure
+%h6 Basics
+%p
+  The main components are all straight forward: 1 route, 1 controller, 1 view.
+%h6 Specifics
+%p
+  When viewing a specific pattern, the name is passed in via the route.  Here is the flow:
+  %ol
+    %li Route is hit
+    %li Controller sees the name of the pattern
+    %li
+      Controller loads a
+      %strong model
+      with the same name (Refactor::ExtractMethod)
+    %li
+      This model has a DSL defining the different aspects of the pattern:
+      %ul
+        %li Pattern Name
+        %li Motivation for using the pattern
+        %li List containing the order, name, and description of each required to complete the refactoring
+    %li The view is rendered
+%h6 Refactoring Steps
+%p
+  There are also 2 models for each step: a before model, and an after model.
+%p
+  To enhance the experience, comments add markup emphasizing the lines relevant to each step.
+
+
+%hr
+%h3 The Code
+
+%h6 Routes
+%em config/routes.rb
+%pre
+  get '/refactor/:name' => 'refactor#show', as: :show_refactor
+
+%h6 Controller
+%em app/controllers/refactor_controller.rb
+%pre= IO.read('./app/controllers/refactor_controller.rb')
+
+%h6 Views
+%em app/views/refactor/show.haml
+%pre= IO.read('./app/views/refactor/show.haml')
+
+%h6 Models
+.alert
+  Notice how
+  %em Refactor::ExtractMethod
+  extends
+  %em Refactor (app/models/refactor.rb)
+%em app/models/refactor/extract_method.rb
+%pre
+  :escaped
+    class Refactor::ExtractMethod < Refactor
+      pattern_name 'extract_method'
+
+      steps [
+        Refactor::Step.new( refactor: self,
+                            name: 'Step 1 Name',
+                            description: 'Step 1 Description'),
+        Refactor::Step.new( refactor: self,
+                            name: 'Step 2 Name',
+                            description: 'Step 2 Description' ),
+        # ...
+      ]
+
+      motivation <<-MOTIVATION
+    %p
+      Haml Formatted Description of when and why this pattern should be used.
+      MOTIVATION
+    end
+
+%em app/models/refactor.rb
+%pre
+  \# The details of this model are not important.
+  \# They can be viewed from Github.
+  \#
+  \# It defines classes and methods for rendering the model and steps for the page.
+
+
+.inline
+  %em app/models/refactor/extract_method/step_000_a.rb
+  %pre
+    :preserve
+      class Refactor::SelfEncapsulateField::Step000A
+
+      end
+
+.inline
+  %em app/models/refactor/extract_method/step_000_b.rb
+  %pre
+    :preserve
+      class Refactor::SelfEncapsulateField::Step000B
+
+      end
