@@ -1,4 +1,5 @@
 class Link
+  attr_accessor :path
   def initialize(dir,new_root=nil)
     @path = dir.sub(root, '')
     @root = new_root if new_root.present?
