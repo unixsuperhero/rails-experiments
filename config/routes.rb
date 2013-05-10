@@ -21,9 +21,11 @@ RailsBase::Application.routes.draw do
 # REFACTORING PATTERNS
   get '/refactor/:name' => 'refactor#show', as: :show_refactor
 
-# Handle all flexible sections with these 2 routes
   match '/*controller(/:action)'
   match '/*controller/:action'
+  match '/*controller/:action/:partial'
+  #match '/blog/posts/:partial' => 'blog/posts#index'
+# Handle all flexible sections with these 2 routes
 
 # EXPERIMENTS
   # exp: nested controller route test

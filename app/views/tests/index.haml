@@ -1,7 +1,13 @@
 
 %h1 Tests and Experiments
-%hr
 
+%hr
+%h6 Sections
+%ul
+  - section.sections.each do |d|
+    %li= link_to *d.link
+
+%hr
 %h6 Database-Free Site Layouts and Navigation
 %ul
   %li
