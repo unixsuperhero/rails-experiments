@@ -18,6 +18,9 @@ RailsBase::Application.routes.draw do
 
   #match '/test' => redirect {|ps,request| 'http://asdf.com/?' + ps.to_query }
 
+# REFACTORING PATTERNS
+  get '/refactor/:name' => 'refactor#show', as: :show_refactor
+
 # Handle all flexible sections with these 2 routes
   match '/*controller(/:action)'
   match '/*controller/:action'
@@ -38,7 +41,5 @@ RailsBase::Application.routes.draw do
   get '/basic-auth' => 'basic_auth#index', as: :basic_auth
   get '/basic-auth/private' => 'basic_auth#private', as: :basic_auth_private
 
-# REFACTORING PATTERNS
-  get '/refactor/:name' => 'refactor#show', as: :show_refactor
   root :to => 'blog#index'
 end

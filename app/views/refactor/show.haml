@@ -1,14 +1,16 @@
+%h2= "#{klass.pattern_name.titleize}"
+
 %hr
-%h1 Motivation
+%h3 Motivation
 .step
   %p= klass.motivation
 
 %hr
-%h1 Steps
+%h3 Steps
 - klass.steps.each_with_index do |step,i|
   %hr
   .step
-    %h2= "Step #{i+1}: #{step[:name]}"
+    %h4= "Step #{i+1}: #{step[:name]}"
     %p= step[:description]
     .inline
       %b Before

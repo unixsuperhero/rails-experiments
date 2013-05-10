@@ -27,7 +27,7 @@ class Refactor
     end
 
     def refactor_name
-      @refactor.to_s.split('::').last
+      @refactor_name ||= @refactor.to_s.split('::').last
     end
 
     def step_no(i)
@@ -39,10 +39,7 @@ class Refactor
     end
 
     def filenames(i)
-      [
-        filename(i),   # "./app/models/refactor/#{refactor_name.underscore}/step_#{step_no(i)}_a.rb",
-        filename(i,:b) # "./app/models/refactor/#{refactor_name.underscore}/step_#{step_no(i)}_b.rb"
-      ]
+      [ filename(i,:a), filename(i,:b) ]
     end
   end
 end
