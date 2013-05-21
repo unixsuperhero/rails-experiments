@@ -1,11 +1,7 @@
 %header.entry-header
   %h1.entry-title
     %a{:href => "http://unixsuperhero.com/2013/05/03/ruby-tip-map-with-index/", :rel => "bookmark"} Ruby Tip: Map with&nbsp;Index
-  .comments-link
-    %a{:href => "http://unixsuperhero.com/2013/05/03/ruby-tip-map-with-index/#respond", :title => "Comment on Ruby Tip: Map with&nbsp;Index"}
-      %span.leave-reply Leave a reply
-  / .comments-link
-/ .entry-header
+%hr
 .entry-content
   %p The Enumerable mixin is awesome. &nbsp;It’s where arrays and hashes get their :each, :map, :sort, :select, :collect, :find, etc. methods.
   %p
@@ -18,23 +14,16 @@
   %pre
     \%w{zero one two three}
     %strong> .map.with_index
-    {|word,index|
-    %br/
-    "The index is: \#{index}; The word is: \#{word};"
-    %br>/
-    }
-    %br/
-    = succeed "Output:" do
-      %br/
-    = succeed "#" do
-      %br/
-    The index is: 0; The word is: zero;
-    %br>/
-    \# The index is: 1; The word is: one;
-    %br>/
-    \# The index is: 2; The word is: two;
-    %br>/
-    \# The index is: 3; The word is: three;
+    :preserve
+      {|word,index|
+        "The index is: \#{index}; The word is: \#{word};"
+      }
+
+      Output:
+      # The index is: 0; The word is: zero;
+      # The index is: 1; The word is: one;
+      # The index is: 2; The word is: two;
+      # The index is: 3; The word is: three;
   #jp-post-flair.sharedaddy.sd-like-enabled.sd-sharing-enabled
 / .entry-content
 %footer.entry-meta
