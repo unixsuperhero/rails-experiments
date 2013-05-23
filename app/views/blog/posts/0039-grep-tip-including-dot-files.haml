@@ -1,0 +1,67 @@
+
+%header(class="entry-header")
+  %h1(class="entry-title") Grep Tip: How To Include or Exclude&nbsp;dotfiles
+
+%div(class="entry-content")
+  %h2 Obligatory Introduction
+
+  %p Over the years, cmd options have become engrained in my brain. &nbsp;For grep, they are:
+
+
+  %ul
+    %li grep -Rin (recursive, case-insensitive, line numbers)
+    %li grep -Ril (recursive, case-insensitive, file names only)
+    %li -v (lines that don’t match)
+    %li etc.
+
+  %p Depending on your shell settings (if you include dot globbing or not):
+
+  %pre grep [options] [pattern] *
+
+  %p
+    Does not include local dotfiles in your search. &nbsp;
+    %strong But,
+    changing the&nbsp;
+    %span(style="text-decoration:underline;") asterisk
+    to a
+    %span(style="text-decoration:underline;") period
+    includes everything, including dot files. &nbsp;This may just be zsh vs. bash. &nbsp;I haven’t tried with a standard bash shell yet.
+
+  %h2 tl;dr
+
+  %p To include dotfiles (and folders) in your recursive greps:
+
+  %pre grep [options] [pattern] .
+
+  %p Instead of:
+
+  %pre grep [options] [pattern] *
+
+%footer(class="entry-meta")
+  This entry was posted in
+  %a(href="http://unixsuperhero.com/category/uncategorized/" title="View all posts in Uncategorized" rel="category tag") Uncategorized
+  and tagged
+  %a(href="http://unixsuperhero.com/tag/bash/" rel="tag") Bash
+  ,
+  %a(href="http://unixsuperhero.com/tag/cli/" rel="tag") cli
+  ,
+  %a(href="http://unixsuperhero.com/tag/dot-files/" rel="tag") dot files
+  ,
+  %a(href="http://unixsuperhero.com/tag/dotfiles/" rel="tag") dotfiles
+  ,
+  %a(href="http://unixsuperhero.com/tag/grep/" rel="tag") grep
+  ,
+  %a(href="http://unixsuperhero.com/tag/shell-2/" rel="tag") shell
+  ,
+  %a(href="http://unixsuperhero.com/tag/unix/" rel="tag") unix
+  ,
+  %a(href="http://unixsuperhero.com/tag/zsh/" rel="tag") zsh
+  on
+  %a(href="http://unixsuperhero.com/2013/05/23/grep-tip-how-to-include-or-exclude-dotfiles/" title="12:53 am" rel="bookmark")
+  %time(class="entry-date" datetime="2013-05-23T00:53:32+00:00") May 23, 2013
+  %span(class="by-author")  by
+  %span(class="author vcard")
+  %a(class="url fn n" href="http://unixsuperhero.com/author/unixsuperhero/" title="View all posts by unixsuperhero" rel="author") unixsuperhero
+  \.
+  %span(class="edit-link")
+  %a(class="post-edit-link" href="http://unixsuperhero.wordpress.com/wp-admin/post.php?post=432&amp;action=edit" title="Edit Post") Edit

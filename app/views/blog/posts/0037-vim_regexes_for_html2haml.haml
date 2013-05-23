@@ -1,9 +1,23 @@
 %pre
   :escaped
+    # get rid of stupid tabs
     :retab
+    :%s#<!--.\{-}-->##gc
+    :%s#^\(\s*\)\(<[^<]*\)<#\1\2\r\1<#gc
+    #:%s#^\(\s\s*\)\(\w[^<]*\)<#\1\2\r\1<#gc
+    :%s#^\(\s\s*\)\(\S[^<]*\)<#\1\2\r\1<#gc
+
+    # include one that spans newlines
+    :%s#<!--.\{-}-->##gc
+
+    # the previous 2 probably phase this one out...unless we want what is in
+    # the comments
     :g/<!--\|-->/d
+
     :norm ggA do
-    :%s#<\/[^>]*>#\r#gc
+
+    :%s#<\/[^>]*>##gc
+    #:%s#<\/[^>]*>#\r#gc
 
     :%s#<\(\S*\)\s*\/\?>#\%\1 #gc
     ":%s#<\(\S*\)>\@=>#\%\1 #gc   "save as above
