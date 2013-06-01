@@ -10,7 +10,7 @@ class Section
 
   def files
     @files ||= Dir.glob(file_glob).keep_if{|f|
-        File.file?(f) && f[%r{/index(\.h.ml){1,2}$}i].blank?
+        File.file?(f) && f[%r{/index(\.h.ml){1,2}$}i].blank? && File.basename(f)[0] != '_'
       }.map{|f|
         link_class.new(f)
       }

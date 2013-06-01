@@ -13,3 +13,8 @@
     %ul
       %li= link_to 'Structure 1: Model Driven', '/tests/layouts_1_model_driven'
       %li= link_to 'Structure 2: View and Dynamic Route Driven', '/tests/layouts_2_view_driven'
+
+.title All Tests, Auto-generated
+%ul
+  - section.files.each do |f|
+    %li= link_to *f.link

@@ -1,0 +1,15 @@
+
+%h1 Render a markdown partial
+
+.step
+  .inline
+    %pre= raw IO.read("./app/views/#{controller_path}/_markdown_partial.md")
+
+  .inline
+    %pre= ActionController::Base.new.render_to_string('tests/_markdown_partial')
+
+%hr
+.step
+  %h3 Rendered
+  .pre= render 'markdown_partial'
+
