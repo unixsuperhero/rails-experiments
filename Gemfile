@@ -17,6 +17,7 @@ gem 'decent_exposure'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails', '>= 1.0.12'
+gem 'markdown-rails'
 
 gem 'twitter-bootstrap-rails'
 # rails g bootstrap:install static
