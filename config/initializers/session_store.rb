@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-RailsBase::Application.config.session_store :cookie_store, key: '_mytechhelp_session'
+RailsBase::Application.config.session_store :cookie_store, key: '_railsexperiments_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
