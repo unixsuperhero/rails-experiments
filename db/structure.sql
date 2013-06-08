@@ -29,96 +29,123 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: admins; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: blogs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE admins (
-    id integer NOT NULL,
-    email character varying(255) DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying(255),
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    sign_in_count integer DEFAULT 0,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying(255),
-    last_sign_in_ip character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: admins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE admins_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE admins_id_seq OWNED BY admins.id;
-
-
---
--- Name: banners; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE banners (
-    id integer NOT NULL,
-    html text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: banners_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE banners_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: banners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE banners_id_seq OWNED BY banners.id;
-
-
---
--- Name: brands; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE brands (
+CREATE TABLE blogs (
     id integer NOT NULL,
     name character varying(255),
+    description character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: blogs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE blogs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: blogs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE blogs_id_seq OWNED BY blogs.id;
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE categories (
+    id integer NOT NULL,
+    name character varying(255),
+    slug character varying(255),
+    description character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
+-- Name: post_tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE post_tags (
+    id integer NOT NULL,
+    post_id integer,
+    tag_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: post_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE post_tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: post_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE post_tags_id_seq OWNED BY post_tags.id;
+
+
+--
+-- Name: posts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE posts (
+    id integer NOT NULL,
     slug character varying(255),
     title character varying(255),
-    meta_tag text,
+    body text,
+    blog_id integer,
+    category_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
 
 
 --
--- Name: brands_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE brands_id_seq
+CREATE SEQUENCE posts_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -127,146 +154,10 @@ CREATE SEQUENCE brands_id_seq
 
 
 --
--- Name: brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
-
-
---
--- Name: campaigns; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE campaigns (
-    id integer NOT NULL,
-    name character varying(255),
-    cpid character varying(255),
-    phone_number character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: campaigns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE campaigns_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: campaigns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE campaigns_id_seq OWNED BY campaigns.id;
-
-
---
--- Name: experts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE experts (
-    id integer NOT NULL,
-    name character varying(255),
-    text_line_1 character varying(255),
-    text_line_2 character varying(255),
-    bio text,
-    image character varying(255),
-    slug character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: experts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE experts_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: experts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE experts_id_seq OWNED BY experts.id;
-
-
---
--- Name: pages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE pages (
-    id integer NOT NULL,
-    slug character varying(255),
-    content text,
-    meta_tag text,
-    title character varying(255),
-    breadcrumb_name character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: pages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE pages_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE pages_id_seq OWNED BY pages.id;
-
-
---
--- Name: plans; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE plans (
-    id integer NOT NULL,
-    plan_type character varying(255),
-    slug character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: plans_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE plans_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: plans_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE plans_id_seq OWNED BY plans.id;
+ALTER SEQUENCE posts_id_seq OWNED BY posts.id;
 
 
 --
@@ -279,17 +170,12 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: services; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE services (
+CREATE TABLE tags (
     id integer NOT NULL,
-    image character varying(255),
     name character varying(255),
-    title character varying(255),
-    text text,
-    short_description text,
-    service_type character varying(255),
     slug character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -297,10 +183,10 @@ CREATE TABLE services (
 
 
 --
--- Name: services_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE services_id_seq
+CREATE SEQUENCE tags_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -309,195 +195,85 @@ CREATE SEQUENCE services_id_seq
 
 
 --
--- Name: services_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE services_id_seq OWNED BY services.id;
-
-
---
--- Name: testimonials; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE testimonials (
-    id integer NOT NULL,
-    name character varying(255),
-    location character varying(255),
-    testimonial text,
-    image character varying(255),
-    slug character varying(255),
-    plan_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: testimonials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE testimonials_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: testimonials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE testimonials_id_seq OWNED BY testimonials.id;
+ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY admins ALTER COLUMN id SET DEFAULT nextval('admins_id_seq'::regclass);
+ALTER TABLE ONLY blogs ALTER COLUMN id SET DEFAULT nextval('blogs_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY banners ALTER COLUMN id SET DEFAULT nextval('banners_id_seq'::regclass);
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY brands ALTER COLUMN id SET DEFAULT nextval('brands_id_seq'::regclass);
+ALTER TABLE ONLY post_tags ALTER COLUMN id SET DEFAULT nextval('post_tags_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY campaigns ALTER COLUMN id SET DEFAULT nextval('campaigns_id_seq'::regclass);
+ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY experts ALTER COLUMN id SET DEFAULT nextval('experts_id_seq'::regclass);
+ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: blogs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY pages ALTER COLUMN id SET DEFAULT nextval('pages_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY plans ALTER COLUMN id SET DEFAULT nextval('plans_id_seq'::regclass);
+ALTER TABLE ONLY blogs
+    ADD CONSTRAINT blogs_pkey PRIMARY KEY (id);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY services ALTER COLUMN id SET DEFAULT nextval('services_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY testimonials ALTER COLUMN id SET DEFAULT nextval('testimonials_id_seq'::regclass);
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
 
 
 --
--- Name: admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: post_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY admins
-    ADD CONSTRAINT admins_pkey PRIMARY KEY (id);
-
-
---
--- Name: banners_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY banners
-    ADD CONSTRAINT banners_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY post_tags
+    ADD CONSTRAINT post_tags_pkey PRIMARY KEY (id);
 
 
 --
--- Name: brands_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: posts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY brands
-    ADD CONSTRAINT brands_pkey PRIMARY KEY (id);
-
-
---
--- Name: campaigns_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY campaigns
-    ADD CONSTRAINT campaigns_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
 
 
 --
--- Name: experts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY experts
-    ADD CONSTRAINT experts_pkey PRIMARY KEY (id);
-
-
---
--- Name: pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY pages
-    ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
-
-
---
--- Name: plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY plans
-    ADD CONSTRAINT plans_pkey PRIMARY KEY (id);
-
-
---
--- Name: services_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY services
-    ADD CONSTRAINT services_pkey PRIMARY KEY (id);
-
-
---
--- Name: testimonials_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY testimonials
-    ADD CONSTRAINT testimonials_pkey PRIMARY KEY (id);
-
-
---
--- Name: index_admins_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX index_admins_on_email ON admins USING btree (email);
-
-
---
--- Name: index_admins_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX index_admins_on_reset_password_token ON admins USING btree (reset_password_token);
+ALTER TABLE ONLY tags
+    ADD CONSTRAINT tags_pkey PRIMARY KEY (id);
 
 
 --
@@ -511,22 +287,12 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO schema_migrations (version) VALUES ('20120807171029');
+INSERT INTO schema_migrations (version) VALUES ('20130608055828');
 
-INSERT INTO schema_migrations (version) VALUES ('20120807171035');
+INSERT INTO schema_migrations (version) VALUES ('20130608055859');
 
-INSERT INTO schema_migrations (version) VALUES ('20120807171043');
+INSERT INTO schema_migrations (version) VALUES ('20130608060016');
 
-INSERT INTO schema_migrations (version) VALUES ('20120807171050');
+INSERT INTO schema_migrations (version) VALUES ('20130608060031');
 
-INSERT INTO schema_migrations (version) VALUES ('20120807171057');
-
-INSERT INTO schema_migrations (version) VALUES ('20120807171104');
-
-INSERT INTO schema_migrations (version) VALUES ('20120807171110');
-
-INSERT INTO schema_migrations (version) VALUES ('20120807171117');
-
-INSERT INTO schema_migrations (version) VALUES ('20120808180611');
-
-INSERT INTO schema_migrations (version) VALUES ('20120809152306');
+INSERT INTO schema_migrations (version) VALUES ('20130608060053');
