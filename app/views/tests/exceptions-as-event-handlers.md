@@ -41,7 +41,7 @@ return false.
         user.update_attributes(assignable_object: next_available)
 
         rescue NotAvailableException
-          send_out_of_objects_email
+          # send email here via a bg job
           false
       end
     end
