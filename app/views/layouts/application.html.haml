@@ -36,7 +36,7 @@
         = link_to 'Home', '/'
         = link_to 'Todo', '/todo'
         = link_to 'Tests & Experiments', '/tests'
-        .sub= link_to 'Something', '/tests'
+        .sub= link_to 'Basic Auth', '/tests/basic_auth'
         %hr.separate
         .h2 Experiments
         %hr
@@ -50,9 +50,14 @@
         %hr
         - refactoring_patterns.each do |pattern|
           = link_to pattern.titleize, show_refactor_path(pattern)
-    .span10
+    .span8
       - flash.each do |k,v|
         %p(class=k)= v
       .page
         = yield
-
+    .span2.navigation
+      .pre
+        .h1 Recent Posts
+        %hr.separate
+        - recent_posts.each do |post|
+          = link_to *post.link
