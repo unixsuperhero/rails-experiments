@@ -50,9 +50,9 @@
         %hr
         - refactoring_patterns.each do |pattern|
           = link_to pattern.titleize, show_refactor_path(pattern)
-    .span10.page
-      .clearfix
+    .span10
       - flash.each do |k,v|
         %p(class=k)= v
-      = yield
+      .page
+        = yield
 
