@@ -1,0 +1,4 @@
+%h1= post.title
+
+- render template: "otaku_stories/posts/#{post.slug}"
+= yield :body

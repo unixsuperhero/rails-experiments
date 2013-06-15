@@ -18,6 +18,8 @@ RailsBase::Application.routes.draw do
 
   #match '/test' => redirect {|ps,request| 'http://asdf.com/?' + ps.to_query }
 
+  match '/otaku-stories' => 'otaku_stories#index', as: 'otaku_stories'
+  match '/otaku-stories/:slug' => 'otaku_stories#show', as: 'otaku_story'
 # REFACTORING PATTERNS
   get '/refactor/:name' => 'refactor#show', as: :show_refactor
 

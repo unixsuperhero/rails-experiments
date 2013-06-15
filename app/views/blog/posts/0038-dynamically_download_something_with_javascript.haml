@@ -14,5 +14,40 @@
       temp_link.click();
     }
 
-%h4 Source
+%h3 Source
 = link_to "somebody's site", 'http://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/'
+
+%h2 Bookmarklet
+
+.alert.alert-info
+  Updating the snippet to be used as a bookmarklet, and take a css selector instead of just the data.
+
+%h3 Readable Version
+
+%pre
+  :escaped
+    function dynamic_download(data, name) {
+      var content = new Blob([data], {type:'text/plain'});
+
+      var temp_link = document.createElement("a");
+      temp_link.href = window.webkitURL.createObjectURL(content);
+      temp_link.download = name;
+      temp_link.click();
+    }
+    (function() {
+      selector = prompt('Enter CSS Selector Here:');
+      if(selector.replace(/\s\s*/g,'').length < 1) return false;
+      $(selector).each(function(i,e) {
+        dynamic_download(e.innerHTML, prompt('Filename for: ' + e.innerHTML.substring(0,300)));
+      });
+    })();
+
+%h3 Compressed Version
+
+= link_to 'Bookmarklet Link', %~javascript:function dynamic_download(data, name) { var content = new Blob([data], {type:'text/plain'}); var temp_link = document.createElement("a"); temp_link.href = window.webkitURL.createObjectURL(content); temp_link.download = name; temp_link.click(); } (function() { selector = prompt('Enter CSS Selector Here:'); if(selector.replace(/\s\s*/g,'').length < 1) return false; $(selector).each(function(i,e) { dynamic_download(e.innerHTML, prompt('Filename for: ' + e.innerHTML.substring(0,300))); }); })();~
+%br/
+%strong Bookmarklet Source:
+%pre
+  :escaped
+    javascript:function dynamic_download(data, name) { var content = new Blob([data], {type:'text/plain'}); var temp_link = document.createElement("a"); temp_link.href = window.webkitURL.createObjectURL(content); temp_link.download = name; temp_link.click(); } (function() { selector = prompt('Enter CSS Selector Here:'); if(selector.replace(/\s\s*/g,'').length < 1) return false; $(selector).each(function(i,e) { dynamic_download(e.innerHTML, prompt('Filename for: ' + e.innerHTML.substring(0,300))); }); })();
+

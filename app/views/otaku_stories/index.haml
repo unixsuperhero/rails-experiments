@@ -1,0 +1,9 @@
+
+%h1= blog.name
+
+.posts
+  - posts.each do |post|
+    - render template: "otaku_stories/posts/#{post.slug}"
+    .post
+      .title= link_to post.title, otaku_story_path(post.slug)
+      .snippet= yield :preview #strip_tags(post.body).first(200)

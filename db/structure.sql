@@ -35,6 +35,7 @@ SET default_with_oids = false;
 CREATE TABLE blogs (
     id integer NOT NULL,
     name character varying(255),
+    slug character varying(255),
     description character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -136,6 +137,7 @@ CREATE TABLE posts (
     body text,
     blog_id integer,
     category_id integer,
+    published boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

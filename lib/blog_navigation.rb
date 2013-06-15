@@ -1,4 +1,4 @@
-class Blog
+class BlogNavigation
 
 class << self
   def views
