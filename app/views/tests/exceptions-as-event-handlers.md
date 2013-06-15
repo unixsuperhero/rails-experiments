@@ -1,5 +1,5 @@
 
-# Using Exceptions as Event Triggers (Refactoring Idea)
+# Using Exceptions as Event Handlers (Refactoring Idea)
 
 ### Scenario
 
