@@ -13,4 +13,5 @@ coverage
 stubs/
 .sass-cache/
 /development.yml
-public/bakuman*
+public/*.pdf
+public/*.mp4

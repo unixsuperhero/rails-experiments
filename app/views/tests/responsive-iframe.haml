@@ -1,0 +1,53 @@
+%style(type="text/css")
+  :sass
+    body
+      background-color: lightblue
+    @media(max-width: 200px)
+      body
+        background-color: lightgreen
+    span
+      float: left
+      margin-left: 20px
+    iframe.iphone
+      display: block
+      height: 200px
+      width: 200px
+    iframe.desktop
+      display: block
+      height: 200px
+      width: 210px
+
+:markdown
+  # Does an iFrame's width affect responsive design?
+
+  ## Purpose
+
+  I plan on mocking up responsive pages.  
+  This way I can create an iframe to match the iPhone's
+  dimensions to see how it will look.
+
+  ## Details
+
+  Each iframe loads the same html file.
+
+  The stylesheet reads like this:
+
+  #### _css in iframe's src_
+      body { background-color: lightblue; }
+      @media(max-width: 200px) {
+        body { background-color: lightgreen; }
+      }
+
+  #### _this page's source_
+      # The green "responsive" css
+      <iframe src="/responsive-iframe.html" style="width: 200px;"></iframe>
+
+      # The blue default css
+      <iframe src="/responsive-iframe.html" style="width: 210px;"></iframe>
+
+%span
+  200px wide
+  %iframe(src="/responsive-iframe.html" class="iphone")
+%span
+  210px wide
+  %iframe(src="/responsive-iframe.html" class="desktop")
