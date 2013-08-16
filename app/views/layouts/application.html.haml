@@ -35,11 +35,11 @@
         %hr.separate
         = link_to 'Home', '/'
         = link_to 'Todo', '/todo'
-        = link_to 'Tests & Experiments', '/tests'
-        .sub= link_to 'Basic Auth', '/tests/basic_auth'
         %hr.separate
         .h2 Experiments
         %hr
+        = link_to 'Tests & Experiments', '/tests'
+        .sub= link_to 'Basic Auth', '/tests/basic_auth'
         = link_to 'Basic Auth (Rails 3.x)', basic_auth_path
         = link_to '.NET Enum in Ruby?', pseudo_enumerable_test_path
         = link_to 'Route Tests', route_exp_path
